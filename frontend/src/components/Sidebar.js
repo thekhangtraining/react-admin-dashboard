@@ -9,7 +9,7 @@ const Sidebar = () => {
   const normalLink = "flex items-center p-2 m-0.5 hover:bg-blue-200";
 
   return (
-    <div>
+    <div style={{fontFamily: "Open Sans"}}>
       {navLinks.map((item) => (
         <NavLink
           to={`/${item.name}`}

@@ -43,6 +43,7 @@ const MoviesCard = ({
             size="md"
             className="ml-0.5"
             key={item}
+            style={{ fontFamily: "Roboto Slab" }}
           >
             {item}
           </Badge>
@@ -63,7 +64,7 @@ const MoviesCard = ({
               className="flex items-center px-2 py-1 border hover:border-black group-hover:[&>p]:text-black group-hover:bg-white duration-500"
             >
               <BsFillHeartFill className="text-red-500" />
-              <p className="text-sm ml-1 font-bold text-white">
+              <p className="text-sm ml-1 text-white">
                 {Math.round(popularity)}
               </p>
             </button>
@@ -76,7 +77,7 @@ const MoviesCard = ({
               className="flex items-center px-2 py-1 border hover:border-black group-hover:[&>p]:text-black group-hover:bg-white duration-500"
             >
               <BsStarFill className="text-yellow-400" />
-              <p className="text-sm ml-1 font-bold text-white">
+              <p className="text-sm ml-1 text-white">
                 {Math.round(voteAvg * 10) / 10}
               </p>
             </button>
