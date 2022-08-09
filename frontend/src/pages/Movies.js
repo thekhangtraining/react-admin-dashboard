@@ -29,7 +29,7 @@ const Movies = () => {
 
   return (
     <div className="flex flex-col animate-fadeIn">
-      <Title title="Thu Giang muốn xem phim gì ạ?" />
+      <Title title="Trending Movies Of This Week" />
       <div className="flex flex-wrap">
         {moviesList.map((item) => (
           <MoviesCard
