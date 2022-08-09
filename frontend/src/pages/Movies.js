@@ -28,7 +28,7 @@ const Movies = () => {
   }, []);
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col animate-fadeIn">
       <Title title="Thu Giang muốn xem phim gì ạ?" />
       <div className="flex flex-wrap">
         {moviesList.map((item) => (

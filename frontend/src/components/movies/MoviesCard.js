@@ -10,7 +10,7 @@ const MoviesCard = ({
   voteCount,
 }) => {
   return (
-    <div className="flex flex-col w-56 m-3 bg-zinc-200 rounded-md shadow-lg hover:scale-105 hover:border-gray-700 hover:border-4 duration-300">
+    <div className="flex flex-col w-56 m-3 bg-zinc-200 rounded-md shadow-lg hover:scale-110 hover:border-gray-700 hover:border-4 duration-300">
       <img src={`https://image.tmdb.org/t/p/w500${posterPath}`} alt="" />
       <div className="flex flex-col p-2 justify-between h-full bg-gray-900">
         <span className="break-normal mt-2 uppercase text-center text-slate-200">
