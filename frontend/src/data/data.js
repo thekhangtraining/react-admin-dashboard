@@ -1,9 +1,9 @@
-import { BsPeople, BsShop } from "react-icons/bs";
+import { BsPeople, BsCart3 } from "react-icons/bs";
 import { MdOutlineLocalMovies } from "react-icons/md";
 import { FaFacebookSquare } from "react-icons/fa";
 
 export const navLinks = [
-  { name: "ecommerce", icon: <BsShop /> },
+  { name: "ecommerce", icon: <BsCart3 /> },
   { name: "employees", icon: <BsPeople /> },
   { name: "movies", icon: <MdOutlineLocalMovies /> },
   { name: "facebook", icon: <FaFacebookSquare /> },

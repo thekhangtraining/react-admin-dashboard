@@ -1,7 +1,7 @@
 import React from "react";
 
 const Title = ({ title }) => {
-  return <div className="m-2 text-3xl font-[Open Sans]">{title}</div>;
+  return <div className="text-xl font-[Open Sans] mb-2">{title}</div>;
 };
 
 export default Title;

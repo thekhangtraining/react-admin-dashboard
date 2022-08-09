@@ -7,6 +7,7 @@ import configs from "../configs.json";
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
 
+  // Fetch movies list at startup
   useEffect(() => {
     axios
       .get("https://api.themoviedb.org/3/trending/all/week", {
@@ -15,7 +16,6 @@ const Movies = () => {
         },
       })
       .then((response) => {
-        console.log(response.data.results);
         setMoviesList(
           response.data.results.sort(function (a, b) {
             return b.popularity - a.popularity;
@@ -34,6 +34,7 @@ const Movies = () => {
         {moviesList.map((item) => (
           <MoviesCard
             key={item.id}
+            id={item.id}
             title={item.title || item.name}
             backdropPath={item.backdrop_path}
             posterPath={item.poster_path}
@@ -41,6 +42,7 @@ const Movies = () => {
             voteAvg={item.vote_average}
             voteCount={item.vote_count}
             genreIds={item.genre_ids}
+            releaseYear={(item.release_date || item.first_air_date).slice(0, 4)}
           />
         ))}
       </div>
