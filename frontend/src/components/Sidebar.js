@@ -5,8 +5,8 @@ import { navLinks } from "../data/data";
 
 const Sidebar = () => {
   const { currentColor } = useStateContext();
-  const activeLink = "flex items-center p-2 rounded-sm m-0.5";
-  const normalLink = "flex items-center p-2 rounded-sm m-0.5 hover:bg-blue-200";
+  const activeLink = "flex items-center p-2 m-0.5";
+  const normalLink = "flex items-center p-2 m-0.5 hover:bg-blue-200";
 
   return (
     <div>
