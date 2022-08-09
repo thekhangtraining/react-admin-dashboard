@@ -40,6 +40,7 @@ const Movies = () => {
             popularity={item.popularity}
             voteAvg={item.vote_average}
             voteCount={item.vote_count}
+            genreIds={item.genre_ids}
           />
         ))}
       </div>

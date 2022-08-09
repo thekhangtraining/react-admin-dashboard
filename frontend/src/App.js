@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Sidebar } from "./components";
-import { Ecommerce, Employees, Movies, Facebook } from "./pages";
+import { Ecommerce, Employees, Facebook, Movies } from "./pages";
 
 const App = () => {
   return (
-    <div className="flex m-2 h-screen">
+    <div className="flex m-2 h-full">
       <BrowserRouter>
-        <div className="w-72 p-2 bg-zinc-100 m-1">
+        <div className="w-72 p-2 bg-zinc-100 m-1 h-screen sticky top-3">
           <Sidebar />
         </div>
         <div className="w-full p-4 bg-zinc-100 m-1">
