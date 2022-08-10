@@ -17,9 +17,9 @@ const MoviesCard = ({
 }) => {
   const { hovered, ref } = useHover();
   const visibleLabel =
-    "visible absolute my-2 gap-x-0.5 gap-y-1 w-48 flex flex-wrap justify-center z-0";
+    "opacity-100 absolute my-2 gap-x-0.5 gap-y-1 w-48 flex flex-wrap justify-center z-0 duration-500";
   const invisibleLabel =
-    "invisible absolute my-2 gap-x-0.5 gap-y-1 w-48 flex flex-wrap justify-center z-0";
+    "opacity-0 absolute my-2 gap-x-0.5 gap-y-1 w-48 flex flex-wrap justify-center z-0 duration-500";
 
   var genres = [];
   for (let i = 0; i < genreIds.length; i++) {

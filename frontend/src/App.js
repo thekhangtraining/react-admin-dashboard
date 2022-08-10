@@ -2,7 +2,15 @@ import { NotificationsProvider } from "@mantine/notifications";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar, Sidebar } from "./components";
-import { Ecommerce, Employees, Facebook, Movies } from "./pages";
+import {
+  FinancialStatistics,
+  Amazon,
+  Employees,
+  Projects,
+  Facebook,
+  Movies,
+  Spotify,
+} from "./pages";
 
 const App = () => {
   return (
@@ -18,19 +26,37 @@ const App = () => {
             </div>
             <div className="w-full p-6 pt-6 mt-2 bg-slate-50 rounded-t-[0.5rem] drop-shadow-xl">
               <Routes>
-                <Route path="/" key="Ecommerce" element={<Ecommerce />} />
                 <Route
-                  path="/ecommerce"
-                  key="Ecommerce"
-                  element={<Ecommerce />}
+                  path="/ecommerce/financial-statistics"
+                  key="FinancialStatistics"
+                  element={<FinancialStatistics />}
                 />
                 <Route
-                  path="/employees"
+                  path="/ecommerce/amazon"
+                  key="Amazon"
+                  element={<Amazon />}
+                />
+                <Route
+                  path="/company/employees"
                   key="Employees"
                   element={<Employees />}
                 />
-                <Route path="/movies" key="Movies" element={<Movies />} />
-                <Route path="/facebook" key="Facebook" element={<Facebook />} />
+                <Route
+                  path="/company/projects"
+                  key="Projects"
+                  element={<Projects />}
+                />
+                <Route path="/media/movies" key="Movies" element={<Movies />} />
+                <Route
+                  path="/media/facebook"
+                  key="Facebook"
+                  element={<Facebook />}
+                />
+                <Route
+                  path="/media/spotify"
+                  key="Spotify"
+                  element={<Spotify />}
+                />
               </Routes>
             </div>
           </div>

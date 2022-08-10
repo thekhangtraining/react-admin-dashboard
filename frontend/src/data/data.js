@@ -1,12 +1,39 @@
-import { BsPeople, BsCart3 } from "react-icons/bs";
-import { MdOutlineLocalMovies } from "react-icons/md";
+import { BsPeople } from "react-icons/bs";
 import { FaFacebookSquare } from "react-icons/fa";
+import { ImAmazon, ImSpotify, ImStatsBars } from "react-icons/im";
+import { MdOutlineLocalMovies } from "react-icons/md";
+import { RiCalendarTodoFill } from "react-icons/ri";
 
 export const navLinks = [
-  { name: "ecommerce", icon: <BsCart3 /> },
-  { name: "employees", icon: <BsPeople /> },
-  { name: "movies", icon: <MdOutlineLocalMovies /> },
-  { name: "facebook", icon: <FaFacebookSquare /> },
+  {
+    title: "ecommerce",
+    baseAddress: "/ecommerce",
+    links: [
+      {
+        name: "financial-statistics",
+        icon: <ImStatsBars />,
+        address: "/financial-statistics",
+      },
+      { name: "amazon", icon: <ImAmazon />, address: "/amazon" },
+    ],
+  },
+  {
+    title: "company",
+    baseAddress: "/company",
+    links: [
+      { name: "employees", icon: <BsPeople />, address: "/employees" },
+      { name: "projects", icon: <RiCalendarTodoFill />, address: "/projects" },
+    ],
+  },
+  {
+    title: "media",
+    baseAddress: "/media",
+    links: [
+      { name: "movies", icon: <MdOutlineLocalMovies />, address: "/movies" },
+      { name: "facebook", icon: <FaFacebookSquare />, address: "/facebook" },
+      { name: "spotify", icon: <ImSpotify />, address: "/spotify" },
+    ],
+  },
 ];
 
 export const moviesGenres = [

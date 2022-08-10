@@ -1,14 +1,14 @@
+import { Skeleton } from "@mantine/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Title } from "../components";
-import { MoviesCard } from "../components/movies";
-import configs from "../configs.json";
-import { Skeleton } from "@mantine/core";
+import { Title } from "../../components";
+import { MoviesCard } from "../../components/movies";
+import configs from "../../configs.json";
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
   const [loading, setLoading] = useState(true);
-  let skeletonList = [...Array(20)].map((x) => 0);
+  let skeletonList = [...Array(20).keys()];
 
   // Fetch movies list at startup
   useEffect(() => {
@@ -31,13 +31,14 @@ const Movies = () => {
       });
   }, []);
 
+  // Load skeletons before the response is returned
   return (
     <div className="flex flex-col animate-fadeIn">
       <Title title="Trending Movies Of This Week" />
       <div className="flex flex-wrap">
         {loading &&
           skeletonList.map((item) => (
-            <Skeleton m={6} width={192} height={384} />
+            <Skeleton key={item} m={6} width={192} height={384} />
           ))}
         {!loading &&
           moviesList.map((item) => (
