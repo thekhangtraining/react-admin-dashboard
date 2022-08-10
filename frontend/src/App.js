@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar, Sidebar } from "./components";
 import {
-  FinancialStatistics,
+  FinancialStats,
   Amazon,
   Employees,
   Projects,
@@ -27,9 +27,9 @@ const App = () => {
             <div className="w-full p-6 pt-6 mt-2 bg-slate-50 rounded-t-[0.5rem] drop-shadow-xl">
               <Routes>
                 <Route
-                  path="/ecommerce/financial-statistics"
-                  key="FinancialStatistics"
-                  element={<FinancialStatistics />}
+                  path="/ecommerce/financial-stats"
+                  key="FinancialStats"
+                  element={<FinancialStats />}
                 />
                 <Route
                   path="/ecommerce/amazon"

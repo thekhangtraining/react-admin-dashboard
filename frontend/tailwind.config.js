@@ -6,6 +6,7 @@ module.exports = {
       // that is animation class
       animation: {
         fadeIn: "fadeIn 0.5s",
+        slideIn: "slideIn 0.5s",
       },
 
       // that is actual animation
@@ -15,9 +16,17 @@ module.exports = {
             opacity: 0,
           },
           "100%": {
-            opacity: 1
-          }
-        }
+            opacity: 1,
+          },
+        },
+        slideIn: {
+          "0%": {
+            transform: "translateX(-1rem)",
+          },
+          "100%": {
+            transform: "translateX(0)",
+          },
+        },
       },
     },
   },

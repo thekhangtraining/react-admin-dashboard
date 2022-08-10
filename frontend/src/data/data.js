@@ -10,9 +10,9 @@ export const navLinks = [
     baseAddress: "/ecommerce",
     links: [
       {
-        name: "financial-statistics",
+        name: "financial-stats",
         icon: <ImStatsBars />,
-        address: "/financial-statistics",
+        address: "/financial-stats",
       },
       { name: "amazon", icon: <ImAmazon />, address: "/amazon" },
     ],

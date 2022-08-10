@@ -5,7 +5,7 @@ import { navLinks } from "../data/data";
 
 const Sidebar = () => {
   const activeLink =
-    "flex items-center p-2 m-0.5 ml-8 rounded-md text-slate-100 drop-shadow-xl";
+    "flex items-center p-2 m-0.5 ml-8 rounded-md text-slate-100 drop-shadow-xl animate-slideIn";
   const normalLink =
     "flex items-center p-2 m-0.5 ml-4 rounded-sm hover:bg-gradient-to-r from-[#1e3a8a] hover:text-slate-100";
 
