@@ -3,9 +3,12 @@ import React, { useEffect, useState } from "react";
 import { Title } from "../components";
 import { MoviesCard } from "../components/movies";
 import configs from "../configs.json";
+import { Skeleton } from "@mantine/core";
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
+  const [loading, setLoading] = useState(true);
+  let skeletonList = [...Array(20)].map((x) => 0);
 
   // Fetch movies list at startup
   useEffect(() => {
@@ -21,6 +24,7 @@ const Movies = () => {
             return b.popularity - a.popularity;
           })
         );
+        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -31,20 +35,28 @@ const Movies = () => {
     <div className="flex flex-col animate-fadeIn">
       <Title title="Trending Movies Of This Week" />
       <div className="flex flex-wrap">
-        {moviesList.map((item) => (
-          <MoviesCard
-            key={item.id}
-            id={item.id}
-            title={item.title || item.name}
-            backdropPath={item.backdrop_path}
-            posterPath={item.poster_path}
-            popularity={item.popularity}
-            voteAvg={item.vote_average}
-            voteCount={item.vote_count}
-            genreIds={item.genre_ids}
-            releaseYear={(item.release_date || item.first_air_date).slice(0, 4)}
-          />
-        ))}
+        {loading &&
+          skeletonList.map((item) => (
+            <Skeleton m={6} width={192} height={384} />
+          ))}
+        {!loading &&
+          moviesList.map((item) => (
+            <MoviesCard
+              key={item.id}
+              id={item.id}
+              title={item.title || item.name}
+              backdropPath={item.backdrop_path}
+              posterPath={item.poster_path}
+              popularity={item.popularity}
+              voteAvg={item.vote_average}
+              voteCount={item.vote_count}
+              genreIds={item.genre_ids}
+              releaseYear={(item.release_date || item.first_air_date).slice(
+                0,
+                4
+              )}
+            />
+          ))}
       </div>
     </div>
   );

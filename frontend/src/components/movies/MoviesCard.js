@@ -40,8 +40,8 @@ const MoviesCard = ({
         {genres.map((item) => (
           <Badge
             variant="gradient"
-            gradient={{ from: "#ed6ea0", to: "#ec8c69", deg: 40 }}
-            radius="2"
+            gradient={{ from: "#1e3a8a", to: "#38bdf8", deg: 10 }}
+            radius="xs"
             size="sm"
             key={`badge-${id}-${item}`}
             style={{ fontFamily: "Poppins" }}
@@ -61,6 +61,8 @@ const MoviesCard = ({
           position="top"
           label={title}
           style={{ paddingX: "0.5rem" }}
+          transition="fade"
+          transitionDuration={300}
         >
           <span className="truncate mt-1 text-center text-blue-200">
             {title}

@@ -23,10 +23,6 @@ export const moviesGenres = [
     name: "Animation",
   },
   {
-    id: 80,
-    name: "Crime",
-  },
-  {
     id: 99,
     name: "Documentary",
   },
