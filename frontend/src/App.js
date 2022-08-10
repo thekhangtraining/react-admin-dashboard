@@ -17,10 +17,10 @@ const App = () => {
     <div className="flex h-full">
       <NotificationsProvider limit={5}>
         <BrowserRouter>
-          <div className="w-72 p-1 bg-zinc-100 h-screen sticky top-0 drop-shadow-xl">
+          <div className="w-72 bg-zinc-100 h-screen sticky top-0 drop-shadow-xl">
             <Sidebar />
           </div>
-          <div className="w-full px-8 py-1 bg-zinc-200">
+          <div className="w-full px-8 py-1 bg-gradient-to-r from-[#dbeafe] to-[#e0f2fe]">
             <div className="w-full p-2 bg-red-200">
               <Navbar />
             </div>
