@@ -33,6 +33,12 @@ const LoveButton = ({ title, popularity }) => {
                   <span className="ml-1 font-bold text-zinc-700">{title}</span>
                 </p>
               ),
+              styles: (theme) => ({
+                root: {
+                  backgroundColor: theme.colors.gray[1],
+                  "&::before": { backgroundColor: theme.colors.red[5] },
+                },
+              }),
             })
           }
         >

@@ -2,7 +2,7 @@ import { Badge, Tooltip } from "@mantine/core";
 import { useHover } from "@mantine/hooks";
 import React from "react";
 import { moviesGenres } from "../../data/data";
-import { LoveButton, RatingButton, PlayButton } from "./";
+import { LoveButton, PlayButton, RatingButton } from "./";
 
 const MoviesCard = ({
   id,
@@ -40,7 +40,7 @@ const MoviesCard = ({
         {genres.map((item) => (
           <Badge
             variant="gradient"
-            gradient={{ from: "#1e3a8a", to: "#38bdf8", deg: 10 }}
+            gradient={{ from: "#047857", to: "#38bdf8", deg: 10 }}
             radius="xs"
             size="sm"
             key={`badge-${id}-${item}`}

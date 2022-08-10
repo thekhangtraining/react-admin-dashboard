@@ -20,11 +20,11 @@ const App = () => {
           <div className="w-72 bg-zinc-100 h-screen sticky top-0 drop-shadow-xl">
             <Sidebar />
           </div>
-          <div className="w-full px-8 py-1 bg-gradient-to-r from-[#dbeafe] to-[#e0f2fe]">
-            <div className="w-full p-2 bg-red-200">
+          <div className="w-full px-4 py-1 bg-gray-200">
+            <div className="w-full p-0.5">
               <Navbar />
             </div>
-            <div className="w-full p-6 pt-6 mt-2 bg-slate-50 rounded-t-[0.5rem] drop-shadow-xl">
+            <div className="w-full p-6 pt-6 mt-2 bg-slate-100 rounded-t-[0.5rem] drop-shadow-xl">
               <Routes>
                 <Route
                   path="/ecommerce/financial-stats"
