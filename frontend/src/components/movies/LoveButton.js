@@ -17,7 +17,7 @@ const LoveButton = ({ title, popularity }) => {
         <button
           type="button"
           // Adhoc styling
-          className="flex items-center rounded-sm px-1 py-0.5 border hover:border-black group-hover:[&>p]:text-black group-hover:bg-pink-100 duration-500"
+          className="flex items-center rounded-sm px-1 py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-pink-100"
           // Show notification
           onClick={() =>
             showNotification({
@@ -43,7 +43,7 @@ const LoveButton = ({ title, popularity }) => {
           }
         >
           <BsFillHeartFill className="text-red-500" />
-          <p className="text-sm ml-1 text-white">{Math.round(popularity)}</p>
+          <p className="text-sm ml-1">{Math.round(popularity)}</p>
         </button>
       </div>
     </Tooltip>

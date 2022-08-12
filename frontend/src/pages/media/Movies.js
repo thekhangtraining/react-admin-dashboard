@@ -1,19 +1,16 @@
-import { Skeleton } from "@mantine/core";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Title } from "../../components";
-import { MoviesCard } from "../../components/movies";
+import { MovieCard } from "../../components/movies";
 import configs from "../../configs.json";
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  let skeletonList = [...Array(20).keys()];
 
   // Fetch movies list at startup
   useEffect(() => {
     axios
-      .get("https://api.themoviedb.org/3/trending/all/week", {
+      .get("https://api.themoviedb.org/3/trending/movie/week", {
         params: {
           api_key: configs.apiKeyTMDB,
         },
@@ -24,7 +21,6 @@ const Movies = () => {
             return b.popularity - a.popularity;
           })
         );
-        setLoading(false);
       })
       .catch(function (error) {
         console.log(error);
@@ -33,31 +29,24 @@ const Movies = () => {
 
   // Load skeletons before the response is returned
   return (
-    <div className="flex flex-col animate-fadeIn">
-      <Title title="Trending Movies Of This Week" />
-      <div className="flex flex-wrap">
-        {loading &&
-          skeletonList.map((item) => (
-            <Skeleton key={item} m={6} width={192} height={384} />
-          ))}
-        {!loading &&
-          moviesList.map((item) => (
-            <MoviesCard
-              key={item.id}
-              id={item.id}
-              title={item.title || item.name}
-              backdropPath={item.backdrop_path}
-              posterPath={item.poster_path}
-              popularity={item.popularity}
-              voteAvg={item.vote_average}
-              voteCount={item.vote_count}
-              genreIds={item.genre_ids}
-              releaseYear={(item.release_date || item.first_air_date).slice(
-                0,
-                4
-              )}
-            />
-          ))}
+    <div className="flex flex-col">
+      <Title title="Thu Giang muốn xem phim gì ạ?" />
+      <div className="flex flex-wrap gap-6">
+        {moviesList.map((item) => (
+          <MovieCard
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            backdropPath={item.backdrop_path}
+            posterPath={item.poster_path}
+            overview={item.overview}
+            popularity={item.popularity}
+            voteAvg={item.vote_average}
+            voteCount={item.vote_count}
+            genreIds={item.genre_ids.slice(0, 2)}
+            releaseYear={item.release_date.slice(0, 4)}
+          />
+        ))}
       </div>
     </div>
   );

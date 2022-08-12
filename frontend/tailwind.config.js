@@ -5,7 +5,7 @@ module.exports = {
     extend: {
       // that is animation class
       animation: {
-        fadeIn: "fadeIn 0.5s",
+        fadeIn: "fadeIn 0.1s",
         slideIn: "slideIn 0.5s",
       },
 
@@ -30,5 +30,5 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

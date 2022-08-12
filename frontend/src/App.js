@@ -1,15 +1,10 @@
 import { NotificationsProvider } from "@mantine/notifications";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import "./App.css";
 import { Navbar, Sidebar } from "./components";
 import {
-  FinancialStats,
   Amazon,
-  Employees,
-  Projects,
-  Facebook,
-  Movies,
-  Spotify,
+  Employees, Facebook, FinancialStats, Movies, Projects, Spotify,
+  Youtube
 } from "./pages";
 
 const App = () => {
@@ -20,11 +15,11 @@ const App = () => {
           <div className="w-72 bg-zinc-100 h-screen sticky top-0 drop-shadow-xl">
             <Sidebar />
           </div>
-          <div className="w-full px-4 py-1 bg-gray-200">
+          <div className="w-full px-4 py-1 bg-gray-50">
             <div className="w-full p-0.5">
               <Navbar />
             </div>
-            <div className="w-full p-6 pt-6 mt-2 bg-slate-100 rounded-t-[0.5rem] drop-shadow-xl">
+            <main className="w-full p-4 pt-2 mt-1 bg-gray-200 rounded-sm drop-shadow-xl">
               <Routes>
                 <Route
                   path="/ecommerce/financial-stats"
@@ -48,6 +43,11 @@ const App = () => {
                 />
                 <Route path="/media/movies" key="Movies" element={<Movies />} />
                 <Route
+                  path="/media/youtube"
+                  key="Youtube"
+                  element={<Youtube />}
+                />
+                <Route
                   path="/media/facebook"
                   key="Facebook"
                   element={<Facebook />}
@@ -58,7 +58,7 @@ const App = () => {
                   element={<Spotify />}
                 />
               </Routes>
-            </div>
+            </main>
           </div>
         </BrowserRouter>
       </NotificationsProvider>

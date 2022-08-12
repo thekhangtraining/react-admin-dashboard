@@ -5,4 +5,5 @@ export { default as FinancialStats } from "./ecommerce/FinancialStats";
 export { default as Facebook } from "./media/Facebook";
 export { default as Movies } from "./media/Movies";
 export { default as Spotify } from "./media/Spotify";
+export { default as Youtube } from "./media/Youtube";
 

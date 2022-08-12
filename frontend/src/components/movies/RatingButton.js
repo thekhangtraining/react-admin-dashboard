@@ -17,7 +17,7 @@ const RatingButton = ({ title, voteAvg }) => {
         <button
           type="button"
           // Adhoc styling
-          className="flex items-center rounded-sm px-1 py-0.5 border hover:border-black group-hover:[&>p]:text-black group-hover:bg-yellow-100 duration-500"
+          className="flex items-center rounded-sm px-1 py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-yellow-100"
           // Show notification
           onClick={() =>
             showNotification({
@@ -33,19 +33,17 @@ const RatingButton = ({ title, voteAvg }) => {
                   <span className="ml-1 font-bold text-zinc-700">{title}</span>
                 </p>
               ),
-              styles: (theme) => ({
+              styles: () => ({
                 root: {
-                  backgroundColor: theme.colors.gray[1],
-                  "&::before": { backgroundColor: theme.colors.yellow[4] },
+                  backgroundColor: "#f3f4f6",
+                  "&::before": { backgroundColor: "#facc15" },
                 },
               }),
             })
           }
         >
           <BsStarFill className="text-yellow-400" />
-          <p className="text-sm ml-1 text-white">
-            {Math.round(voteAvg * 10) / 10}
-          </p>
+          <p className="text-sm ml-1">{Math.round(voteAvg * 10) / 10}</p>
         </button>
       </div>
     </Tooltip>
