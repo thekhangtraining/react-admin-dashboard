@@ -6,7 +6,7 @@ import { Footer } from "./";
 import { useStateContext } from "../contexts/ContextProvider";
 
 const Sidebar = () => {
-  const { currentColor, currentColorGradient } = useStateContext();
+  const { currentColorGradient } = useStateContext();
   const activeLink =
     "flex items-center p-1 m-0.5 ml-5 rounded-sm text-slate-100 drop-shadow-xl animate-slideIn";
   const normalLink =

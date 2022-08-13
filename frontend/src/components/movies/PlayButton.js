@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FaRegPlayCircle } from "react-icons/fa";
+import { FaRegPlayCircle, FaYoutube } from "react-icons/fa";
 import Modal from "react-modal";
 import ReactPlayer from "react-player/youtube";
 import configs from "../../configs.json";
 
-const PlayButton = ({ movieTitle, movieId }) => {
+const PlayButton = ({ movieTitle, movieId, posterPath }) => {
   const [trailerLink, setTrailerLink] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const modalStyle = {
@@ -18,10 +18,13 @@ const PlayButton = ({ movieTitle, movieId }) => {
       transform: "translate(-50%, -50%)",
       padding: "2rem",
       background: "#f4f4f5",
+      paddingTop: "1rem",
     },
     overlay: {
       background:
         "linear-gradient(to right, rgba(4, 120, 87, 0.5), rgba(126, 34, 206, 0.5))",
+      backgroundImage: `url('https://image.tmdb.org/t/p/w1280${posterPath}')`,
+      backgroundSize: "contain",
     },
   };
   Modal.setAppElement("#root");
@@ -53,11 +56,14 @@ const PlayButton = ({ movieTitle, movieId }) => {
         style={modalStyle}
         contentLabel="Watch trailer"
       >
-        <h2 className="text-lg text-slate-400">
-          Watching
-          <span className="text-emerald-600 font-medium"> {movieTitle} </span>
-          trailer
-        </h2>
+        <div className="flex items-center">
+          <FaYoutube size="40px" color={"rgb(255, 0, 0)"} className="mx-2" />
+          <h2 className="text-lg text-slate-400">
+            Watching
+            <span className="text-emerald-600 font-medium"> {movieTitle} </span>
+            trailer
+          </h2>
+        </div>
         <div className="flex flex-col items-center justify-center h-full w-full mt-2">
           <ReactPlayer
             width="854px"
@@ -76,7 +82,7 @@ const PlayButton = ({ movieTitle, movieId }) => {
         className="flex justify-center h-full w-full rounded items-center px-2 py-0.5 bg-yellow-500"
       >
         <FaRegPlayCircle size="20px" className="text-black mx-1" />
-        <p className="">Watch Trailer</p>
+        <p className="font-medium">Watch Trailer</p>
       </button>
     </div>
   );

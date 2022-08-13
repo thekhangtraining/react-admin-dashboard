@@ -4,8 +4,8 @@ import { LoveButton, PlayButton, RatingButton } from ".";
 import { moviesGenres } from "../../data/data";
 
 const MovieCard = ({
-  id,
-  title,
+  movieId,
+  movieTitle,
   posterPath,
   backdropPath,
   overview,
@@ -50,9 +50,10 @@ const MovieCard = ({
         style={modalStyle}
         contentLabel="Example Modal"
       >
-        <h2 className="text-lg">
-          Watching <span className="text-emerald-600 font-medium">{title}</span>{" "}
-          trailer
+        <h2 className="text-lg text-slate-400">
+          Viewing
+          <span className="text-emerald-600 font-medium"> {movieTitle} </span>
+          information
         </h2>
       </Modal>
       <button onClick={() => setModalIsOpen(true)}>
@@ -68,11 +69,11 @@ const MovieCard = ({
           onClick={() => setModalIsOpen(true)}
           className="flex flex-col text-left"
         >
-          <h2 className="font-medium text-lg line-clamp-1">{title}</h2>
+          <h2 className="font-medium text-lg line-clamp-1">{movieTitle}</h2>
           <p className="text-sm line-clamp-4 text-slate-500">{overview}</p>
         </button>
         <div className="flex flex-start space-x-1.5 mt-2">
-          {genres.map((item) => (
+          {genres.slice(0, 2).map((item) => (
             <div
               key={item}
               className="text-sm font-medium bg-slate-100 rounded-sm text-center px-2 border border-slate-600"
@@ -84,10 +85,22 @@ const MovieCard = ({
 
         <div className="flex flex-col mt-2 mb-0.5 bottom-0 justify-end items-center grow space-y-2">
           <div className="flex justify-end space-x-2 w-full">
-            <LoveButton title={title} popularity={popularity} />
-            <RatingButton title={title} voteAvg={voteAvg} />
+            <LoveButton
+              movieId={movieId}
+              movieTitle={movieTitle}
+              popularity={popularity}
+            />
+            <RatingButton
+              movieId={movieId}
+              movieTitle={movieTitle}
+              voteAvg={voteAvg}
+            />
           </div>
-          <PlayButton movieTitle={title} movieId={id} />
+          <PlayButton
+            movieTitle={movieTitle}
+            movieId={movieId}
+            posterPath={posterPath}
+          />
         </div>
       </div>
     </div>

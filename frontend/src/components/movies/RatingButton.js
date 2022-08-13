@@ -1,52 +1,35 @@
-import { Tooltip } from "@mantine/core";
-import { showNotification } from "@mantine/notifications";
 import React from "react";
 import { BsStarFill } from "react-icons/bs";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-const RatingButton = ({ title, voteAvg }) => {
+const RatingButton = ({ movieId, movieTitle, voteAvg }) => {
+  const RatingNoti = () => (
+    <div className="text-slate-400">
+      Thanks for rating the movie{" "}
+      <span className="text-[rgb(4,120,87)]">{movieTitle}</span>
+    </div>
+  );
+
+  const notify = () =>
+    toast(RatingNoti, {
+      icon: <BsStarFill className="text-yellow-400" size="30px" />,
+      toastId: `toast-rating-${movieId}`,
+    });
+
   return (
-    <Tooltip
-      radius={1}
-      position="bottom"
-      label="Rate this movie"
-      style={{ paddingX: "0.5rem" }}
-      transition="fade"
-      transitionDuration={300}
-    >
-      <div className="group">
-        <button
-          type="button"
-          // Adhoc styling
-          className="flex items-center rounded-sm px-1 py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-yellow-100"
-          // Show notification
-          onClick={() =>
-            showNotification({
-              title: (
-                <p className="flex items-center font-bold">
-                  <BsStarFill className="text-yellow-400 mr-1" />
-                  That was kind of you!
-                </p>
-              ),
-              message: (
-                <p className="text-zinc-700">
-                  Thanks for rating the movie
-                  <span className="ml-1 font-bold text-zinc-700">{title}</span>
-                </p>
-              ),
-              styles: () => ({
-                root: {
-                  backgroundColor: "#f3f4f6",
-                  "&::before": { backgroundColor: "#facc15" },
-                },
-              }),
-            })
-          }
-        >
-          <BsStarFill className="text-yellow-400" />
-          <p className="text-sm ml-1">{Math.round(voteAvg * 10) / 10}</p>
-        </button>
-      </div>
-    </Tooltip>
+    <div className="group">
+      <button
+        type="button"
+        // Adhoc styling
+        className="flex items-center rounded-sm px-1 py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-yellow-100"
+        // Show notification
+        onClick={notify}
+      >
+        <BsStarFill className="text-yellow-400" />
+        <p className="text-sm ml-1">{Math.round(voteAvg * 10) / 10}</p>
+      </button>
+    </div>
   );
 };
 

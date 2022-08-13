@@ -30,20 +30,20 @@ const Movies = () => {
   // Load skeletons before the response is returned
   return (
     <div className="flex flex-col">
-      <Title title="Thu Giang muốn xem phim gì ạ?" />
+      <Title title="Trending Movies This Week" />
       <div className="flex flex-wrap gap-6">
         {moviesList.map((item) => (
           <MovieCard
             key={item.id}
-            id={item.id}
-            title={item.title}
+            movieId={item.id}
+            movieTitle={item.title}
             backdropPath={item.backdrop_path}
             posterPath={item.poster_path}
             overview={item.overview}
             popularity={item.popularity}
             voteAvg={item.vote_average}
             voteCount={item.vote_count}
-            genreIds={item.genre_ids.slice(0, 2)}
+            genreIds={item.genre_ids}
             releaseYear={item.release_date.slice(0, 4)}
           />
         ))}
