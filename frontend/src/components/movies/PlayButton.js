@@ -19,6 +19,8 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
       padding: "2rem",
       background: "#f4f4f5",
       paddingTop: "1rem",
+      width: "90%",
+      height: "90%",
     },
     overlay: {
       background:
@@ -64,12 +66,12 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
             trailer
           </h2>
         </div>
-        <div className="flex flex-col items-center justify-center h-full w-full mt-2">
+        <div className="flex flex-col items-center justify-center h-[95%] w-full mt-3">
           <ReactPlayer
-            width="854px"
-            height="480px"
-            playing
+            width="100%"
+            height="100%"
             controls
+            playing
             url={trailerLink}
           />
         </div>

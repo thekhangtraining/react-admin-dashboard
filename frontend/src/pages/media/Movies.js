@@ -31,7 +31,7 @@ const Movies = () => {
   return (
     <div className="flex flex-col">
       <Title title="Trending Movies This Week" />
-      <div className="flex flex-wrap gap-6">
+      <div className="grid grid-cols-12 gap-6">
         {moviesList.map((item) => (
           <MovieCard
             key={item.id}
