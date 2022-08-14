@@ -27,7 +27,6 @@ const Movies = () => {
       });
   }, []);
 
-  // Load skeletons before the response is returned
   return (
     <div className="flex flex-col">
       <Title title="Trending Movies This Week" />

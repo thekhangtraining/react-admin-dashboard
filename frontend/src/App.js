@@ -14,16 +14,14 @@ import {
 
 const App = () => {
   return (
-    <div className="flex h-full">
+    <div className="flex">
       <BrowserRouter>
-        <div className="w-72 bg-zinc-100 h-screen sticky top-0 drop-shadow-xl">
-          <Sidebar />
-        </div>
-        <div className="w-full px-4 py-1 bg-gray-50">
+        <Sidebar />
+        <div className="w-screen px-4 py-1 bg-gray-50">
           <div className="w-full p-0.5">
             <Navbar />
           </div>
-          <main className="w-full p-4 pt-2 mt-1 bg-gray-200 rounded-sm drop-shadow-xl">
+          <main className="w-full p-4 pt-2 mt-1 bg-gray-200 rounded drop-shadow-xl">
             <Routes>
               <Route
                 path="/ecommerce/financial-stats"
@@ -69,7 +67,7 @@ const App = () => {
         position="bottom-right"
         newestOnTop
         pauseOnHover
-        autoClose={2000}
+        autoClose={3000}
         transition={Zoom}
         pauseOnFocusLoss={false}
         toastClassName="rounded-sm m-2"

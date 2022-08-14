@@ -4,7 +4,7 @@ import { Avatar } from "./";
 
 const Footer = () => {
   return (
-    <div className="flex justify-center items-center gap-x-1 bg-gradient-to-r from-[#047857] to-[#7e22ce] p-2 text-slate-100 font-bold text-sm">
+    <div className="flex justify-center items-center gap-x-1 bg-gradient-to-r from-[#047857] to-[#7e22ce] p-2 text-slate-200 font-bold text-sm">
       <Avatar isRound />
       <div className="flex flex-col gap-y-1">
         <div className="text-xs">

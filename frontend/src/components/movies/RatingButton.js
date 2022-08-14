@@ -22,12 +22,12 @@ const RatingButton = ({ movieId, movieTitle, voteAvg }) => {
       <button
         type="button"
         // Adhoc styling
-        className="flex items-center rounded-sm px-1 py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-yellow-100"
+        className="flex items-center rounded px-1 md:py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-yellow-100"
         // Show notification
         onClick={notify}
       >
         <BsStarFill className="text-yellow-400" />
-        <p className="text-sm ml-1">{Math.round(voteAvg * 10) / 10}</p>
+        <p className="ml-1 truncate">{Math.round(voteAvg * 10) / 10}</p>
       </button>
     </div>
   );

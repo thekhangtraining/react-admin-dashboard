@@ -1,12 +1,18 @@
 import React from "react";
-import { BsFillBellFill, BsFillChatRightTextFill } from "react-icons/bs";
+import {
+  BsFillBellFill,
+  BsFillChatRightTextFill,
+  BsFillMenuButtonWideFill,
+} from "react-icons/bs";
+import { useStateContext } from "../contexts/ContextProvider";
 import { Avatar } from "./";
 
-const NavButton = ({ icon, color, dotColor }) => (
+const NavButton = ({ icon, color, dotColor, onClickFunc }) => (
   <button
     type="button"
     style={{ color }}
-    className="relative text-xl rounded-full p-2.5 hover:bg-gray-100 bg-gray-200 duration-200"
+    className="relative text-xl rounded p-2.5 hover:bg-gray-100 bg-gray-200 duration-200"
+    onClick={onClickFunc}
   >
     <span
       style={{ background: dotColor }}
@@ -17,8 +23,16 @@ const NavButton = ({ icon, color, dotColor }) => (
 );
 
 const Navbar = () => {
+  const { setSidebarOpen } = useStateContext();
+
   return (
     <div className="flex justify-end gap-x-1 items-center">
+      <NavButton
+        title="Sidebar"
+        color="#047857"
+        icon={<BsFillMenuButtonWideFill />}
+        onClickFunc={() => setSidebarOpen((sidebarOpen) => !sidebarOpen)}
+      />
       <NavButton
         title="Chat"
         dotColor="#ef4444"

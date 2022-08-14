@@ -14,7 +14,7 @@ const LoveButton = ({ movieId, movieTitle, popularity }) => {
   const notify = () => {
     toast(LoveNoti, {
       toastId: `toast-love-${movieId}`,
-      icon: <BsFillHeartFill className="text-red-500" size="30px"/>,
+      icon: <BsFillHeartFill className="text-red-500" size="30px" />,
     });
   };
 
@@ -25,12 +25,12 @@ const LoveButton = ({ movieId, movieTitle, popularity }) => {
         data-for="love-tooltip"
         type="button"
         // Adhoc styling
-        className="flex items-center rounded-sm px-1 py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-pink-100"
+        className="flex items-center rounded px-1 md:py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-pink-100"
         // Show notification
         onClick={notify}
       >
         <BsFillHeartFill className="text-red-500" />
-        <p className="text-sm ml-1">{Math.round(popularity)}</p>
+        <p className="ml-1 truncate">{Math.round(popularity)}</p>
       </button>
     </div>
   );

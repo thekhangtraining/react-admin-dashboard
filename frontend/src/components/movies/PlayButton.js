@@ -8,6 +8,7 @@ import configs from "../../configs.json";
 const PlayButton = ({ movieTitle, movieId, posterPath }) => {
   const [trailerLink, setTrailerLink] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+  // Style for trailer modal
   const modalStyle = {
     content: {
       top: "50%",
@@ -17,10 +18,13 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "2rem",
-      background: "#f4f4f5",
+      background: "rgba(0, 0, 0, 0.5)",
       paddingTop: "1rem",
       width: "90%",
       height: "90%",
+      overflow: "hidden",
+      borderRadius: "0.5rem",
+      borderColor: "rgba(0, 0, 0, 0.5)",
     },
     overlay: {
       background:
@@ -31,9 +35,10 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
   };
   Modal.setAppElement("#root");
 
+  // Get trailer from API
   useEffect(() => {
     axios
-      .get(`http://api.themoviedb.org/3/movie/${movieId}/videos`, {
+      .get(`https://api.themoviedb.org/3/movie/${movieId}/videos`, {
         params: {
           api_key: configs.apiKeyTMDB,
         },
@@ -52,6 +57,7 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
 
   return (
     <div className="group w-full">
+      {/* Modal for playing trailer */}
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -60,13 +66,14 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
       >
         <div className="flex items-center">
           <FaYoutube size="40px" color={"rgb(255, 0, 0)"} className="mx-2" />
-          <h2 className="text-lg text-slate-400">
+          <h2 className="text-lg text-white">
             Watching
-            <span className="text-emerald-600 font-medium"> {movieTitle} </span>
+            <span className="text-emerald-200 font-medium"> {movieTitle} </span>
             trailer
           </h2>
         </div>
-        <div className="flex flex-col items-center justify-center h-[95%] w-full mt-3">
+        {/* Youtube video player size*/}
+        <div className="flex flex-col items-center justify-center h-[95%] w-full mt-1">
           <ReactPlayer
             width="100%"
             height="100%"
@@ -77,14 +84,17 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
         </div>
       </Modal>
 
+      {/* Play button */}
       <button
         type="button"
         // Adhoc styling
         onClick={() => setModalIsOpen(true)}
-        className="flex justify-center h-full w-full rounded items-center px-2 py-0.5 bg-yellow-500"
+        className="flex justify-center h-full w-full rounded items-center px-2 sm:py-0.5 bg-yellow-500"
       >
-        <FaRegPlayCircle size="20px" className="text-black mx-1" />
-        <p className="font-medium">Watch Trailer</p>
+        <FaRegPlayCircle className="text-black mx-1 text-sm md:text-lg" />
+        <p className="text-sm md:text-base font-medium truncate">
+          Watch Trailer
+        </p>
       </button>
     </div>
   );
