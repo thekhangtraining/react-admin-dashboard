@@ -17,20 +17,18 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      padding: "2rem",
+      padding: "1rem",
+      paddingBottom: "2rem",
       background: "rgba(0, 0, 0, 0.5)",
-      paddingTop: "1rem",
-      width: "90%",
-      height: "90%",
+      width: "70%",
+      height: "80%",
       overflow: "hidden",
-      borderRadius: "0.5rem",
       borderColor: "rgba(0, 0, 0, 0.5)",
     },
     overlay: {
-      background:
-        "linear-gradient(to right, rgba(4, 120, 87, 0.5), rgba(126, 34, 206, 0.5))",
-      backgroundImage: `url('https://image.tmdb.org/t/p/w1280${posterPath}')`,
+      background: `url('https://image.tmdb.org/t/p/w1280${posterPath}')`,
       backgroundSize: "contain",
+      zIndex: 30,
     },
   };
   Modal.setAppElement("#root");
@@ -75,8 +73,8 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
         {/* Youtube video player size*/}
         <div className="flex flex-col items-center justify-center h-[95%] w-full mt-1">
           <ReactPlayer
-            width="100%"
-            height="100%"
+            width="95%"
+            height="95%"
             controls
             playing
             url={trailerLink}

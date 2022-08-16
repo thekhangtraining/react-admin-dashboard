@@ -29,7 +29,7 @@ const Movies = () => {
 
   return (
     <div className="flex flex-col">
-      <Title title="IMDb" />
+      <Title surtitle="App clones" title="IMDb" />
       <div className="grid grid-cols-12 gap-6">
         {moviesList.map((item) => (
           <MovieCard

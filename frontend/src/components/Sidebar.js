@@ -1,5 +1,4 @@
 import React from "react";
-import { FaEllipsisH } from "react-icons/fa";
 import { SiReactivex } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -25,7 +24,7 @@ const Sidebar = () => {
     <div>
       {/* Sidebar backdrop */}
       <div
-        className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
+        className={`fixed inset-0 bg-zinc-900 bg-opacity-40 lg:hidden z-20 lg:z-auto transition-opacity duration-200 ${
           sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden="true"
@@ -34,18 +33,22 @@ const Sidebar = () => {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col absolute text-slate-50 z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 bg-slate-800 transition-all duration-75 ease-in-out ${
+        // style={{
+        //   background: "url('https://wallpaper.dog/large/20438072.jpg'",
+        //   backgroundSize: "cover",
+        // }}
+        className={`flex p-2 flex-col absolute bg-zinc-900 text-slate-50 z-20 left-0 top-0 lg:sticky lg:translate-x-0 h-screen overflow-hidden w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 transition-all duration-75 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-60"
         }`}
       >
         {/* Sidebar header */}
-        <div className="flex justify-between lg:justify-center gap-x-2 items-center p-2.5 font-bold text-sm">
+        <div className="flex justify-between lg:justify-center gap-x-2 items-center p-2 pb-0 font-bold">
           <NavLink to="/" key="logo">
             <div className="flex justify-start lg:justify-center items-center space-x-2">
               <div className="rounded-full p-0.5 bg-slate-50">
                 <SiReactivex size="25px" color="#047857" />
               </div>
-              <p className="hidden uppercase truncate sidebar-expanded:inline-flex hover:text-sky-200">
+              <p className="capitalize truncate lg:hidden lg:sidebar-expanded:inline-flex">
                 My Résumé
               </p>
             </div>
@@ -54,7 +57,7 @@ const Sidebar = () => {
           {/* Close button */}
           <button
             ref={sidebarTrigger}
-            className="lg:hidden hover:text-slate-400"
+            className="lg:hidden hover:text-emerald-500"
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
@@ -70,10 +73,10 @@ const Sidebar = () => {
           </button>
         </div>
         {/* NavLinks */}
-        <div className="grow p-2 m-0.5">
+        <div className="grow p-2">
           {navLinks.map((item) => (
             <div key={item.title.replace("-", " ")}>
-              <p className="uppercase truncate lg:sidebar-expanded:inline-flex">
+              <p className="capitalize truncate mt-3 lg:sidebar-expanded:inline-flex">
                 {item.title.replace("-", " ")}
               </p>
               {item.links.map((link) => (
@@ -99,29 +102,26 @@ const Sidebar = () => {
           ))}
         </div>
         {/* Expand/Collapse button */}
-        <div className="pt-3 hidden lg:inline-flex justify-end mt-auto hover:text-emerald-700">
-          <div className="px-3 py-2">
-            <button
-              className=""
-              onClick={() => {
-                setSidebarExpanded(!sidebarExpanded);
-              }}
+        <div className="flex justify-end mb-2">
+          <button
+            className="hidden p-2.5 text-slate-50 hover:text-emerald-500 lg:inline-flex"
+            onClick={() => {
+              setSidebarExpanded(!sidebarExpanded);
+            }}
+          >
+            <span className="sr-only">Expand/Collapse sidebar</span>
+            <svg
+              className="w-6 h-6 fill-current sidebar-expanded:rotate-180"
+              viewBox="0 0 24 24"
             >
-              <span className="sr-only">Expand/Collapse sidebar</span>
-              <svg
-                className="w-6 h-6 fill-current sidebar-expanded:rotate-180"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  className="text-slate-400"
-                  d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"
-                />
-                <path className="text-slate-600" d="M3 23H1V1h2z" />
-              </svg>
-            </button>
-          </div>
+              <path
+                className=""
+                d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"
+              />
+              <path className="" d="M3 23H1V1h2z" />
+            </svg>
+          </button>
         </div>
-        {/* <Footer /> */}
       </div>
     </div>
   );

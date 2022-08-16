@@ -19,14 +19,14 @@ import {
 
 const App = () => {
   return (
-    <div className="flex">
+    <div className="flex bg-zinc-900">
       <BrowserRouter>
         <Sidebar />
-        <div className="w-screen px-4 py-1">
-          <div className="w-full p-0.5">
+        <div className="w-screen">
+          <div className="w-full lg:hidden">
             <Navbar />
           </div>
-          <main className="w-full relative p-4 pt-2 mt-1 bg-gray-200 rounded drop-shadow-xl">
+          <main className="w-full relative p-4 pt-2 bg-zinc-800">
             <Routes>
               {/* My CV */}
               <Route path="/" key="cv" element={<Cv />} />

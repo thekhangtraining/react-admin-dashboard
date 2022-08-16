@@ -8,7 +8,7 @@ module.exports = {
       // that is animation class
       animation: {
         fadeIn: "fadeIn 0.1s",
-        slideIn: "slideIn 0.5s",
+        slideIn: "slideIn 0.3s",
       },
 
       // that is actual animation
@@ -23,7 +23,7 @@ module.exports = {
         },
         slideIn: {
           "0%": {
-            transform: "translateX(-1rem)",
+            transform: "translateX(-0.5rem)",
           },
           "100%": {
             transform: "translateX(0)",
