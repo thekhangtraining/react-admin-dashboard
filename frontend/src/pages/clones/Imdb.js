@@ -1,9 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Pagination, Navigation } from "swiper";
+import { Navigation, Pagination } from "swiper";
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Title } from "../../components";
 import { MovieCard } from "../../components/imdb";
@@ -40,9 +40,26 @@ const Movies = () => {
       <div className="grid grid-cols-12">
         <div className="col-span-12 mt-2">
           <Swiper
-            slidesPerView={3}
-            spaceBetween={30}
-            slidesPerGroup={2}
+            slidesPerView={1}
+            navigation={true}
+            breakpoints={{
+              350: {
+                slidesPerView: 2,
+                spaceBetween: 5,
+              },
+              600: {
+                slidesPerView: 3,
+                spaceBetween: 10,
+              },
+              768: {
+                slidesPerView: 4,
+                spaceBetween: 15,
+              },
+              1024: {
+                slidesPerView: 5,
+                spaceBetween: 20,
+              },
+            }}
             modules={[Pagination, Navigation]}
             className="imdbSwiper"
           >

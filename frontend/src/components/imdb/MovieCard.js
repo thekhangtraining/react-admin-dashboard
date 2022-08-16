@@ -44,7 +44,7 @@ const MovieCard = ({
   Modal.setAppElement("#root");
 
   return (
-    <div className="flex flex-col bg-zinc-900 h-full">
+    <div className="flex flex-col bg-zinc-900 w-full h-full">
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
@@ -58,19 +58,22 @@ const MovieCard = ({
         </h2>
       </Modal>
       <button className="" onClick={() => setModalIsOpen(true)}>
-        <img className="shrink-0" src={`https://image.tmdb.org/t/p/w500${posterPath}`} alt="" />
+        <img
+          className="object-contain h-full"
+          src={`https://image.tmdb.org/t/p/w500${posterPath}`}
+          alt=""
+        />
       </button>
 
-      <div className="p-2 flex flex-col overflow-hidden text-slate-200 h-full">
+      <div className="p-2 flex flex-col justify-between overflow-hidden text-slate-200 h-full">
         <button
           onClick={() => setModalIsOpen(true)}
           className="flex flex-col text-left"
         >
-          {/* Movie title */}
-          <h2 className="font-medium text-sm md:text-lg line-clamp-1 text-amber-400">
+          <h2 className="font-medium text-sm md:text-lg line-clamp-3 text-amber-400">
             {movieTitle}
           </h2>
-          <p className="text-xs md:text-sm line-clamp-5">{overview}</p>
+          <p className="text-xs md:text-sm line-clamp-3">{overview}</p>
         </button>
         <div className="flex flex-start items-start space-x-1.5 mt-2">
           {genres.slice(0, 2).map((item) => (

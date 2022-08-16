@@ -7,8 +7,7 @@
   text-align: center;
   font-size: 18px;
   background: #fff;
-  border-radius: 5px;
-  overflow: hidden;
+  overflow: scroll;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -29,5 +28,13 @@
   display: block;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+}
+
+.swiper-button-prev {
+  color: red;
+}
+
+.swiper-button-next {
+  color: red;
 }
