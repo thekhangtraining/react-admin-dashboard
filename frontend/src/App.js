@@ -3,13 +3,18 @@ import { ToastContainer, Zoom } from "react-toastify";
 import { Navbar, Sidebar } from "./components";
 import {
   Amazon,
-  Employees,
-  Facebook,
-  FinancialStats,
-  Movies,
-  Projects,
+  Charts,
+  Cv,
+  DashAnalytics,
+  DashDefault,
+  Gmail,
+  Imdb,
+  Infographics,
+  LandingDemo1,
+  LandingDemo2,
+  Messenger,
   Spotify,
-  Youtube,
+  Tables
 } from "./pages";
 
 const App = () => {
@@ -17,46 +22,68 @@ const App = () => {
     <div className="flex">
       <BrowserRouter>
         <Sidebar />
-        <div className="w-screen px-4 py-1 bg-gray-50">
+        <div className="w-screen px-4 py-1">
           <div className="w-full p-0.5">
             <Navbar />
           </div>
-          <main className="w-full p-4 pt-2 mt-1 bg-gray-200 rounded drop-shadow-xl">
+          <main className="w-full relative p-4 pt-2 mt-1 bg-gray-200 rounded drop-shadow-xl">
             <Routes>
+              {/* My CV */}
+              <Route path="/" key="cv" element={<Cv />} />
+
+              {/* Admin dashboards */}
               <Route
-                path="/ecommerce/financial-stats"
-                key="FinancialStats"
-                element={<FinancialStats />}
+                path="/dashboards/default"
+                key="dash-default"
+                element={<DashDefault />}
               />
               <Route
-                path="/ecommerce/amazon"
-                key="Amazon"
+                path="/dashboards/analytics"
+                key="dash-analytics"
+                element={<DashAnalytics />}
+              />
+
+              {/* Landing pages */}
+              <Route
+                path="/landing/demo1"
+                key="landing-demo-1"
+                element={<LandingDemo1 />}
+              />
+              <Route
+                path="/landing/demo2"
+                key="landing-demo-2"
+                element={<LandingDemo2 />}
+              />
+
+              {/* Tables, Charts & Infographics */}
+              <Route path="/data/tables" key="tables" element={<Tables />} />
+              <Route path="/data/charts" key="charts" element={<Charts />} />
+              <Route
+                path="/data/infographics"
+                key="infographics"
+                element={<Infographics />}
+              />
+
+              {/* Clones of many popular apps */}
+              <Route
+                path="/clones/amazon"
+                key="clone-amazon"
                 element={<Amazon />}
               />
+              <Route path="/clones/imdb" key="clone-imdb" element={<Imdb />} />
               <Route
-                path="/company/employees"
-                key="Employees"
-                element={<Employees />}
+                path="/clones/gmail"
+                key="clone-gmail"
+                element={<Gmail />}
               />
               <Route
-                path="/company/projects"
-                key="Projects"
-                element={<Projects />}
-              />
-              <Route path="/media/movies" key="Movies" element={<Movies />} />
-              <Route
-                path="/media/youtube"
-                key="Youtube"
-                element={<Youtube />}
+                path="/clones/messenger"
+                key="clone-messenger"
+                element={<Messenger />}
               />
               <Route
-                path="/media/facebook"
-                key="Facebook"
-                element={<Facebook />}
-              />
-              <Route
-                path="/media/spotify"
-                key="Spotify"
+                path="/clones/spotify"
+                key="clone-spotify"
                 element={<Spotify />}
               />
             </Routes>

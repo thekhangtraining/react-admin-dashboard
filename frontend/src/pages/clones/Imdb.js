@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Title } from "../../components";
-import { MovieCard } from "../../components/movies";
+import { MovieCard } from "../../components/imdb";
 import configs from "../../configs.json";
 
 const Movies = () => {
@@ -29,7 +29,7 @@ const Movies = () => {
 
   return (
     <div className="flex flex-col">
-      <Title title="Trending Movies This Week" />
+      <Title title="IMDb" />
       <div className="grid grid-cols-12 gap-6">
         {moviesList.map((item) => (
           <MovieCard

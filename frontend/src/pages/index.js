@@ -1,9 +1,14 @@
-export { default as Employees } from "./company/Employees";
-export { default as Projects } from "./company/Projects";
-export { default as Amazon } from "./ecommerce/Amazon";
-export { default as FinancialStats } from "./ecommerce/FinancialStats";
-export { default as Facebook } from "./media/Facebook";
-export { default as Movies } from "./media/Movies";
-export { default as Spotify } from "./media/Spotify";
-export { default as Youtube } from "./media/Youtube";
+export { default as Amazon } from "./clones/Amazon";
+export { default as Gmail } from "./clones/Gmail";
+export { default as Imdb } from "./clones/Imdb";
+export { default as Messenger } from "./clones/Messenger";
+export { default as Spotify } from "./clones/Spotify";
+export { default as Cv } from "./Cv";
+export { default as DashAnalytics } from "./dashboards/DashAnalytics";
+export { default as DashDefault } from "./dashboards/DashDefault";
+export { default as Charts } from "./data/Charts";
+export { default as Infographics } from "./data/Infographics";
+export { default as Tables } from "./data/Tables";
+export { default as LandingDemo1 } from "./landing/LandingDemo1";
+export { default as LandingDemo2 } from "./landing/LandingDemo2";
 

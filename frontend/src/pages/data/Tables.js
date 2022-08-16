@@ -1,12 +1,12 @@
 import React from "react";
 import { Title } from "../../components";
 
-const FinancialStats = () => {
+const Tables = () => {
   return (
     <div>
-      <Title title="Financial Stats" />
+      <Title title="Tables" />
     </div>
   );
 };
 
-export default FinancialStats;
+export default Tables;

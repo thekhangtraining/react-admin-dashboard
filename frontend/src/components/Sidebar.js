@@ -1,57 +1,130 @@
 import React from "react";
-import { MdAdminPanelSettings } from "react-icons/md";
+import { BsDash } from "react-icons/bs";
+import { SiReactivex } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 import { navLinks } from "../data/navLinks";
-import { Footer } from "./";
 
 const Sidebar = () => {
-  const { currentColorGradient, sidebarOpen } = useStateContext();
+  const {
+    currentColorGradient,
+    sidebarOpen,
+    setSidebarOpen,
+    sidebar,
+    sidebarTrigger,
+    sidebarExpanded,
+    setSidebarExpanded,
+  } = useStateContext();
 
   const activeLink =
-    "flex items-center p-1 m-0.5 ml-5 rounded drop-shadow-xl animate-slideIn";
+    "flex items-center sidebar-expanded:justify-start p-1 mt-1 m-0.5 ml-5 rounded drop-shadow-xl animate-slideIn sidebar-expanded:mt-0.5";
   const normalLink =
-    "flex items-center p-1 m-0.5 ml-1 rounded hover:bg-gradient-to-r from-[#047857]";
+    "flex items-center sidebar-expanded:justify-start p-1 mt-2 m-0.5 ml-1 rounded hover:bg-gradient-to-r from-[#047857] sidebar-expanded:mt-0.5";
 
   return (
-    <div
-      className={`flex flex-col h-screen gap-y-2 text-slate-100 bg-slate-800 overflow-x-hidden overflow-y-auto transition-all duration-75 ease-in-out ${
-        sidebarOpen ? "w-72" : "w-0"
-      }`}
-    >
-      {/* Header */}
-      <div className="flex justify-center gap-x-2 items-center p-2.5 bg-gradient-to-r from-[#047857] to-[#7e22ce] font-bold text-sm">
-        <div className="rounded-full p-0.5 bg-slate-50">
-          <MdAdminPanelSettings size="25px" color="#047857" />
+    <div>
+      {/* Sidebar backdrop */}
+      <div
+        className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 ${
+          sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
+        aria-hidden="true"
+      ></div>
+      {/* Sidebar */}
+      <div
+        id="sidebar"
+        ref={sidebar}
+        className={`flex flex-col absolute text-slate-50 z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 bg-slate-800 transition-all duration-200 ease-in-out ${
+          sidebarOpen ? "translate-x-0" : "-translate-x-60"
+        }`}
+      >
+        {/* Sidebar header */}
+        <div className="flex justify-between lg:justify-center gap-x-2 items-center p-2.5 font-bold text-sm">
+          <NavLink to="/" key="logo">
+            <div className="flex justify-start lg:justify-center items-center space-x-2">
+              <div className="rounded-full p-0.5 bg-slate-50">
+                <SiReactivex size="25px" color="#047857" />
+              </div>
+              <p className="hidden sidebar-expanded:inline-flex uppercase sidebar-expanded:truncate hover:text-sky-200">
+                My Résumé
+              </p>
+            </div>
+          </NavLink>
+
+          {/* Close button */}
+          <button
+            ref={sidebarTrigger}
+            className="lg:hidden hover:text-slate-400"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            aria-controls="sidebar"
+            aria-expanded={sidebarOpen}
+          >
+            <span className="sr-only">Close sidebar</span>
+            <svg
+              className="w-6 h-6 fill-current"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
+            </svg>
+          </button>
         </div>
-        <p className="uppercase">Admin Dashboard</p>
-      </div>
-      {/* NavLinks */}
-      <div className="grow p-2 m-0.5">
-        {navLinks.map((item) => (
-          <div key={item.title}>
-            <div className="uppercase">{item.title}</div>
-            {item.links.map((link) => (
-              <NavLink
-                to={item.baseAddress + link.address}
-                key={link.name}
-                style={({ isActive }) => ({
-                  background: isActive ? currentColorGradient : "",
-                })}
-                className={({ isActive }) =>
-                  isActive ? activeLink : normalLink
-                }
+        {/* NavLinks */}
+        <div className="grow p-2 m-0.5">
+          {navLinks.map((item) => (
+            <div key={item.title.replace("-", " ")}>
+              <p className="lg:opacity-0 lg:truncate sidebar-expanded:opacity-100 uppercase">
+                {item.title.replace("-", " ")}
+              </p>
+              <div className="hidden lg:inline-flex sidebar-expanded:hidden uppercase">
+                <BsDash />
+              </div>
+              {item.links.map((link) => (
+                <NavLink
+                  to={item.baseAddress + link.address}
+                  key={link.name}
+                  style={({ isActive }) => ({
+                    background: isActive ? currentColorGradient : "",
+                  })}
+                  className={({ isActive }) =>
+                    isActive ? activeLink : normalLink
+                  }
+                >
+                  <div className="flex items-center space-x-2">
+                    <div>{link.icon}</div>
+                    <span className="lg:hidden lg:truncate lg:sidebar-expanded:inline-flex duration-20 capitalize">
+                      {link.name.replace("-", " ")}
+                    </span>
+                  </div>
+                </NavLink>
+              ))}
+            </div>
+          ))}
+        </div>
+        {/* Expand/Collapse button */}
+        <div className="pt-3 hidden lg:inline-flex justify-end mt-auto">
+          <div className="px-3 py-2">
+            <button
+              onClick={() => {
+                setSidebarExpanded(!sidebarExpanded);
+              }}
+            >
+              <span className="sr-only">Expand/Collapse sidebar</span>
+              <svg
+                className="w-6 h-6 fill-current sidebar-expanded:rotate-180"
+                viewBox="0 0 24 24"
               >
-                <div className="px-2">{link.icon}</div>
-                <span className="capitalize">
-                  {link.name.replace("-", " ")}
-                </span>
-              </NavLink>
-            ))}
+                <path
+                  className="text-slate-400"
+                  d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"
+                />
+                <path className="text-slate-600" d="M3 23H1V1h2z" />
+              </svg>
+            </button>
           </div>
-        ))}
+        </div>
+        {/* <Footer /> */}
       </div>
-      <Footer />
     </div>
   );
 };

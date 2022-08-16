@@ -1,12 +1,12 @@
 import React from "react";
 import { Title } from "../../components";
 
-const Projects = () => {
+const Infographics = () => {
   return (
     <div>
-      <Title title="Projects" />
+      <Title title="Infographics" />
     </div>
   );
 };
 
-export default Projects;
+export default Infographics;

@@ -57,8 +57,15 @@ const MovieCard = ({
             information
           </h2>
         </Modal>
-        <button className="col-span-2" onClick={() => setModalIsOpen(true)}>
-          <img src={`https://image.tmdb.org/t/p/w500${posterPath}`} alt="" />
+        <button
+          className="col-span-2 shrink-0"
+          onClick={() => setModalIsOpen(true)}
+        >
+          <img
+            className="shrink-0"
+            src={`https://image.tmdb.org/t/p/w500${posterPath}`}
+            alt=""
+          />
         </button>
 
         <div className="col-span-3 p-2 flex flex-col overflow-hidden">

@@ -1,12 +1,12 @@
 import React from "react";
 import { Title } from "../../components";
 
-const Facebook = () => {
+const LandingDemo1 = () => {
   return (
     <div>
-      <Title title="Facebook" />
+      <Title title="Landing Page Demo 1" />
     </div>
   );
 };
 
-export default Facebook;
+export default LandingDemo1;
