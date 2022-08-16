@@ -1,5 +1,5 @@
 import React from "react";
-import { BsDash } from "react-icons/bs";
+import { FaEllipsisH } from "react-icons/fa";
 import { SiReactivex } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -17,9 +17,9 @@ const Sidebar = () => {
   } = useStateContext();
 
   const activeLink =
-    "flex items-center sidebar-expanded:justify-start p-1 mt-1 m-0.5 ml-5 rounded drop-shadow-xl animate-slideIn sidebar-expanded:mt-0.5";
+    "flex items-center sidebar-expanded:justify-start py-2 px-2 mt-1 m-0.5 ml-1 rounded drop-shadow-xl sidebar-expanded:py-1";
   const normalLink =
-    "flex items-center sidebar-expanded:justify-start p-1 mt-2 m-0.5 ml-1 rounded hover:bg-gradient-to-r from-[#047857] sidebar-expanded:mt-0.5";
+    "flex items-center sidebar-expanded:justify-start py-2 px-2 mt-1 m-0.5 ml-1 rounded hover:bg-gradient-to-r from-[#047857] sidebar-expanded:py-1";
 
   return (
     <div>
@@ -34,7 +34,7 @@ const Sidebar = () => {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col absolute text-slate-50 z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 bg-slate-800 transition-all duration-200 ease-in-out ${
+        className={`flex flex-col absolute text-slate-50 z-40 left-0 top-0 lg:static lg:left-auto lg:top-auto lg:translate-x-0 h-screen overflow-y-scroll lg:overflow-y-auto no-scrollbar w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 bg-slate-800 transition-all duration-75 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-60"
         }`}
       >
@@ -45,7 +45,7 @@ const Sidebar = () => {
               <div className="rounded-full p-0.5 bg-slate-50">
                 <SiReactivex size="25px" color="#047857" />
               </div>
-              <p className="hidden sidebar-expanded:inline-flex uppercase sidebar-expanded:truncate hover:text-sky-200">
+              <p className="hidden uppercase truncate sidebar-expanded:inline-flex hover:text-sky-200">
                 My Résumé
               </p>
             </div>
@@ -73,12 +73,9 @@ const Sidebar = () => {
         <div className="grow p-2 m-0.5">
           {navLinks.map((item) => (
             <div key={item.title.replace("-", " ")}>
-              <p className="lg:opacity-0 lg:truncate sidebar-expanded:opacity-100 uppercase">
+              <p className="uppercase truncate lg:sidebar-expanded:inline-flex">
                 {item.title.replace("-", " ")}
               </p>
-              <div className="hidden lg:inline-flex sidebar-expanded:hidden uppercase">
-                <BsDash />
-              </div>
               {item.links.map((link) => (
                 <NavLink
                   to={item.baseAddress + link.address}
@@ -92,7 +89,7 @@ const Sidebar = () => {
                 >
                   <div className="flex items-center space-x-2">
                     <div>{link.icon}</div>
-                    <span className="lg:hidden lg:truncate lg:sidebar-expanded:inline-flex duration-20 capitalize">
+                    <span className="truncate lg:hidden lg:sidebar-expanded:inline-flex duration-20 capitalize">
                       {link.name.replace("-", " ")}
                     </span>
                   </div>
@@ -102,9 +99,10 @@ const Sidebar = () => {
           ))}
         </div>
         {/* Expand/Collapse button */}
-        <div className="pt-3 hidden lg:inline-flex justify-end mt-auto">
+        <div className="pt-3 hidden lg:inline-flex justify-end mt-auto hover:text-emerald-700">
           <div className="px-3 py-2">
             <button
+              className=""
               onClick={() => {
                 setSidebarExpanded(!sidebarExpanded);
               }}
