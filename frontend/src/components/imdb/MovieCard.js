@@ -37,80 +37,70 @@ const MovieCard = ({
     },
     overlay: {
       background:
-        "linear-gradient(to right, rgba(4, 120, 87, 0.5), rgba(126, 34, 206, 0.5))",
+        "linear-gradient(to right, rgba(4, 120, 87, 0.3), rgba(126, 34, 206, 0.3))",
+      zIndex: 30,
     },
   };
   Modal.setAppElement("#root");
 
   return (
-    <div className="col-span-full sm:col-span-6 2xl:col-span-4 rounded drop-shadow-xl">
-      <div className="grid grid-cols-5 bg-zinc-50">
-        <Modal
-          isOpen={modalIsOpen}
-          onRequestClose={() => setModalIsOpen(false)}
-          style={modalStyle}
-          contentLabel="Example Modal"
-        >
-          <h2 className="text-sm sm:text-md 2xl:text-lg text-slate-400">
-            Viewing
-            <span className="text-emerald-600 font-medium"> {movieTitle} </span>
-            information
-          </h2>
-        </Modal>
+    <div className="flex flex-col bg-zinc-900 h-full">
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        style={modalStyle}
+        contentLabel="Example Modal"
+      >
+        <h2 className="text-sm sm:text-md 2xl:text-lg text-slate-400">
+          Viewing
+          <span className="text-emerald-600 font-medium"> {movieTitle} </span>
+          information
+        </h2>
+      </Modal>
+      <button className="" onClick={() => setModalIsOpen(true)}>
+        <img className="shrink-0" src={`https://image.tmdb.org/t/p/w500${posterPath}`} alt="" />
+      </button>
+
+      <div className="p-2 flex flex-col overflow-hidden text-slate-200 h-full">
         <button
-          className="col-span-2 shrink-0"
           onClick={() => setModalIsOpen(true)}
+          className="flex flex-col text-left"
         >
-          <img
-            className="shrink-0"
-            src={`https://image.tmdb.org/t/p/w500${posterPath}`}
-            alt=""
-          />
+          {/* Movie title */}
+          <h2 className="font-medium text-sm md:text-lg line-clamp-1 text-amber-400">
+            {movieTitle}
+          </h2>
+          <p className="text-xs md:text-sm line-clamp-5">{overview}</p>
         </button>
+        <div className="flex flex-start items-start space-x-1.5 mt-2">
+          {genres.slice(0, 2).map((item) => (
+            <span
+              key={item}
+              className="text-xs text-black md:text-sm font-medium bg-slate-100 rounded-sm truncate text-center px-2 border border-slate-200"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
 
-        <div className="col-span-3 p-2 flex flex-col overflow-hidden">
-          <button
-            onClick={() => setModalIsOpen(true)}
-            className="flex flex-col text-left"
-          >
-            {/* Movie title */}
-            <h2 className="font-medium text-sm md:text-lg line-clamp-1">
-              {movieTitle}
-            </h2>
-            <p className="text-xs md:text-sm line-clamp-3 text-slate-500">
-              {overview}
-            </p>
-          </button>
-          <div className="flex flex-start items-start space-x-1.5 mt-2">
-            {genres.slice(0, 2).map((item) => (
-              <span
-                key={item}
-                className="text-xs md:text-sm font-medium rounded bg-slate-100 rounded-sm truncate text-center px-2 border border-slate-600"
-              >
-                {item}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex flex-col mt-2 mb-0.5 bottom-0 justify-end items-center grow space-y-2">
-            <div className="flex justify-end space-x-2 w-full text-xs md:text-sm">
-              <LoveButton
-                movieId={movieId}
-                movieTitle={movieTitle}
-                popularity={popularity}
-              />
-              <RatingButton
-                movieId={movieId}
-                movieTitle={movieTitle}
-                voteAvg={voteAvg}
-              />
-            </div>
-            <PlayButton
-              movieTitle={movieTitle}
+        <div className="flex flex-col mt-2 mb-0.5 items-center space-y-2 h-full justify-end">
+          <div className="flex justify-end space-x-2 w-full text-xs md:text-sm">
+            <LoveButton
               movieId={movieId}
-              posterPath={posterPath}
+              movieTitle={movieTitle}
+              popularity={popularity}
+            />
+            <RatingButton
+              movieId={movieId}
+              movieTitle={movieTitle}
+              voteAvg={voteAvg}
             />
           </div>
+          <PlayButton
+            movieTitle={movieTitle}
+            movieId={movieId}
+            posterPath={posterPath}
+          />
         </div>
       </div>
     </div>

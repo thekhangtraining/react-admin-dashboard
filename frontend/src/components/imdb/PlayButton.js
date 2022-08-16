@@ -90,7 +90,7 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
         className="flex justify-center h-full w-full rounded items-center px-2 sm:py-0.5 bg-yellow-500"
       >
         <FaRegPlayCircle className="text-black mx-1 text-sm md:text-lg" />
-        <p className="text-sm md:text-base font-medium truncate">
+        <p className="text-sm md:text-base font-medium truncate text-black">
           Watch Trailer
         </p>
       </button>

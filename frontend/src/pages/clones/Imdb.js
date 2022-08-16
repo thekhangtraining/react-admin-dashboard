@@ -1,8 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Pagination, Navigation } from "swiper";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { Title } from "../../components";
 import { MovieCard } from "../../components/imdb";
 import configs from "../../configs.json";
+import "../../styles/swiper.css";
 
 const Movies = () => {
   const [moviesList, setMoviesList] = useState([]);
@@ -30,22 +36,35 @@ const Movies = () => {
   return (
     <div className="flex flex-col">
       <Title surtitle="App clones" title="IMDb" />
-      <div className="grid grid-cols-12 gap-6">
-        {moviesList.map((item) => (
-          <MovieCard
-            key={item.id}
-            movieId={item.id}
-            movieTitle={item.title}
-            backdropPath={item.backdrop_path}
-            posterPath={item.poster_path}
-            overview={item.overview}
-            popularity={item.popularity}
-            voteAvg={item.vote_average}
-            voteCount={item.vote_count}
-            genreIds={item.genre_ids}
-            releaseYear={item.release_date.slice(0, 4)}
-          />
-        ))}
+      <h2 className="text-slate-50">Trending Movies This Week</h2>
+      <div className="grid grid-cols-12">
+        <div className="col-span-12 mt-2">
+          <Swiper
+            slidesPerView={3}
+            spaceBetween={30}
+            slidesPerGroup={2}
+            modules={[Pagination, Navigation]}
+            className="imdbSwiper"
+          >
+            {moviesList.map((item) => (
+              <SwiperSlide key={`swiper-slide-${item.id}`}>
+                <MovieCard
+                  key={item.id}
+                  movieId={item.id}
+                  movieTitle={item.title}
+                  backdropPath={item.backdrop_path}
+                  posterPath={item.poster_path}
+                  overview={item.overview}
+                  popularity={item.popularity}
+                  voteAvg={item.vote_average}
+                  voteCount={item.vote_count}
+                  genreIds={item.genre_ids}
+                  releaseYear={item.release_date.slice(0, 4)}
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );

@@ -16,9 +16,9 @@ const Sidebar = () => {
   } = useStateContext();
 
   const activeLink =
-    "flex items-center sidebar-expanded:justify-start py-2 px-2 mt-1 m-0.5 ml-1 rounded drop-shadow-xl sidebar-expanded:py-1";
+    "flex items-center py-1 px-2 pr-2 m-1 mb-0.5 rounded drop-shadow-xl";
   const normalLink =
-    "flex items-center sidebar-expanded:justify-start py-2 px-2 mt-1 m-0.5 ml-1 rounded hover:bg-gradient-to-r from-[#047857] sidebar-expanded:py-1";
+    "flex items-center py-1 px-2 pr-0 m-1 mb-0.5 rounded hover:bg-gradient-to-r from-[#047857]";
 
   return (
     <div>
@@ -33,10 +33,6 @@ const Sidebar = () => {
       <div
         id="sidebar"
         ref={sidebar}
-        // style={{
-        //   background: "url('https://wallpaper.dog/large/20438072.jpg'",
-        //   backgroundSize: "cover",
-        // }}
         className={`flex p-2 flex-col absolute bg-zinc-900 text-slate-50 z-20 left-0 top-0 lg:sticky lg:translate-x-0 h-screen overflow-hidden w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 transition-all duration-75 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-60"
         }`}
@@ -90,9 +86,9 @@ const Sidebar = () => {
                     isActive ? activeLink : normalLink
                   }
                 >
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center space-x-2 h-[1.25rem]">
                     <div>{link.icon}</div>
-                    <span className="truncate lg:hidden lg:sidebar-expanded:inline-flex duration-20 capitalize">
+                    <span className="truncate lg:hidden lg:sidebar-expanded:inline-flex capitalize">
                       {link.name.replace("-", " ")}
                     </span>
                   </div>

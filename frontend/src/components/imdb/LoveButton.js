@@ -25,7 +25,7 @@ const LoveButton = ({ movieId, movieTitle, popularity }) => {
         data-for="love-tooltip"
         type="button"
         // Adhoc styling
-        className="flex items-center rounded px-1 md:py-0.5 border border-black hover:border-black group-hover:[&>p]:text-black group-hover:bg-pink-100"
+        className="flex items-center rounded px-1 md:py-0.5 border border-slate-200 hover:border-black group-hover:[&>p]:text-black group-hover:bg-pink-100"
         // Show notification
         onClick={notify}
       >
