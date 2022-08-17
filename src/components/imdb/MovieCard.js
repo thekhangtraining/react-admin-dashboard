@@ -84,7 +84,7 @@ const MovieCard = ({
         onAfterOpen={() => (document.body.style.overflow = "hidden")}
         onAfterClose={() => (document.body.style.overflow = "unset")}
       >
-        <div className="flex justify-end">
+        <div className="flex justify-end mt-4">
           <button
             onClick={() => setModalIsOpen(!modalIsOpen)}
             className="text-white hover:text-emerald-400"
