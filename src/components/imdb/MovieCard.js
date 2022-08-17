@@ -42,7 +42,8 @@ const MovieCard = ({
       background: "rgba(0, 0, 0, 0.6)",
       borderColor: "rgba(0, 0, 0, 0.6)",
       width: "100%",
-      overflow: "scroll",
+      maxHeight: "100vh",
+      overflowY: "auto",
     },
     overlay: {
       background: "rgba(24, 24, 27, 0.7)",
@@ -78,6 +79,9 @@ const MovieCard = ({
         onRequestClose={() => setModalIsOpen(false)}
         style={modalStyle}
         contentLabel="Example Modal"
+        // Prevent body swiping when modal is open
+        onAfterOpen={() => (document.body.style.overflow = "hidden")}
+        onAfterClose={() => (document.body.style.overflow = "unset")}
       >
         <div className="flex flex-col space-y-2">
           {/* Modal title */}
@@ -150,7 +154,10 @@ const MovieCard = ({
             <span className="uppercase">Cast</span>
             <div className="flex flex-col space-y-1 mt-1">
               {cast.slice(0, 3).map((item) => (
-                <div className="grid grid-cols-11 gap-x-1">
+                <div
+                  className="grid grid-cols-11 gap-x-1"
+                  key={`cast-${item.id}`}
+                >
                   <img
                     className="self-center col-span-2"
                     style={{ height: "50px" }}
