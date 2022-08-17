@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import { LoveButton, PlayButton, RatingButton } from ".";
 import configs from "../../configs.json";
 import { moviesGenres } from "../../data/data";
+import { IoCloseSharp } from "react-icons/io5";
 
 const MovieCard = ({
   movieId,
@@ -83,6 +84,14 @@ const MovieCard = ({
         onAfterOpen={() => (document.body.style.overflow = "hidden")}
         onAfterClose={() => (document.body.style.overflow = "unset")}
       >
+        <div className="flex justify-end">
+          <button
+            onClick={() => setModalIsOpen(!modalIsOpen)}
+            className="text-white hover:text-emerald-400"
+          >
+            <IoCloseSharp />
+          </button>
+        </div>
         <div className="flex flex-col space-y-2">
           {/* Modal title */}
           <h2 className="text-emerald-400 font-medium md:text-xl">
