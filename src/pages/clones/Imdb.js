@@ -44,6 +44,7 @@ const Movies = () => {
           <Swiper
             slidesPerView={1}
             loop
+            initialSlide={1}
             navigation={true}
             pagination={{
               type: "progressbar",
