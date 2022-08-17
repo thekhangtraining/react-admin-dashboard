@@ -22,7 +22,7 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
       background: "rgba(0, 0, 0, 0.5)",
       width: "90%",
       height: "90%",
-      overflow: "hidden",
+      overflowY: "auto",
       borderColor: "rgba(0, 0, 0, 0.5)",
     },
     overlay: {
