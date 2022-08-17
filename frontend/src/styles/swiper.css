@@ -7,7 +7,6 @@
   text-align: center;
   font-size: 18px;
   background: #fff;
-  overflow: scroll;
 
   /* Center slide text vertically */
   display: -webkit-box;
@@ -32,9 +31,15 @@
 }
 
 .swiper-button-prev {
-  color: red;
+  color: #facc15;
+  font-weight: bold;
 }
 
 .swiper-button-next {
-  color: red;
+  color: #facc15;
+  font-weight: bold;
+}
+
+.swiper-pagination-progressbar-fill {
+  background: #facc15 !important;
 }

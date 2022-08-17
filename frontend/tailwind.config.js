@@ -5,6 +5,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      fontFamily: {
+        firaCond: ["Fira Sans Condensed", "sans-serif"],
+      },
       // that is animation class
       animation: {
         fadeIn: "fadeIn 0.1s",

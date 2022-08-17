@@ -8,7 +8,7 @@ import configs from "../../configs.json";
 const PlayButton = ({ movieTitle, movieId, posterPath }) => {
   const [trailerLink, setTrailerLink] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-  // Style for trailer modal
+
   const modalStyle = {
     content: {
       top: "50%",
@@ -20,8 +20,8 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
       padding: "1rem",
       paddingBottom: "2rem",
       background: "rgba(0, 0, 0, 0.5)",
-      width: "70%",
-      height: "80%",
+      width: "90%",
+      height: "90%",
       overflow: "hidden",
       borderColor: "rgba(0, 0, 0, 0.5)",
     },
@@ -31,7 +31,6 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
       zIndex: 30,
     },
   };
-  Modal.setAppElement("#root");
 
   // Get trailer from API
   useEffect(() => {
@@ -54,7 +53,7 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
   }, [movieId]);
 
   return (
-    <div className="group w-full">
+    <div className="group w-full" id="imdb-play-button">
       {/* Modal for playing trailer */}
       <Modal
         isOpen={modalIsOpen}
@@ -66,15 +65,15 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
           <FaYoutube size="40px" color={"rgb(255, 0, 0)"} className="mx-2" />
           <h2 className="text-lg text-white">
             Watching
-            <span className="text-emerald-200 font-medium"> {movieTitle} </span>
+            <span className="text-emerald-400 font-medium"> {movieTitle} </span>
             trailer
           </h2>
         </div>
         {/* Youtube video player size*/}
         <div className="flex flex-col items-center justify-center h-[95%] w-full mt-1">
           <ReactPlayer
-            width="95%"
-            height="95%"
+            width="100%"
+            height="100%"
             controls
             playing
             url={trailerLink}
@@ -87,7 +86,7 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
         type="button"
         // Adhoc styling
         onClick={() => setModalIsOpen(true)}
-        className="flex justify-center h-full w-full rounded items-center px-2 sm:py-0.5 bg-yellow-500"
+        className="flex justify-center h-full w-full rounded items-center px-2 sm:py-0.5 bg-amber-400"
       >
         <FaRegPlayCircle className="text-black mx-1 text-sm md:text-lg" />
         <p className="text-sm md:text-base font-medium truncate text-black">

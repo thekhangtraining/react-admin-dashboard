@@ -24,7 +24,7 @@ const Sidebar = () => {
     <div>
       {/* Sidebar backdrop */}
       <div
-        className={`fixed inset-0 bg-zinc-900 bg-opacity-40 lg:hidden z-20 lg:z-auto transition-opacity duration-200 ${
+        className={`fixed inset-0 bg-zinc-900 bg-opacity-50 lg:hidden z-20 lg:z-auto transition-opacity duration-200 ${
           sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden="true"

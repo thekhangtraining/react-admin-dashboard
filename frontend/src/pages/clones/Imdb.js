@@ -33,15 +33,21 @@ const Movies = () => {
       });
   }, []);
 
+  console.log(moviesList);
+
   return (
     <div className="flex flex-col">
       <Title surtitle="App clones" title="IMDb" />
-      <h2 className="text-slate-50">Trending Movies This Week</h2>
+      <h2 className="text-slate-50">Lu Xinh muốn xem phim gì ạ?</h2>
       <div className="grid grid-cols-12">
         <div className="col-span-12 mt-2">
           <Swiper
             slidesPerView={1}
+            loop
             navigation={true}
+            pagination={{
+              type: "progressbar",
+            }}
             breakpoints={{
               350: {
                 slidesPerView: 2,
@@ -58,6 +64,10 @@ const Movies = () => {
               1024: {
                 slidesPerView: 5,
                 spaceBetween: 20,
+              },
+              1536: {
+                slidesPerView: 6,
+                spaceBetween: 25,
               },
             }}
             modules={[Pagination, Navigation]}
@@ -83,6 +93,7 @@ const Movies = () => {
           </Swiper>
         </div>
       </div>
+      <div className="h-screen"></div>
     </div>
   );
 };
