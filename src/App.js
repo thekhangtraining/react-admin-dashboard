@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Navbar, Sidebar } from "./components";
 import { Construction, Imdb, Tables } from "./pages";
@@ -15,7 +15,11 @@ const App = () => {
           <main className="w-full relative p-4 pt-2 bg-zinc-800">
             <Routes>
               {/* My CV */}
-              <Route path="/" key="cv" element={<Construction />} />
+              <Route
+                path="/"
+                key="home"
+                element={<Navigate to="/clones/imdb" />}
+              />
 
               {/* Landing pages */}
               <Route
