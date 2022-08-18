@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaRegPlayCircle, FaYoutube } from "react-icons/fa";
+import { IoCloseSharp } from "react-icons/io5";
 import Modal from "react-modal";
 import ReactPlayer from "react-player/youtube";
 import configs from "../../configs.json";
@@ -20,8 +21,8 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
       padding: "1rem",
       paddingBottom: "2rem",
       background: "rgba(0, 0, 0, 0.5)",
-      width: "90%",
-      height: "90%",
+      width: "90vw",
+      height: "90vh",
       overflowY: "auto",
       borderColor: "rgba(0, 0, 0, 0.5)",
     },
@@ -53,7 +54,7 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
   }, [movieId]);
 
   return (
-    <div className="group w-full" id="imdb-play-button">
+    <div className="group w-full">
       {/* Modal for playing trailer */}
       <Modal
         isOpen={modalIsOpen}
@@ -61,6 +62,15 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
         style={modalStyle}
         contentLabel="Watch trailer"
       >
+        {/* Close modal button */}
+        <div className="flex justify-end">
+          <button
+            onClick={() => setModalIsOpen(!modalIsOpen)}
+            className="text-white hover:text-emerald-400"
+          >
+            <IoCloseSharp />
+          </button>
+        </div>
         <div className="flex items-center">
           <FaYoutube size="40px" color={"rgb(255, 0, 0)"} className="mx-2" />
           <h2 className="text-lg text-white">

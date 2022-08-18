@@ -38,7 +38,7 @@ const Movies = () => {
   return (
     <div className="flex flex-col">
       <Title surtitle="App clones" title="IMDb" />
-      <h2 className="text-slate-50">Lu Xinh muốn xem phim gì ạ?</h2>
+      <h2 className="text-slate-50 truncate">Lu Xinh muốn xem phim gì ạ?</h2>
       <div className="grid grid-cols-12">
         <div className="col-span-12 mt-2">
           <Swiper
@@ -94,7 +94,6 @@ const Movies = () => {
           </Swiper>
         </div>
       </div>
-      <div className="h-screen"></div>
     </div>
   );
 };

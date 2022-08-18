@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { BsFillHeartFill, BsStarFill } from "react-icons/bs";
+import { IoCloseSharp } from "react-icons/io5";
 import Modal from "react-modal";
 import { LoveButton, PlayButton, RatingButton } from ".";
 import configs from "../../configs.json";
 import { moviesGenres } from "../../data/data";
-import { IoCloseSharp } from "react-icons/io5";
 
 const MovieCard = ({
   movieId,
@@ -42,9 +42,9 @@ const MovieCard = ({
       padding: "1rem",
       background: "rgba(0, 0, 0, 0.6)",
       borderColor: "rgba(0, 0, 0, 0.6)",
-      width: "100%",
-      maxHeight: "100vh",
+      maxHeight: "80vh",
       overflowY: "auto",
+      width: "95vw",
     },
     overlay: {
       background: "rgba(24, 24, 27, 0.7)",
@@ -84,7 +84,8 @@ const MovieCard = ({
         onAfterOpen={() => (document.body.style.overflow = "hidden")}
         onAfterClose={() => (document.body.style.overflow = "unset")}
       >
-        <div className="flex justify-end mt-8 lg:mt-2">
+        {/* Close modal button */}
+        <div className="flex justify-end">
           <button
             onClick={() => setModalIsOpen(!modalIsOpen)}
             className="text-white hover:text-emerald-400"
@@ -98,90 +99,107 @@ const MovieCard = ({
             {movieTitle}
           </h2>
           {/* Modal backdrop */}
-          <div className="flex flex-col space-y-2 text-slate-200 md:flex-row justify-center items-center ">
-            <img
-              src={`https://image.tmdb.org/t/p/w500${backdropPath}`}
-              alt=""
-            />
-            <div className="flex flex-start items-start space-x-1 mt-2 justify-center">
-              {genres.slice(0, 3).map((item) => (
-                <span
-                  key={item}
-                  className="text-xs text-white px-1 font-medium md:text-sm rounded truncate text-center border border-slate-200"
-                >
-                  {item}
-                </span>
-              ))}
+          <div className="flex flex-col text-slate-200 justify-center items-center sm:flex-row sm:mr-2 sm:items-start">
+            <div>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${backdropPath}`}
+                alt=""
+                className="sm:hidden"
+              />
+              <img
+                src={`https://image.tmdb.org/t/p/w500${posterPath}`}
+                alt=""
+                className="hidden sm:inline-flex"
+              />
+              {/* Movie genres */}
+              <div className="flex flex-start items-start space-x-1 mt-2 justify-center">
+                {genres.slice(0, 3).map((item) => (
+                  <span
+                    key={item}
+                    className="text-xs text-white px-1 font-medium md:text-sm rounded truncate text-center border border-slate-200"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="grid grid-cols-2 gap-2 w-full border-y border-slate-500 p-2">
-              <div className="col-span-1 flex flex-col items-center">
-                <h3 className="uppercase text-sm tracking-tight font-bold text-amber-400">
-                  Rating
-                </h3>
-                <div className="flex items-center space-x-1">
-                  <div className="text-xl text-amber-400">
-                    <BsStarFill />
+
+            <div className="flex flex-col flex-start w-full space-y-2 mt-2 sm:ml-2 sm:mt-0">
+              <div className="grid grid-cols-2 gap-2 w-full border-y border-slate-500 p-2">
+                {/* Rating */}
+                <div className="col-span-1 flex flex-col items-center">
+                  <h3 className="uppercase text-sm tracking-tight font-bold text-amber-400">
+                    Rating
+                  </h3>
+                  <div className="flex items-center space-x-1">
+                    <div className="text-xl text-amber-400">
+                      <BsStarFill />
+                    </div>
+                    <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
+                      <p className="text-white text-lg font-semibold">
+                        {voteAvg}{" "}
+                        <span className="text-slate-200 text-base font-normal">
+                          /10
+                        </span>
+                      </p>
+                      <p>({voteCount})</p>
+                    </div>
                   </div>
-                  <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                    <p className="text-white text-lg font-semibold">
-                      {voteAvg}{" "}
-                      <span className="text-slate-200 text-base font-normal">
-                        /10
-                      </span>
-                    </p>
-                    <p>({voteCount})</p>
+                </div>
+                {/* Popularity */}
+                <div className="col-span-1 flex flex-col items-center">
+                  <h3 className="uppercase text-sm tracking-tight font-bold text-red-500">
+                    Popularity
+                  </h3>
+                  <div className="flex items-center space-x-1">
+                    <div className="text-xl text-red-500">
+                      <BsFillHeartFill />
+                    </div>
+                    <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
+                      <p className="text-white text-lg font-semibold">
+                        {Math.round(popularity)}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="col-span-1 flex flex-col items-center">
-                <h3 className="uppercase text-sm tracking-tight font-bold text-red-500">
-                  Popularity
-                </h3>
-                <div className="flex items-center space-x-1">
-                  <div className="text-xl text-red-500">
-                    <BsFillHeartFill />
-                  </div>
-                  <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                    <p className="text-white text-lg font-semibold">
-                      {Math.round(popularity)}
-                    </p>
+              {/* Modal movie overview */}
+              <p className="text-sm tracking-tight text-justify md:text-sm">
+                {overview}
+              </p>
+              <PlayButton
+                movieTitle={movieTitle}
+                movieId={movieId}
+                posterPath={posterPath}
+              />
+              <div className="text-white text-sm">
+                {/* Cast */}
+                <span className="uppercase">Cast</span>
+                <div className="flex flex-col items-center">
+                  <div className="flex flex-col space-y-1 mt-1">
+                    {cast.slice(0, 3).map((item) => (
+                      <div
+                        className="grid grid-cols-11 gap-2"
+                        key={`cast-${item.id}`}
+                      >
+                        <img
+                          className="self-center col-span-2 rounded-full"
+                          style={{ height: "50px" }}
+                          src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
+                          alt=""
+                        />
+                        <p className="self-center col-span-4">{item.name}</p>
+                        <p className="self-center col-span-1 text-xs text-slate-200">
+                          as
+                        </p>
+                        <p className="self-center col-span-4 text-blue-400">
+                          {item.character}
+                        </p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
-            </div>
-            {/* Modal movie overview */}
-            <p className="text-sm tracking-tight text-justify md:text-sm">
-              {overview}
-            </p>
-          </div>
-          <PlayButton
-            movieTitle={movieTitle}
-            movieId={movieId}
-            posterPath={posterPath}
-          />
-          <div className="text-white text-sm">
-            <span className="uppercase">Cast</span>
-            <div className="flex flex-col space-y-1 mt-1">
-              {cast.slice(0, 3).map((item) => (
-                <div
-                  className="grid grid-cols-11 gap-x-1"
-                  key={`cast-${item.id}`}
-                >
-                  <img
-                    className="self-center col-span-2"
-                    style={{ height: "50px" }}
-                    src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
-                    alt=""
-                  />
-                  <p className="self-center col-span-4">{item.name}</p>
-                  <p className="self-center col-span-1 text-xs text-slate-200">
-                    as
-                  </p>
-                  <p className="self-center col-span-4 text-blue-400">
-                    {item.character}
-                  </p>
-                </div>
-              ))}
             </div>
           </div>
         </div>

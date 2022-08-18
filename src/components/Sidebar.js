@@ -1,4 +1,5 @@
 import React from "react";
+import { BsBoxArrowInLeft, BsBoxArrowInRight } from "react-icons/bs";
 import { SiReactivex } from "react-icons/si";
 import { NavLink } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -16,9 +17,9 @@ const Sidebar = () => {
   } = useStateContext();
 
   const activeLink =
-    "flex items-center py-1 px-2 pr-2 m-1 mb-0.5 rounded drop-shadow-xl";
+    "flex items-center lg:justify-center py-1 px-2 m-1 mb-0.5 rounded drop-shadow-xl lg:sidebar-expanded:justify-start";
   const normalLink =
-    "flex items-center py-1 px-2 pr-0 m-1 mb-0.5 rounded hover:bg-gradient-to-r from-[#047857]";
+    "flex items-center lg:justify-center py-1 px-2 m-1 mb-0.5 rounded hover:bg-gradient-to-r from-[#047857] lg:sidebar-expanded:justify-start";
 
   return (
     <div>
@@ -44,9 +45,7 @@ const Sidebar = () => {
               <div className="rounded-full p-0.5 bg-slate-50">
                 <SiReactivex size="25px" color="#047857" />
               </div>
-              <p className="capitalize truncate lg:hidden lg:sidebar-expanded:inline-flex">
-                My Résumé
-              </p>
+              <p className="capitalize truncate lg:hidden lg:sidebar-expanded:inline-flex"></p>
             </div>
           </NavLink>
 
@@ -58,21 +57,14 @@ const Sidebar = () => {
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
           >
-            <span className="sr-only">Close sidebar</span>
-            <svg
-              className="w-6 h-6 fill-current"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M10.7 18.7l1.4-1.4L7.8 13H20v-2H7.8l4.3-4.3-1.4-1.4L4 12z" />
-            </svg>
+            <BsBoxArrowInLeft className="h-6 w-6" />
           </button>
         </div>
         {/* NavLinks */}
         <div className="grow p-2">
           {navLinks.map((item) => (
             <div key={item.title.replace("-", " ")}>
-              <p className="capitalize truncate mt-3 lg:sidebar-expanded:inline-flex">
+              <p className="uppercase truncate mt-3 text-emerald-500 lg:sidebar-expanded:inline-flex">
                 {item.title.replace("-", " ")}
               </p>
               {item.links.map((link) => (
@@ -98,24 +90,15 @@ const Sidebar = () => {
           ))}
         </div>
         {/* Expand/Collapse button */}
-        <div className="flex justify-end mb-2">
+        <div className="flex lg:justify-center lg:sidebar-expanded:justify-end m-2">
           <button
-            className="hidden p-2.5 text-slate-50 hover:text-emerald-500 lg:inline-flex"
+            className="hidden text-slate-50 hover:text-emerald-500 lg:inline-flex"
             onClick={() => {
               setSidebarExpanded(!sidebarExpanded);
             }}
           >
             <span className="sr-only">Expand/Collapse sidebar</span>
-            <svg
-              className="w-6 h-6 fill-current sidebar-expanded:rotate-180"
-              viewBox="0 0 24 24"
-            >
-              <path
-                className=""
-                d="M19.586 11l-5-5L16 4.586 23.414 12 16 19.414 14.586 18l5-5H7v-2z"
-              />
-              <path className="" d="M3 23H1V1h2z" />
-            </svg>
+            <BsBoxArrowInRight className="sidebar-expanded:rotate-180 h-6 w-6" />
           </button>
         </div>
       </div>

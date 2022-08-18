@@ -17,7 +17,7 @@ const Navbar = () => {
           setSidebarOpen(!sidebarOpen);
         }}
       >
-        <BsFillMenuButtonWideFill className="text-emerald-700 text-xl" />
+        <BsFillMenuButtonWideFill className="text-emerald-500 text-xl" />
       </button>
     </div>
   );

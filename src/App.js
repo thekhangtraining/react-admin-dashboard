@@ -14,7 +14,8 @@ import {
   LandingDemo2,
   Messenger,
   Spotify,
-  Tables
+  Tables,
+  Construction,
 } from "./pages";
 
 const App = () => {
@@ -31,60 +32,64 @@ const App = () => {
               {/* My CV */}
               <Route path="/" key="cv" element={<Cv />} />
 
-              {/* Admin dashboards */}
-              <Route
-                path="/dashboards/default"
-                key="dash-default"
-                element={<DashDefault />}
-              />
-              <Route
-                path="/dashboards/analytics"
-                key="dash-analytics"
-                element={<DashAnalytics />}
-              />
-
               {/* Landing pages */}
               <Route
                 path="/landing/demo1"
                 key="landing-demo-1"
-                element={<LandingDemo1 />}
+                element={<Construction />}
               />
               <Route
                 path="/landing/demo2"
                 key="landing-demo-2"
-                element={<LandingDemo2 />}
+                element={<Construction />}
+              />
+
+              {/* Admin dashboards */}
+              <Route
+                path="/dashboards/default"
+                key="dash-default"
+                element={<Construction />}
+              />
+              <Route
+                path="/dashboards/analytics"
+                key="dash-analytics"
+                element={<Construction />}
               />
 
               {/* Tables, Charts & Infographics */}
               <Route path="/data/tables" key="tables" element={<Tables />} />
-              <Route path="/data/charts" key="charts" element={<Charts />} />
+              <Route
+                path="/data/charts"
+                key="charts"
+                element={<Construction />}
+              />
               <Route
                 path="/data/infographics"
                 key="infographics"
-                element={<Infographics />}
+                element={<Construction />}
               />
 
               {/* Clones of many popular apps */}
               <Route
                 path="/clones/amazon"
                 key="clone-amazon"
-                element={<Amazon />}
+                element={<Construction />}
               />
               <Route path="/clones/imdb" key="clone-imdb" element={<Imdb />} />
               <Route
                 path="/clones/gmail"
                 key="clone-gmail"
-                element={<Gmail />}
+                element={<Construction />}
               />
               <Route
                 path="/clones/messenger"
                 key="clone-messenger"
-                element={<Messenger />}
+                element={<Construction />}
               />
               <Route
                 path="/clones/spotify"
                 key="clone-spotify"
-                element={<Spotify />}
+                element={<Construction />}
               />
             </Routes>
           </main>

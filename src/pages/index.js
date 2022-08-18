@@ -3,6 +3,7 @@ export { default as Gmail } from "./clones/Gmail";
 export { default as Imdb } from "./clones/Imdb";
 export { default as Messenger } from "./clones/Messenger";
 export { default as Spotify } from "./clones/Spotify";
+export { default as Construction } from "./Construction";
 export { default as Cv } from "./Cv";
 export { default as DashAnalytics } from "./dashboards/DashAnalytics";
 export { default as DashDefault } from "./dashboards/DashDefault";
