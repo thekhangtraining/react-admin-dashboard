@@ -1,7 +1,7 @@
 import React from "react";
 import { BsBoxArrowInLeft, BsBoxArrowInRight } from "react-icons/bs";
-import { SiReactivex } from "react-icons/si";
 import { NavLink } from "react-router-dom";
+import { Footer } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 import { navLinks } from "../data/navLinks";
 
@@ -34,20 +34,13 @@ const Sidebar = () => {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex p-2 flex-col absolute bg-zinc-900 text-slate-50 z-20 left-0 top-0 lg:sticky lg:translate-x-0 h-screen overflow-y-auto w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 transition-all duration-75 ease-in-out ${
+        className={`flex p-1 flex-col absolute bg-zinc-900 text-slate-50 z-20 left-0 top-0 lg:sticky lg:translate-x-0 h-screen overflow-y-auto w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 transition-all duration-75 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-60"
         }`}
       >
         {/* Sidebar header */}
-        <div className="flex justify-between lg:justify-center gap-x-2 items-center p-2 pb-0 font-bold">
-          <NavLink to="/" key="logo">
-            <div className="flex justify-start lg:justify-center items-center space-x-2">
-              <div className="rounded-full p-0.5 bg-slate-50">
-                <SiReactivex size="25px" color="#047857" />
-              </div>
-              <p className="capitalize truncate lg:hidden lg:sidebar-expanded:inline-flex"></p>
-            </div>
-          </NavLink>
+        <div className="flex justify-between lg:justify-center gap-x-2 items-center p-2 pb-0">
+          <Footer />
 
           {/* Close button */}
           <button

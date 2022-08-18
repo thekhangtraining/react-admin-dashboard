@@ -1,12 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { FaRegPlayCircle, FaYoutube } from "react-icons/fa";
+import { BsYoutube } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
 import Modal from "react-modal";
 import ReactPlayer from "react-player/youtube";
 import configs from "../../configs.json";
 
-const PlayButton = ({ movieTitle, movieId, posterPath }) => {
+const TrailerButton = ({ movieTitle, movieId, posterPath }) => {
   const [trailerLink, setTrailerLink] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -54,7 +54,7 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
   }, [movieId]);
 
   return (
-    <div className="group w-full">
+    <div className="w-full">
       {/* Modal for playing trailer */}
       <Modal
         isOpen={modalIsOpen}
@@ -72,7 +72,7 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
           </button>
         </div>
         <div className="flex items-center">
-          <FaYoutube size="40px" color={"rgb(255, 0, 0)"} className="mx-2" />
+          <BsYoutube size="40px" color={"rgb(255, 0, 0)"} className="mx-2" />
           <h2 className="text-lg text-white">
             Watching
             <span className="text-emerald-400 font-medium"> {movieTitle} </span>
@@ -96,15 +96,15 @@ const PlayButton = ({ movieTitle, movieId, posterPath }) => {
         type="button"
         // Adhoc styling
         onClick={() => setModalIsOpen(true)}
-        className="flex justify-center h-full w-full rounded items-center px-2 sm:py-0.5 bg-amber-400"
+        className="flex justify-center w-full rounded items-center px-2 bg-amber-400"
       >
-        <FaRegPlayCircle className="text-black mx-1 text-sm md:text-lg" />
+        <BsYoutube className="text-black mx-1 text-sm md:text-lg" />
         <p className="text-sm md:text-base font-medium truncate text-black">
-          Watch Trailer
+          Trailer
         </p>
       </button>
     </div>
   );
 };
 
-export default PlayButton;
+export default TrailerButton;

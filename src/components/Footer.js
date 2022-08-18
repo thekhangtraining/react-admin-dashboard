@@ -4,40 +4,38 @@ import { Avatar } from "./";
 
 const Footer = () => {
   return (
-    <div className="flex justify-center items-center gap-x-1 p-2 text-slate-200 font-bold text-sm">
-      <Avatar isRound />
-      <div className="flex flex-col gap-y-1">
-        <div className="text-xs">
-          The-Khang Nguyen © {new Date().getFullYear()}
-        </div>
+    <div className="flex justify-center items-center gap-x-2 text-slate-200 font-bold text-sm">
+      <Avatar round />
+      <div className="lg:hidden flex-col gap-y-1 lg:sidebar-expanded:inline-flex">
+        <div className="text-sm font-[Pacifico] p-0.5">The-Khang Nguyen</div>
         <div className="flex justify-center text-xl gap-x-2">
           <a
             href="https://www.linkedin.com/in/thekhangnguyen/"
             target="_blank"
             rel="noreferrer"
           >
-            <BsLinkedin />
+            <BsLinkedin size="15px" />
           </a>
           <a
             href="https://github.com/thekhangcloud/"
             target="_blank"
             rel="noreferrer"
           >
-            <BsGithub />
+            <BsGithub size="15px" />
           </a>
           <a
             href="https://www.facebook.com/nguyenthekhang94/"
             target="_blank"
             rel="noreferrer"
           >
-            <BsFacebook />
+            <BsFacebook size="15px" />
           </a>
           <a
             href="https://www.instagram.com/thekhangnguyen_/"
             target="_blank"
             rel="noreferrer"
           >
-            <BsInstagram />
+            <BsInstagram size="15px" />
           </a>
         </div>
       </div>

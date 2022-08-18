@@ -1,22 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Navbar, Sidebar } from "./components";
-import {
-  Amazon,
-  Charts,
-  Cv,
-  DashAnalytics,
-  DashDefault,
-  Gmail,
-  Imdb,
-  Infographics,
-  LandingDemo1,
-  LandingDemo2,
-  Messenger,
-  Spotify,
-  Tables,
-  Construction,
-} from "./pages";
+import { Construction, Imdb, Tables } from "./pages";
 
 const App = () => {
   return (

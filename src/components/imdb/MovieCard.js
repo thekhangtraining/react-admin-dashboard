@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { BsFillHeartFill, BsStarFill } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
 import Modal from "react-modal";
-import { LoveButton, PlayButton, RatingButton } from ".";
+import { LoveButton, RatingButton, TrailerButton, WatchButton } from ".";
 import configs from "../../configs.json";
 import { moviesGenres } from "../../data/data";
 
@@ -17,7 +17,7 @@ const MovieCard = ({
   voteAvg,
   voteCount,
   genreIds,
-  releaseYear,
+  releaseDate,
 }) => {
   var genres = [];
   for (let i = 0; i < genreIds.length; i++) {
@@ -29,7 +29,8 @@ const MovieCard = ({
   }
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [cast, setCast] = useState([]);
-  const [director, setDirector] = useState([]);
+  const [directors, setDirectors] = useState([]);
+  const [writers, setWriters] = useState([]);
 
   const modalStyle = {
     content: {
@@ -40,8 +41,8 @@ const MovieCard = ({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "1rem",
-      background: "rgba(0, 0, 0, 0.6)",
-      borderColor: "rgba(0, 0, 0, 0.6)",
+      background: "rgba(0, 0, 0, 0.7)",
+      borderColor: "rgba(0, 0, 0, 0.7)",
       maxHeight: "80vh",
       overflowY: "auto",
       width: "95vw",
@@ -61,14 +62,21 @@ const MovieCard = ({
       })
       .then((response) => {
         setCast(response.data.cast);
-        setDirector(
+        setDirectors(
           response.data.crew.filter((member) => member.job === "Director")
+        );
+        setWriters(
+          response.data.crew.filter(
+            (member) =>
+              member.known_for_department === "Writing" &&
+              member.department === "Writing"
+          )
         );
       })
       .catch(function (error) {
         console.log(error);
       });
-  }, []);
+  }, [movieId]);
 
   Modal.setAppElement("#root");
 
@@ -113,7 +121,7 @@ const MovieCard = ({
               />
               {/* Movie genres */}
               <div className="flex flex-start items-start space-x-1 mt-2 justify-center">
-                {genres.slice(0, 3).map((item) => (
+                {genres.slice(0, 4).map((item) => (
                   <span
                     key={item}
                     className="text-xs text-white px-1 font-medium md:text-sm rounded truncate text-center border border-slate-200"
@@ -148,7 +156,9 @@ const MovieCard = ({
                 </div>
                 {/* Popularity */}
                 <div className="col-span-1 flex flex-col items-center">
-                  <h3 className="uppercase text-sm tracking-tight font-bold text-red-500">
+                  <h3 className="uppercase text-sm tracking-tight font-bold text-center text-red-500">
+                    Weekly
+                    <br />
                     Popularity
                   </h3>
                   <div className="flex items-center space-x-1">
@@ -164,38 +174,79 @@ const MovieCard = ({
                 </div>
               </div>
               {/* Modal movie overview */}
+              <p className="text-sm">
+                Release Date:{" "}
+                <span className="text-amber-400 font-bold text-base">
+                  {releaseDate}
+                </span>
+              </p>
               <p className="text-sm tracking-tight text-justify md:text-sm">
                 {overview}
               </p>
-              <PlayButton
-                movieTitle={movieTitle}
-                movieId={movieId}
-                posterPath={posterPath}
-                style={{ paddingTop: "2px", paddingBottom: "2px" }}
-              />
-              <div className="text-white text-sm">
+              <div className="flex space-x-2">
+                <TrailerButton
+                  movieTitle={movieTitle}
+                  movieId={movieId}
+                  posterPath={posterPath}
+                />
+                <WatchButton />
+              </div>
+
+              <div className="text-white text-sm p-1 flex flex-col lg:flex-row">
                 {/* Cast */}
-                <span className="uppercase mb-1">Cast</span>
-                <div className="flex flex-col items-center">
-                  <div className="flex flex-col space-y-1 mt-1">
-                    {cast.slice(0, 3).map((item) => (
+                <div className="flex flex-col space-y-2 w-full my-2">
+                  <p className="uppercase">Cast</p>
+                  {cast.slice(0, 4).map((member) => (
+                    <div
+                      className="flex items-center space-x-2"
+                      key={`cast-${member.id}`}
+                    >
+                      <img
+                        className="rounded-full h-9 w-6.5"
+                        src={`https://image.tmdb.org/t/p/original${member.profile_path}`}
+                        alt=""
+                      />
+                      <p className="">
+                        {member.name}
+                        <span className="ml-3 text-emerald-500">
+                          {member.character}
+                        </span>
+                      </p>
+                    </div>
+                  ))}
+                </div>
+                <div className="flex flex-col w-full my-2">
+                  {/* Director */}
+                  <div className="flex flex-col space-y-2">
+                    <p className="uppercase">Director</p>
+                    {directors.map((member) => (
                       <div
-                        className="grid grid-cols-11 gap-2"
-                        key={`cast-${item.id}`}
+                        className="flex items-center space-x-2"
+                        key={`cast-${member.id}`}
                       >
                         <img
-                          className="self-center col-span-2 rounded-full"
-                          style={{ height: "50px" }}
-                          src={`https://image.tmdb.org/t/p/original${item.profile_path}`}
+                          className="rounded-full h-9 w-6.5"
+                          src={`https://image.tmdb.org/t/p/original${member.profile_path}`}
                           alt=""
                         />
-                        <p className="self-center col-span-4">{item.name}</p>
-                        <p className="self-center col-span-1 text-xs text-slate-200">
-                          as
-                        </p>
-                        <p className="self-center col-span-4 text-blue-400">
-                          {item.character}
-                        </p>
+                        <p className="">{member.name}</p>
+                      </div>
+                    ))}
+                  </div>
+                  {/* Writers */}
+                  <div className="flex flex-col space-y-2 my-2">
+                    <p className="uppercase">Writers</p>
+                    {writers.slice(0, 1).map((member) => (
+                      <div
+                        className="flex items-center space-x-2"
+                        key={`cast-${member.id}`}
+                      >
+                        <img
+                          className="rounded-full h-9 w-6.5"
+                          src={`https://image.tmdb.org/t/p/original${member.profile_path}`}
+                          alt=""
+                        />
+                        <p className="">{member.name}</p>
                       </div>
                     ))}
                   </div>
@@ -249,7 +300,7 @@ const MovieCard = ({
             />
           </div>
 
-          <PlayButton
+          <TrailerButton
             movieTitle={movieTitle}
             movieId={movieId}
             posterPath={posterPath}

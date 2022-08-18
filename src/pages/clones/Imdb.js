@@ -1,17 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Navigation, Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Swiper, SwiperSlide } from "swiper/react";
 import { Title } from "../../components";
-import { MovieCard } from "../../components/imdb";
+import { MoviesSwiper } from "../../components/imdb";
 import configs from "../../configs.json";
 import "../../styles/swiper.css";
 
 const Movies = () => {
-  const [moviesList, setMoviesList] = useState([]);
+  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [mostRatedMovies, setMostRatedMovies] = useState([]);
 
   // Fetch movies list at startup
   useEffect(() => {
@@ -22,7 +21,7 @@ const Movies = () => {
         },
       })
       .then((response) => {
-        setMoviesList(
+        setTrendingMovies(
           response.data.results.sort(function (a, b) {
             return b.popularity - a.popularity;
           })
@@ -33,65 +32,34 @@ const Movies = () => {
       });
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("https://api.themoviedb.org/3/discover/movie", {
+        params: {
+          sort_by: "vote_count.desc",
+          api_key: configs.apiKeyTMDB,
+        },
+      })
+      .then((response) => {
+        setMostRatedMovies(response.data.results);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, []);
+
   return (
-    <div className="flex flex-col h-screen">
+    <div className="flex flex-col">
       <Title surtitle="App clones" title="IMDb" />
-      <h2 className="text-slate-50 truncate">Lu Xinh muốn xem phim gì ạ?</h2>
-      <div className="grid grid-cols-12">
-        <div className="col-span-12 mt-2">
-          <Swiper
-            slidesPerView={1}
-            loop
-            initialSlide={1}
-            navigation={true}
-            pagination={{
-              type: "progressbar",
-            }}
-            breakpoints={{
-              350: {
-                slidesPerView: 2,
-                spaceBetween: 5,
-              },
-              600: {
-                slidesPerView: 3,
-                spaceBetween: 10,
-              },
-              768: {
-                slidesPerView: 4,
-                spaceBetween: 15,
-              },
-              1024: {
-                slidesPerView: 5,
-                spaceBetween: 20,
-              },
-              1536: {
-                slidesPerView: 6,
-                spaceBetween: 25,
-              },
-            }}
-            modules={[Pagination, Navigation]}
-            className="imdbSwiper"
-          >
-            {moviesList.map((item) => (
-              <SwiperSlide key={`swiper-slide-${item.id}`}>
-                <MovieCard
-                  key={item.id}
-                  movieId={item.id}
-                  movieTitle={item.title}
-                  backdropPath={item.backdrop_path}
-                  posterPath={item.poster_path}
-                  overview={item.overview}
-                  popularity={item.popularity}
-                  voteAvg={item.vote_average}
-                  voteCount={item.vote_count}
-                  genreIds={item.genre_ids}
-                  releaseYear={item.release_date.slice(0, 4)}
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-      </div>
+      <h2 className="text-pink-400 truncate font-[Pacifico]">
+        Lu Xinh muốn xem phim gì ạ? 🥰
+      </h2>
+      <h2 className="text-slate-50 truncate mt-4">Weekly Trending Movies</h2>
+      <MoviesSwiper moviesList={trendingMovies} effect="coverflow" />
+      <h2 className="text-slate-50 truncate mt-4">
+        Most Viewed Movies Of All Times
+      </h2>
+      <MoviesSwiper moviesList={mostRatedMovies} effect="coverflow" />
     </div>
   );
 };

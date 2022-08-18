@@ -27,7 +27,7 @@ const Construction = () => {
             <button>
               <p className="hover:underline decoration-2 decoration-emerald-500 text-left">
                 <span className="text-emerald-500 font-bold">Tables </span>:
-                Some cool tables that should be useful for work
+                Some cool tables that might be useful for work
               </p>
             </button>
           </NavLink>
