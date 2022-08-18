@@ -30,7 +30,7 @@ const App = () => {
           <main className="w-full relative p-4 pt-2 bg-zinc-800">
             <Routes>
               {/* My CV */}
-              <Route path="/" key="cv" element={<Cv />} />
+              <Route path="/" key="cv" element={<Construction />} />
 
               {/* Landing pages */}
               <Route

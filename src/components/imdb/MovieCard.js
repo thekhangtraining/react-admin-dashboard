@@ -171,10 +171,11 @@ const MovieCard = ({
                 movieTitle={movieTitle}
                 movieId={movieId}
                 posterPath={posterPath}
+                style={{ paddingTop: "2px", paddingBottom: "2px" }}
               />
               <div className="text-white text-sm">
                 {/* Cast */}
-                <span className="uppercase">Cast</span>
+                <span className="uppercase mb-1">Cast</span>
                 <div className="flex flex-col items-center">
                   <div className="flex flex-col space-y-1 mt-1">
                     {cast.slice(0, 3).map((item) => (

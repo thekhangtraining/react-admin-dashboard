@@ -33,10 +33,8 @@ const Movies = () => {
       });
   }, []);
 
-  console.log(moviesList);
-
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col h-screen">
       <Title surtitle="App clones" title="IMDb" />
       <h2 className="text-slate-50 truncate">Lu Xinh muốn xem phim gì ạ?</h2>
       <div className="grid grid-cols-12">

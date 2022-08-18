@@ -15,7 +15,7 @@ const Construction = () => {
         <li>
           <NavLink to="/clones/imdb">
             <button>
-              <p className="hover:underline decoration-2 decoration-emerald-500">
+              <p className="hover:underline decoration-2 decoration-emerald-500 text-left">
                 <span className="text-emerald-500 font-bold">IMDb </span>: A
                 movie database project
               </p>
@@ -25,7 +25,7 @@ const Construction = () => {
         <li>
           <NavLink to="/data/tables">
             <button>
-              <p className="hover:underline decoration-2 decoration-emerald-500">
+              <p className="hover:underline decoration-2 decoration-emerald-500 text-left">
                 <span className="text-emerald-500 font-bold">Tables </span>:
                 Some cool tables that should be useful for work
               </p>
