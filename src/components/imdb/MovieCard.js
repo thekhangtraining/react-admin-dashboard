@@ -3,9 +3,19 @@ import React, { useEffect, useState } from "react";
 import { BsFillHeartFill, BsStarFill } from "react-icons/bs";
 import { IoCloseSharp } from "react-icons/io5";
 import Modal from "react-modal";
+import { Navigation, Pagination } from "swiper";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { LoveButton, RatingButton, TrailerButton, WatchButton } from ".";
 import configs from "../../configs.json";
 import { moviesGenres } from "../../data/data";
+import "../../styles/swiper.css";
+
+// TODO: Revenue graph for each movie, compared to budget
+// https://developers.themoviedb.org/3/movies/get-movie-details
 
 const MovieCard = ({
   movieId,
@@ -32,6 +42,7 @@ const MovieCard = ({
   const [cast, setCast] = useState([]);
   const [directors, setDirectors] = useState([]);
   const [writers, setWriters] = useState([]);
+  const [movieImgs, setMovieImgs] = useState([]);
 
   const modalStyle = {
     content: {
@@ -53,6 +64,23 @@ const MovieCard = ({
       zIndex: 30,
     },
   };
+
+  useEffect(() => {
+    axios
+      .get(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
+        params: {
+          api_key: configs.apiKeyTMDB,
+        },
+      })
+      .then((response) => {
+        setMovieImgs(
+          response.data.backdrops.sort((a, b) => b.vote_count - a.vote_count)
+        );
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [movieId]);
 
   useEffect(() => {
     axios
@@ -205,7 +233,6 @@ const MovieCard = ({
                 />
                 <WatchButton />
               </div>
-
               <div className="text-white text-sm p-1 flex flex-col lg:flex-row">
                 {/* Cast */}
                 <div className="flex flex-col space-y-2 w-full my-2">
@@ -263,7 +290,7 @@ const MovieCard = ({
                             src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                             alt=""
                           />
-                          <p className="">{member.name}</p>
+                          <p>{member.name}</p>
                         </div>
                       ))}
                     </div>
@@ -272,6 +299,47 @@ const MovieCard = ({
               </div>
             </div>
           </div>
+          <Swiper
+            slidesPerView={1}
+            loop
+            initialSlide={1}
+            navigation={true}
+            pagination={{
+              type: "bullets",
+            }}
+            modules={[Pagination, Navigation]}
+            breakpoints={{
+              350: {
+                slidesPerView: 1,
+                spaceBetween: 2,
+              },
+              640: {
+                slidesPerView: 2,
+                spaceBetween: 5,
+              },
+              768: {
+                slidesPerView: 2,
+                spaceBetween: 5,
+              },
+              1024: {
+                slidesPerView: 3,
+                spaceBetween: 5,
+              },
+              1536: {
+                slidesPerView: 4,
+                spaceBetween: 5,
+              },
+            }}
+          >
+            {movieImgs.slice(0, 10).map((img) => (
+              <SwiperSlide key={img.file_path}>
+                <img
+                  src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
+                  alt=""
+                />
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </Modal>
 
