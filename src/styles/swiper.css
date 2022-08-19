@@ -33,11 +33,17 @@
 .swiper-button-prev {
   color: #facc15;
   font-weight: bold;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 5px;
 }
 
 .swiper-button-next {
   color: #facc15;
   font-weight: bold;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 30px;
+  border-radius: 5px;
 }
 
 .swiper-pagination-progressbar-fill {
