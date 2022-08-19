@@ -12,7 +12,7 @@ import "../../styles/swiper.css";
 const coverflowEffect = {
   rotate: 30,
   stretch: 0,
-  depth: 200,
+  depth: 50,
   modifier: 1,
   slideShadows: true,
 };
@@ -45,20 +45,24 @@ const MoviesSwiper = ({ moviesList, effect }) => {
               slidesPerView: 2,
               spaceBetween: 5,
             },
-            600: {
+            470: {
               slidesPerView: 3,
               spaceBetween: 10,
             },
-            768: {
+            650: {
               slidesPerView: 4,
               spaceBetween: 10,
             },
             1024: {
-              slidesPerView: 5,
+              slidesPerView: 2,
               spaceBetween: 10,
             },
-            1536: {
-              slidesPerView: 6,
+            1200: {
+              slidesPerView: 3,
+              spaceBetween: 10,
+            },
+            1500: {
+              slidesPerView: 3,
               spaceBetween: 10,
             },
           }}

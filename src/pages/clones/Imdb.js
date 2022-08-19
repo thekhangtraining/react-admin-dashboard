@@ -50,23 +50,47 @@ const Movies = () => {
   }, []);
 
   return (
-    <div className="flex flex-col p-4 bg-zinc-800">
-      <div className="flex justify-center h-10 mb-4 space-x-6 md:h-12 md:space-x-8 lg:h-16 lg:space-x-10">
-        <img src={TheMovieDBLogo} className="h-full" alt="" />
-        <img src={IMDbLogo} className="h-full" alt="" />
-      </div>
+    <div className="flex flex-col py-4 bg-zinc-800">
+      <div className="grid grid-cols-12">
+        <div className="px-4 col-span-12 md:px-0 md:col-start-2 md:col-span-10">
+          <div className="flex justify-center h-10 mb-4 space-x-6 md:h-12 md:space-x-8 lg:h-14 lg:space-x-10">
+            <a
+              href="https://developers.themoviedb.org/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={TheMovieDBLogo} className="h-full" alt="" />
+            </a>
+            <a
+              href="https://developer.imdb.com/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={IMDbLogo} className="h-full" alt="" />
+            </a>
+          </div>
 
-      <h2 className="text-pink-400 truncate font-[Pacifico]">
-        Lu Xinh muốn xem phim gì ạ? 🥰
-      </h2>
-      <h2 className="text-slate-50 text-lg truncate mt-4">
-        Weekly Trending Movies
-      </h2>
-      <MoviesSwiper moviesList={trendingMovies} effect="coverflow" />
-      <h2 className="text-slate-50 text-lg truncate mt-4">
-        Most Viewed Movies Of All Times
-      </h2>
-      <MoviesSwiper moviesList={mostRatedMovies} effect="coverflow" />
+          <h2 className="text-pink-400 truncate font-[Pacifico]">
+            Lu Xinh muốn xem phim gì ạ? 🥰
+          </h2>
+
+          <div className="grid grid-cols-2 gap-x-6">
+            <div className="col-span-2 lg:col-span-1">
+              <h2 className="text-slate-50 truncate mt-4 font-[Poppins] font-bold">
+                Weekly Trending Movies
+              </h2>
+              <MoviesSwiper moviesList={trendingMovies} effect="coverflow" />
+            </div>
+            <div className="col-span-2 lg:col-span-1">
+              <h2 className="text-slate-50 truncate mt-4 font-[Poppins] font-bold">
+                Most Viewed Movies Of All Times
+              </h2>
+              <MoviesSwiper moviesList={mostRatedMovies} effect="coverflow" />
+            </div>
+          </div>
+          <div className="h-screen"></div>
+        </div>
+      </div>
     </div>
   );
 };

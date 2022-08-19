@@ -12,6 +12,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { LoveButton, RatingButton, TrailerButton, WatchButton } from ".";
 import configs from "../../configs.json";
 import { moviesGenres } from "../../data/data";
+import "../../styles/modal.css";
 import "../../styles/swiper.css";
 
 // TODO: Revenue graph for each movie, compared to budget
@@ -53,8 +54,9 @@ const MovieCard = ({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "1rem",
-      background: "rgba(0, 0, 0, 0.7)",
-      borderColor: "rgba(0, 0, 0, 0.7)",
+      background: "rgba(0, 0, 0, 0.5)",
+      borderColor: "rgba(0, 0, 0, 0.5)",
+      // Make modal swipable
       maxHeight: "80vh",
       overflowY: "auto",
       width: "95vw",
@@ -129,158 +131,117 @@ const MovieCard = ({
         isOpen={modalIsOpen}
         onRequestClose={() => setModalIsOpen(false)}
         style={modalStyle}
-        contentLabel="Example Modal"
+        contentLabel="Movie card modal"
         // Prevent body swiping when modal is open
         onAfterOpen={() => (document.body.style.overflow = "hidden")}
         onAfterClose={() => (document.body.style.overflow = "unset")}
       >
-        {/* Close modal button */}
-        <div className="flex justify-end">
-          <button
-            onClick={() => setModalIsOpen(!modalIsOpen)}
-            className="text-white hover:text-emerald-400"
-          >
-            <IoCloseSharp />
-          </button>
-        </div>
-        <div className="flex flex-col space-y-2">
-          {/* Modal title */}
-          <h2 className="text-emerald-400 font-medium md:text-xl">
-            {movieTitle}
-          </h2>
-          {/* Modal backdrop */}
-          <div className="flex flex-col text-slate-200 justify-center items-center sm:flex-row sm:mr-2 sm:items-start">
-            <div>
-              <img
-                src={`https://image.tmdb.org/t/p/w500${backdropPath}`}
-                alt=""
-                className="sm:hidden"
-              />
-              <img
-                src={`https://image.tmdb.org/t/p/w500${posterPath}`}
-                alt=""
-                className="hidden sm:inline-flex"
-              />
-              {/* Movie genres */}
-              <div className="flex flex-start items-start space-x-1 mt-2 justify-center">
-                {genres.slice(0, 4).map((item) => (
-                  <span
-                    key={item}
-                    className="text-xs text-white px-1 font-medium md:text-sm rounded truncate text-center border border-slate-200"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
+        <div className="grid grid-cols-12 gap-4">
+          <div className="col-span-12 md:col-start-2 md:col-span-10 xl:col-start-3 xl:col-span-8">
+            {/* Close modal button */}
+            <div className="flex justify-end">
+              <button
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+                className="text-white hover:text-emerald-400"
+              >
+                <IoCloseSharp className="h-5 w-5" />
+              </button>
             </div>
-
-            <div className="flex flex-col flex-start w-full space-y-2 mt-2 sm:ml-2 sm:mt-0">
-              <div className="grid grid-cols-2 gap-2 w-full border-y border-slate-500 p-2">
-                {/* Rating */}
-                <div className="col-span-1 flex flex-col items-center">
-                  <h3 className="uppercase text-sm tracking-tight font-bold text-amber-400">
-                    Rating
-                  </h3>
-                  <div className="flex items-center space-x-1">
-                    <div className="text-xl text-amber-400">
-                      <BsStarFill />
-                    </div>
-                    <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                      <p className="text-white text-lg font-semibold">
-                        {voteAvg}{" "}
-                        <span className="text-slate-200 text-base font-normal">
-                          /10
-                        </span>
-                      </p>
-                      <p>({voteCount})</p>
-                    </div>
-                  </div>
-                </div>
-                {/* Popularity */}
-                <div className="col-span-1 flex flex-col items-center">
-                  <h3 className="uppercase text-sm tracking-tight font-bold text-center text-red-500">
-                    Weekly
-                    <br />
-                    Popularity
-                  </h3>
-                  <div className="flex items-center space-x-1">
-                    <div className="text-xl text-red-500">
-                      <BsFillHeartFill />
-                    </div>
-                    <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                      <p className="text-white text-lg font-semibold">
-                        {Math.round(popularity)}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* Modal movie overview */}
-              <p className="text-sm">
-                Release Date:{" "}
-                <span className="text-amber-400 font-bold text-base">
-                  {releaseDate}
-                </span>
-              </p>
-              <p className="text-sm tracking-tight text-justify md:text-sm">
-                {overview}
-              </p>
-              <div className="flex space-x-2">
-                <TrailerButton
-                  movieTitle={movieTitle}
-                  movieId={movieId}
-                  posterPath={posterPath}
-                />
-                <WatchButton />
-              </div>
-              <div className="text-white text-sm p-1 flex flex-col lg:flex-row">
-                {/* Cast */}
-                <div className="flex flex-col space-y-2 w-full my-2">
-                  <p className="uppercase">Cast</p>
-                  {cast.slice(0, 4).map((member) => (
-                    <div
-                      className="flex items-center space-x-2"
-                      key={`cast-${member.id}`}
-                    >
-                      <img
-                        className="rounded-full h-9 w-6.5"
-                        src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
-                        alt=""
-                      />
-                      <p className="">
-                        {member.name}
-                        <span className="ml-3 text-emerald-500">
-                          {member.character}
-                        </span>
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex flex-col w-full my-2">
-                  {/* Directors */}
-                  <div className="flex flex-col space-y-2">
-                    <p className="uppercase">Director</p>
-                    {directors.map((member) => (
-                      <div
-                        className="flex items-center space-x-2"
-                        key={`cast-${member.id}`}
+            <div className="flex flex-col space-y-2">
+              {/* Modal title */}
+              <h2 className="text-emerald-400 font-medium md:text-xl">
+                {movieTitle}
+              </h2>
+              {/* Modal backdrop */}
+              <div className="flex flex-col text-slate-200 justify-center items-center sm:flex-row sm:mr-2 sm:items-start">
+                <div>
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${backdropPath}`}
+                    alt=""
+                    className="sm:hidden"
+                  />
+                  <img
+                    src={`https://image.tmdb.org/t/p/w500${posterPath}`}
+                    alt=""
+                    className="hidden sm:inline-flex"
+                  />
+                  {/* Movie genres */}
+                  <div className="flex flex-start items-start space-x-1 mt-2 justify-center">
+                    {genres.slice(0, 4).map((item) => (
+                      <span
+                        key={item}
+                        className="text-xs text-white px-1 font-medium md:text-sm rounded truncate text-center border border-slate-200"
                       >
-                        <img
-                          className="rounded-full h-9 w-6.5"
-                          src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
-                          alt=""
-                        />
-                        <p className="">{member.name}</p>
-                      </div>
+                        {item}
+                      </span>
                     ))}
                   </div>
-                  {/* Writers */}
-                  {writers.length === 0 ? (
-                    <></>
-                  ) : (
-                    <div className="flex flex-col space-y-2 my-2">
-                      <p className="uppercase">Writers</p>
-                      {writers.slice(0, 1).map((member) => (
+                </div>
+
+                <div className="flex flex-col flex-start w-full space-y-2 mt-2 sm:ml-2 sm:mt-0">
+                  <div className="grid grid-cols-2 gap-2 w-full border-y border-slate-500 p-2">
+                    {/* Rating */}
+                    <div className="col-span-1 flex flex-col items-center">
+                      <h3 className="uppercase text-sm tracking-tight font-bold text-amber-400">
+                        Rating
+                      </h3>
+                      <div className="flex items-center space-x-1">
+                        <div className="text-xl text-amber-400">
+                          <BsStarFill />
+                        </div>
+                        <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
+                          <p className="text-white text-lg font-semibold">
+                            {voteAvg}{" "}
+                            <span className="text-slate-200 text-base font-normal">
+                              /10
+                            </span>
+                          </p>
+                          <p>({voteCount})</p>
+                        </div>
+                      </div>
+                    </div>
+                    {/* Popularity */}
+                    <div className="col-span-1 flex flex-col items-center">
+                      <h3 className="uppercase text-sm tracking-tight font-bold text-center text-red-500">
+                        Weekly
+                        <br />
+                        Popularity
+                      </h3>
+                      <div className="flex items-center space-x-1">
+                        <div className="text-xl text-red-500">
+                          <BsFillHeartFill />
+                        </div>
+                        <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
+                          <p className="text-white text-lg font-semibold">
+                            {Math.round(popularity)}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {/* Modal movie overview */}
+                  <p className="text-sm">
+                    Release Date:{" "}
+                    <span className="text-amber-400 font-bold">
+                      {releaseDate}
+                    </span>
+                  </p>
+                  <p className="text-sm tracking-tight text-justify md:text-sm">
+                    {overview}
+                  </p>
+                  <div className="flex space-x-2">
+                    <TrailerButton
+                      movieTitle={movieTitle}
+                      movieId={movieId}
+                      posterPath={posterPath}
+                    />
+                    <WatchButton />
+                  </div>
+                  <div className="text-white text-sm p-1 flex flex-col lg:flex-row">
+                    {/* Cast */}
+                    <div className="flex flex-col space-y-2 w-full my-2">
+                      <p className="uppercase">Cast</p>
+                      {cast.slice(0, 4).map((member) => (
                         <div
                           className="flex items-center space-x-2"
                           key={`cast-${member.id}`}
@@ -290,56 +251,103 @@ const MovieCard = ({
                             src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                             alt=""
                           />
-                          <p>{member.name}</p>
+                          <p className="">
+                            {member.name}
+                            <span className="ml-3 text-emerald-500">
+                              {member.character}
+                            </span>
+                          </p>
                         </div>
                       ))}
                     </div>
-                  )}
+                    <div className="flex flex-col w-full my-2">
+                      {/* Directors */}
+                      <div className="flex flex-col space-y-2">
+                        <p className="uppercase">Director</p>
+                        {directors.map((member) => (
+                          <div
+                            className="flex items-center space-x-2"
+                            key={`cast-${member.id}`}
+                          >
+                            <img
+                              className="rounded-full h-9 w-6.5"
+                              src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
+                              alt=""
+                            />
+                            <p className="">{member.name}</p>
+                          </div>
+                        ))}
+                      </div>
+                      {/* Writers */}
+                      {writers.length === 0 ? (
+                        <></>
+                      ) : (
+                        <div className="flex flex-col space-y-2 my-2">
+                          <p className="uppercase">Writers</p>
+                          {writers.slice(0, 1).map((member) => (
+                            <div
+                              className="flex items-center space-x-2"
+                              key={`cast-${member.id}`}
+                            >
+                              <img
+                                className="rounded-full h-9 w-6.5"
+                                src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
+                                alt=""
+                              />
+                              <p>{member.name}</p>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
               </div>
+              {/* Swiper inside modal */}
+              <Swiper
+                slidesPerView={1}
+                loop
+                initialSlide={1}
+                navigation={true}
+                pagination={{
+                  type: "bullets",
+                }}
+                modules={[Pagination, Navigation]}
+                breakpoints={{
+                  350: {
+                    slidesPerView: 1,
+                    spaceBetween: 5,
+                  },
+                  640: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                  },
+                  768: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                  },
+                  1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 15,
+                  },
+                  1536: {
+                    slidesPerView: 4,
+                    spaceBetween: 15,
+                  },
+                }}
+              >
+                {movieImgs.slice(0, 10).map((img) => (
+                  <SwiperSlide key={img.file_path}>
+                    <img
+                      className="rounded-sm"
+                      src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
+                      alt=""
+                    />
+                  </SwiperSlide>
+                ))}
+              </Swiper>
             </div>
           </div>
-          <Swiper
-            slidesPerView={1}
-            loop
-            initialSlide={1}
-            navigation={true}
-            pagination={{
-              type: "bullets",
-            }}
-            modules={[Pagination, Navigation]}
-            breakpoints={{
-              350: {
-                slidesPerView: 1,
-                spaceBetween: 2,
-              },
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 5,
-              },
-              768: {
-                slidesPerView: 2,
-                spaceBetween: 5,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 5,
-              },
-              1536: {
-                slidesPerView: 4,
-                spaceBetween: 5,
-              },
-            }}
-          >
-            {movieImgs.slice(0, 10).map((img) => (
-              <SwiperSlide key={img.file_path}>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
-                  alt=""
-                />
-              </SwiperSlide>
-            ))}
-          </Swiper>
         </div>
       </Modal>
 

@@ -15,9 +15,9 @@ const Sidebar = () => {
   } = useStateContext();
 
   const activeLink =
-    "flex items-center py-1 px-2 m-1 mb-0.5 rounded drop-shadow-xl animate-slideIn";
+    "flex text-sm items-center py-1 px-2 my-0.5 rounded-sm drop-shadow-xl animate-slideIn";
   const normalLink =
-    "flex items-center py-1 px-2 m-1 mb-0.5 rounded hover:bg-gradient-to-r from-[#047857]";
+    "flex text-sm items-center py-1 px-2 my-0.5 rounded-sm hover:bg-gradient-to-r from-[#047857]";
 
   return (
     <div>
@@ -52,10 +52,10 @@ const Sidebar = () => {
           </button>
         </div>
         {/* NavLinks */}
-        <div className="grow p-2">
+        <div className="grow p-2 py-1">
           {navLinks.map((item) => (
             <div key={item.title.replace("-", " ")}>
-              <p className="uppercase truncate mt-3 text-emerald-500">
+              <p className="uppercase truncate mt-2 text-sm text-emerald-500">
                 {item.title.replace("-", " ")}
               </p>
               {item.links.map((link) => (

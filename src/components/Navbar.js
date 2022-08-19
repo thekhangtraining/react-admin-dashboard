@@ -27,7 +27,7 @@ const Navbar = () => {
           index === path.length - 1 ? (
             <div
               key={item}
-              className="text-lg uppercase text-emerald-500 font-bold"
+              className="text-sm uppercase text-emerald-500 font-bold"
             >
               {item}
             </div>
