@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PuffLoader from "react-spinners/PuffLoader";
 import { EffectCoverflow, Navigation, Pagination } from "swiper";
 import "swiper/css";

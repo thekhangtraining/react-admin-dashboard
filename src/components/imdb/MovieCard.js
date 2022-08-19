@@ -63,14 +63,27 @@ const MovieCard = ({
       })
       .then((response) => {
         setCast(response.data.cast);
+        let directorsTemp = response.data.crew.filter(
+          (member) => member.job === "Director"
+        );
+
+        // Filter only unique directors
         setDirectors(
-          response.data.crew.filter((member) => member.job === "Director")
+          directorsTemp.filter(
+            (dir, index, array) =>
+              array.findIndex((dir2) => dir2.name === dir.name) === index
+          )
+        );
+
+        let writersTemp = response.data.crew.filter(
+          (member) =>
+            member.known_for_department === "Writing" &&
+            member.department === "Writing"
         );
         setWriters(
-          response.data.crew.filter(
-            (member) =>
-              member.known_for_department === "Writing" &&
-              member.department === "Writing"
+          writersTemp.filter(
+            (wri, index, array) =>
+              array.findIndex((wri2) => wri2.name === wri.name) === index
           )
         );
       })
@@ -217,7 +230,7 @@ const MovieCard = ({
                   ))}
                 </div>
                 <div className="flex flex-col w-full my-2">
-                  {/* Director */}
+                  {/* Directors */}
                   <div className="flex flex-col space-y-2">
                     <p className="uppercase">Director</p>
                     {directors.map((member) => (
@@ -235,22 +248,26 @@ const MovieCard = ({
                     ))}
                   </div>
                   {/* Writers */}
-                  <div className="flex flex-col space-y-2 my-2">
-                    <p className="uppercase">Writers</p>
-                    {writers.slice(0, 1).map((member) => (
-                      <div
-                        className="flex items-center space-x-2"
-                        key={`cast-${member.id}`}
-                      >
-                        <img
-                          className="rounded-full h-9 w-6.5"
-                          src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
-                          alt=""
-                        />
-                        <p className="">{member.name}</p>
-                      </div>
-                    ))}
-                  </div>
+                  {writers.length === 0 ? (
+                    <></>
+                  ) : (
+                    <div className="flex flex-col space-y-2 my-2">
+                      <p className="uppercase">Writers</p>
+                      {writers.slice(0, 1).map((member) => (
+                        <div
+                          className="flex items-center space-x-2"
+                          key={`cast-${member.id}`}
+                        >
+                          <img
+                            className="rounded-full h-9 w-6.5"
+                            src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
+                            alt=""
+                          />
+                          <p className="">{member.name}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
