@@ -1,8 +1,7 @@
 import React from "react";
-import { Title } from "../../components";
 
 const Gmail = () => {
-  return <Title title="Gmail" />;
+  return;
 };
 
 export default Gmail;

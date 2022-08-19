@@ -12,7 +12,7 @@ const App = () => {
           <div className="w-full">
             <Navbar />
           </div>
-          <main className="w-full relative p-4 pt-2 bg-zinc-800">
+          <main className="w-full">
             <Routes>
               {/* My CV */}
               <Route

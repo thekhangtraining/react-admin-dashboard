@@ -1,12 +1,7 @@
 import React from "react";
-import { Title } from "../../components";
 
 const Tables = () => {
-  return (
-    <div>
-      <Title surtitle="Data" title="Tables" />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Tables;

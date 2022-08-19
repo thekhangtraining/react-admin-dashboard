@@ -1,12 +1,7 @@
 import React from "react";
-import { Title } from "../../components";
 
 const Messenger = () => {
-  return (
-    <div>
-      <Title title="Messenger" />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Messenger;

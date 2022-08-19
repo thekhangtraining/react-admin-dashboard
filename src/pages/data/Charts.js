@@ -1,12 +1,7 @@
 import React from "react";
-import { Title } from "../../components";
 
 const Charts = () => {
-  return (
-    <div>
-      <Title title="Charts" />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Charts;

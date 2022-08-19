@@ -3,10 +3,11 @@ import React, { useEffect, useState } from "react";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { Title } from "../../components";
 import { MoviesSwiper } from "../../components/imdb";
 import configs from "../../configs.json";
 import "../../styles/swiper.css";
+import TheMovieDBLogo from "../../data/img/logos/TheMovieDB.svg";
+import IMDbLogo from "../../data/img/logos/IMDb.png";
 
 const Movies = () => {
   const [trendingMovies, setTrendingMovies] = useState([]);
@@ -49,8 +50,12 @@ const Movies = () => {
   }, []);
 
   return (
-    <div className="flex flex-col">
-      <Title surtitle="App clones" title="IMDb" />
+    <div className="flex flex-col p-4 bg-zinc-800">
+      <div className="flex justify-center h-10 mb-4 space-x-6 md:h-12 md:space-x-8 lg:h-16 lg:space-x-10">
+        <img src={TheMovieDBLogo} className="h-full" alt="" />
+        <img src={IMDbLogo} className="h-full" alt="" />
+      </div>
+
       <h2 className="text-pink-400 truncate font-[Pacifico]">
         Lu Xinh muốn xem phim gì ạ? 🥰
       </h2>

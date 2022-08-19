@@ -1,12 +1,7 @@
 import React from "react";
-import { Title } from "../../components";
 
 const Restaurant = () => {
-  return (
-    <div>
-      <Title surtitle="Landing Page" title="Restaurant" />
-    </div>
-  );
+  return <div></div>;
 };
 
 export default Restaurant;
