@@ -54,9 +54,11 @@ const Movies = () => {
       <h2 className="text-pink-400 truncate font-[Pacifico]">
         Lu Xinh muốn xem phim gì ạ? 🥰
       </h2>
-      <h2 className="text-slate-50 truncate mt-4">Weekly Trending Movies</h2>
+      <h2 className="text-slate-50 text-lg truncate mt-4">
+        Weekly Trending Movies
+      </h2>
       <MoviesSwiper moviesList={trendingMovies} effect="coverflow" />
-      <h2 className="text-slate-50 truncate mt-4">
+      <h2 className="text-slate-50 text-lg truncate mt-4">
         Most Viewed Movies Of All Times
       </h2>
       <MoviesSwiper moviesList={mostRatedMovies} effect="coverflow" />

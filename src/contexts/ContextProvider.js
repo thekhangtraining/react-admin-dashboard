@@ -31,6 +31,7 @@ export const ContextProvider = ({ children }) => {
         sidebarTrigger.current.contains(target)
       )
         return;
+
       setSidebarOpen(false);
     };
     document.addEventListener("click", clickHandler);

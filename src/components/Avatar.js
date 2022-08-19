@@ -5,7 +5,7 @@ const Avatar = ({ round }) => {
     <img
       src="https://avatars.githubusercontent.com/u/96162182?v=4"
       alt="The-Khang Nguyen"
-      className={`h-8 border-[1px] shrink-0 border-slate-50 bg-slate-50 ${
+      className={`h-8 border-[1px] shrink-0 border-gray-200 bg-gray-200 ${
         round ? "rounded-full" : "rounded-sm"
       }`}
     />

@@ -4,7 +4,7 @@ import { Title } from "../../components";
 const Tables = () => {
   return (
     <div>
-      <Title title="Tables" />
+      <Title surtitle="Data" title="Tables" />
     </div>
   );
 };

@@ -9,7 +9,7 @@ export { default as DashDefault } from "./dashboards/DashDefault";
 export { default as Charts } from "./data/Charts";
 export { default as Infographics } from "./data/Infographics";
 export { default as Tables } from "./data/Tables";
-export { default as LandingDemo1 } from "./landing/LandingDemo1";
 export { default as LandingDemo2 } from "./landing/LandingDemo2";
+export { default as Restaurant } from "./landing/Restaurant";
 export { default as Portfolio } from "./Portfolio";
 

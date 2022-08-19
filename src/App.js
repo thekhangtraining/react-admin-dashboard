@@ -8,8 +8,8 @@ const App = () => {
     <div className="flex bg-zinc-900">
       <BrowserRouter>
         <Sidebar />
-        <div className="w-screen">
-          <div className="w-full lg:hidden">
+        <div className="w-full">
+          <div className="w-full">
             <Navbar />
           </div>
           <main className="w-full relative p-4 pt-2 bg-zinc-800">
@@ -23,8 +23,8 @@ const App = () => {
 
               {/* Landing pages */}
               <Route
-                path="/landing/demo1"
-                key="landing-demo-1"
+                path="/landing/restaurant"
+                key="landing-restaurant"
                 element={<Construction />}
               />
               <Route

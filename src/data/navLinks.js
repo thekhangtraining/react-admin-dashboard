@@ -1,6 +1,6 @@
-import { AiFillLayout } from "react-icons/ai";
 import { BsGraphUp, BsTable } from "react-icons/bs";
 import { FaFacebookMessenger, FaImdb } from "react-icons/fa";
+import { GiMeal } from "react-icons/gi";
 import { ImAmazon, ImPieChart, ImSpotify, ImStatsBars } from "react-icons/im";
 import { RiDashboardFill, RiLayoutFill } from "react-icons/ri";
 import { SiGmail } from "react-icons/si";
@@ -11,9 +11,9 @@ export const navLinks = [
     baseAddress: "/landing",
     links: [
       {
-        name: "demo-1",
-        icon: <AiFillLayout />,
-        address: "/demo1",
+        name: "restaurant",
+        icon: <GiMeal />,
+        address: "/restaurant",
       },
       {
         name: "demo-2",

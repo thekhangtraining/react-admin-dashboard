@@ -6,10 +6,9 @@ const Navbar = () => {
   const { sidebarOpen, setSidebarOpen, sidebarTrigger } = useStateContext();
 
   return (
-    <div className="flex p-4 justify-between lg:justify-end items-center">
+    <div className="flex p-4 justify-start items-center">
       {/* Hamburger button */}
       <button
-        className="lg:hidden"
         ref={sidebarTrigger}
         aria-controls="sidebar"
         aria-expanded={sidebarOpen}

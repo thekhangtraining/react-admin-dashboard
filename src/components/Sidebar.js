@@ -1,5 +1,5 @@
 import React from "react";
-import { BsBoxArrowInLeft, BsBoxArrowInRight } from "react-icons/bs";
+import { BsBoxArrowInLeft } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { Footer } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -12,20 +12,18 @@ const Sidebar = () => {
     setSidebarOpen,
     sidebar,
     sidebarTrigger,
-    sidebarExpanded,
-    setSidebarExpanded,
   } = useStateContext();
 
   const activeLink =
-    "flex items-center lg:justify-center py-1 px-2 m-1 mb-0.5 rounded drop-shadow-xl lg:sidebar-expanded:justify-start";
+    "flex items-center py-1 px-2 m-1 mb-0.5 rounded drop-shadow-xl animate-slideIn";
   const normalLink =
-    "flex items-center lg:justify-center py-1 px-2 m-1 mb-0.5 rounded hover:bg-gradient-to-r from-[#047857] lg:sidebar-expanded:justify-start";
+    "flex items-center py-1 px-2 m-1 mb-0.5 rounded hover:bg-gradient-to-r from-[#047857]";
 
   return (
     <div>
       {/* Sidebar backdrop */}
       <div
-        className={`fixed inset-0 bg-zinc-900 bg-opacity-50 lg:hidden z-20 lg:z-auto transition-opacity duration-200 ${
+        className={`fixed inset-0 bg-zinc-900 bg-opacity-50 z-20 transition-opacity duration-200 ${
           sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden="true"
@@ -34,18 +32,18 @@ const Sidebar = () => {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex p-1 flex-col absolute bg-zinc-900 text-slate-50 z-20 left-0 top-0 lg:sticky lg:translate-x-0 h-screen overflow-y-auto w-56 lg:w-20 lg:sidebar-expanded:!w-56 shrink-0 transition-all duration-75 ease-in-out ${
+        className={`flex flex-col fixed bg-zinc-900 text-slate-50 z-20 left-0 top-0 h-screen overflow-y-auto w-56 p-1 shrink-0 transition-all duration-200 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-60"
         }`}
       >
         {/* Sidebar header */}
-        <div className="flex justify-between lg:justify-center gap-x-2 items-center p-2 pb-0">
+        <div className="flex justify-between gap-x-2 items-center p-2 pb-0">
           <Footer />
 
           {/* Close button */}
           <button
             ref={sidebarTrigger}
-            className="lg:hidden hover:text-emerald-500"
+            className="hover:text-emerald-500"
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
@@ -57,11 +55,12 @@ const Sidebar = () => {
         <div className="grow p-2">
           {navLinks.map((item) => (
             <div key={item.title.replace("-", " ")}>
-              <p className="uppercase truncate mt-3 text-emerald-500 lg:sidebar-expanded:inline-flex">
+              <p className="uppercase truncate mt-3 text-emerald-500">
                 {item.title.replace("-", " ")}
               </p>
               {item.links.map((link) => (
                 <NavLink
+                  onClick={() => setSidebarOpen(false)}
                   to={item.baseAddress + link.address}
                   key={link.name}
                   style={({ isActive }) => ({
@@ -73,7 +72,7 @@ const Sidebar = () => {
                 >
                   <div className="flex items-center space-x-2 h-[1.25rem]">
                     <div>{link.icon}</div>
-                    <span className="truncate lg:hidden lg:sidebar-expanded:inline-flex capitalize">
+                    <span className="truncate capitalize">
                       {link.name.replace("-", " ")}
                     </span>
                   </div>
@@ -81,18 +80,6 @@ const Sidebar = () => {
               ))}
             </div>
           ))}
-        </div>
-        {/* Expand/Collapse button */}
-        <div className="flex lg:justify-center lg:sidebar-expanded:justify-end m-2">
-          <button
-            className="hidden text-slate-50 hover:text-emerald-500 lg:inline-flex"
-            onClick={() => {
-              setSidebarExpanded(!sidebarExpanded);
-            }}
-          >
-            <span className="sr-only">Expand/Collapse sidebar</span>
-            <BsBoxArrowInRight className="sidebar-expanded:rotate-180 h-6 w-6" />
-          </button>
         </div>
       </div>
     </div>

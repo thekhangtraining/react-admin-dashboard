@@ -10,8 +10,9 @@ module.exports = {
       },
       // that is animation class
       animation: {
-        fadeIn: "fadeIn 0.1s",
-        slideIn: "slideIn 0.3s",
+        fadeIn: "fadeIn 2s",
+        slideIn: "slideIn 0.5s",
+        slideAndFadeIn: "slideAndFadeIn 1s",
       },
 
       // that is actual animation
@@ -30,6 +31,16 @@ module.exports = {
           },
           "100%": {
             transform: "translateX(0)",
+          },
+        },
+        slideAndFadeIn: {
+          "0%": {
+            opacity: 0,
+            transform: "translateY(-4rem)",
+          },
+          "100%": {
+            opacity: 1,
+            transform: "translateY(0)",
           },
         },
       },

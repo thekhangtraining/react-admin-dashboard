@@ -18,6 +18,7 @@ const MovieCard = ({
   voteCount,
   genreIds,
   releaseDate,
+  setIsLoading,
 }) => {
   var genres = [];
   for (let i = 0; i < genreIds.length; i++) {
@@ -203,7 +204,7 @@ const MovieCard = ({
                     >
                       <img
                         className="rounded-full h-9 w-6.5"
-                        src={`https://image.tmdb.org/t/p/original${member.profile_path}`}
+                        src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                         alt=""
                       />
                       <p className="">
@@ -226,7 +227,7 @@ const MovieCard = ({
                       >
                         <img
                           className="rounded-full h-9 w-6.5"
-                          src={`https://image.tmdb.org/t/p/original${member.profile_path}`}
+                          src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                           alt=""
                         />
                         <p className="">{member.name}</p>
@@ -243,7 +244,7 @@ const MovieCard = ({
                       >
                         <img
                           className="rounded-full h-9 w-6.5"
-                          src={`https://image.tmdb.org/t/p/original${member.profile_path}`}
+                          src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                           alt=""
                         />
                         <p className="">{member.name}</p>
@@ -263,6 +264,7 @@ const MovieCard = ({
           className="object-contain h-full shrink-0"
           src={`https://image.tmdb.org/t/p/w500${posterPath}`}
           alt=""
+          onLoad={() => setIsLoading(false)}
         />
       </button>
       <div className="p-2 flex flex-col justify-between overflow-hidden text-slate-200 h-full">
@@ -273,6 +275,9 @@ const MovieCard = ({
           <h2 className="font-medium text-sm md:text-lg line-clamp-1 text-amber-400">
             {movieTitle}
           </h2>
+          <p className="text-xs md:text-sm line-clamp-3">
+            ({releaseDate.slice(0, 4)})
+          </p>
           <p className="text-xs md:text-sm line-clamp-3">{overview}</p>
         </button>
         <div className="flex flex-start items-start space-x-1.5 mt-2">
