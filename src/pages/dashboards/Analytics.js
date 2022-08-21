@@ -1,7 +1,7 @@
 import React from "react";
 
-const Charts = () => {
+const Analytics = () => {
   return <div></div>;
 };
 
-export default Charts;
+export default Analytics;

@@ -247,7 +247,7 @@ const MovieCard = ({
                           key={`cast-${member.id}`}
                         >
                           <img
-                            className="rounded-full h-9 w-6.5"
+                            className="rounded-md h-9 w-6.5"
                             src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                             alt=""
                           />
@@ -270,7 +270,7 @@ const MovieCard = ({
                             key={`cast-${member.id}`}
                           >
                             <img
-                              className="rounded-full h-9 w-6.5"
+                              className="rounded-md h-9 w-6.5"
                               src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                               alt=""
                             />
@@ -290,7 +290,7 @@ const MovieCard = ({
                               key={`cast-${member.id}`}
                             >
                               <img
-                                className="rounded-full h-9 w-6.5"
+                                className="rounded-md h-9 w-6.5"
                                 src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                                 alt=""
                               />
@@ -327,11 +327,11 @@ const MovieCard = ({
                     spaceBetween: 10,
                   },
                   1024: {
-                    slidesPerView: 3,
+                    slidesPerView: 2,
                     spaceBetween: 15,
                   },
                   1536: {
-                    slidesPerView: 4,
+                    slidesPerView: 3,
                     spaceBetween: 15,
                   },
                 }}
@@ -368,10 +368,10 @@ const MovieCard = ({
           <h2 className="font-medium text-sm md:text-lg line-clamp-1 text-amber-400">
             {movieTitle}
           </h2>
-          <p className="text-xs md:text-sm line-clamp-3">
+          <p className="text-xs md:text-sm">
             ({releaseDate.slice(0, 4)})
           </p>
-          <p className="text-xs md:text-sm line-clamp-3">{overview}</p>
+          <p className="text-xs md:text-sm line-clamp-2">{overview}</p>
         </button>
         <div className="flex flex-start items-start space-x-1.5 mt-2">
           {genres.slice(0, 2).map((item) => (

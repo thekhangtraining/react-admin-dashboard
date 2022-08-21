@@ -13,8 +13,8 @@ module.exports = {
         fadeIn: "fadeIn 2s",
         slideIn: "slideIn 0.5s",
         slideAndFadeIn: "slideAndFadeIn 1s",
+        float: "float 4s ease-in-out infinite",
       },
-
       // that is actual animation
       keyframes: {
         fadeIn: {
@@ -41,6 +41,20 @@ module.exports = {
           "100%": {
             opacity: 1,
             transform: "translateY(0)",
+          },
+        },
+        float: {
+          "0%": {
+            boxShadow: "0 2px 5px 0px rgba(0,0,0,0.6)",
+            transform: "translateY(0px)",
+          },
+          "50%": {
+            boxShadow: "0 5px 5px 0px rgba(0,0,0,0.2)",
+            transform: "translateY(-0.5rem)",
+          },
+          "100%": {
+            boxShadow: "0 2px 5px 0px rgba(0,0,0,0.6)",
+            transform: "translatey(0px)",
           },
         },
       },

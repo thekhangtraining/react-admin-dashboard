@@ -1,9 +1,11 @@
 import React from "react";
-import { BsBoxArrowInLeft } from "react-icons/bs";
+import { BsBoxArrowInLeft, BsGraphUp } from "react-icons/bs";
+import { FaGlobeAmericas } from "react-icons/fa";
+import { GiMeal } from "react-icons/gi";
+import { MdLocalMovies } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { Footer } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
-import { navLinks } from "../data/navLinks";
 
 const Sidebar = () => {
   const {
@@ -53,10 +55,49 @@ const Sidebar = () => {
         </div>
         {/* NavLinks */}
         <div className="grow p-2 py-1">
-          {navLinks.map((item) => (
-            <div key={item.title.replace("-", " ")}>
+          {[
+            {
+              title: "Landing Pages",
+              baseAddress: "/landing",
+              links: [
+                {
+                  name: "Restaurant",
+                  icon: <GiMeal />,
+                  address: "/restaurant",
+                },
+              ],
+            },
+            {
+              title: "Dashboards",
+              baseAddress: "/dashboards",
+              links: [
+                {
+                  name: "Analytics",
+                  icon: <BsGraphUp />,
+                  address: "/analytics",
+                },
+              ],
+            },
+            {
+              title: "Apps",
+              baseAddress: "/apps",
+              links: [
+                {
+                  name: "MoviesDB",
+                  icon: <MdLocalMovies />,
+                  address: "/MoviesDB",
+                },
+                {
+                  name: "TravelBuddy",
+                  icon: <FaGlobeAmericas />,
+                  address: "/TravelBuddy",
+                },
+              ],
+            },
+          ].map((item) => (
+            <div key={item.title}>
               <p className="uppercase truncate mt-2 text-sm text-emerald-500">
-                {item.title.replace("-", " ")}
+                {item.title}
               </p>
               {item.links.map((link) => (
                 <NavLink
@@ -72,9 +113,7 @@ const Sidebar = () => {
                 >
                   <div className="flex items-center space-x-2 h-[1.25rem]">
                     <div>{link.icon}</div>
-                    <span className="truncate capitalize">
-                      {link.name.replace("-", " ")}
-                    </span>
+                    <span className="truncate capitalize">{link.name}</span>
                   </div>
                 </NavLink>
               ))}

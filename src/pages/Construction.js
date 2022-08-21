@@ -1,5 +1,5 @@
 import React from "react";
-import imgConstruction from "../data/img/Construction.svg";
+import imgConstruction from "../data/images/Construction.svg";
 import { NavLink } from "react-router-dom";
 
 const Construction = () => {

@@ -10,7 +10,7 @@ const Navbar = () => {
   let path = location.pathname.split("/").slice(1);
 
   return (
-    <div className="flex p-4 justify-start items-center space-x-6">
+    <div className="flex p-3 justify-start items-center space-x-4">
       {/* Hamburger button */}
       <button
         ref={sidebarTrigger}
@@ -27,14 +27,14 @@ const Navbar = () => {
           index === path.length - 1 ? (
             <div
               key={item}
-              className="text-sm uppercase text-emerald-500 font-bold"
+              className="text-sm capitalize text-emerald-500 font-bold"
             >
               {item}
             </div>
           ) : (
             <div
               key={item}
-              className="flex items-center text-slate-100 capitalize text-sm"
+              className="flex items-center capitalize text-slate-100 text-sm"
             >
               {item}
               <span className="mx-2">

@@ -1,15 +1,6 @@
-export { default as Amazon } from "./clones/Amazon";
-export { default as Gmail } from "./clones/Gmail";
-export { default as Imdb } from "./clones/Imdb";
-export { default as Messenger } from "./clones/Messenger";
-export { default as Spotify } from "./clones/Spotify";
+export { default as MoviesDB } from "./apps/MoviesDB";
+export { default as TravelBuddy } from "./apps/TravelBuddy";
 export { default as Construction } from "./Construction";
-export { default as DashAnalytics } from "./dashboards/DashAnalytics";
-export { default as DashDefault } from "./dashboards/DashDefault";
-export { default as Charts } from "./data/Charts";
-export { default as Infographics } from "./data/Infographics";
-export { default as Tables } from "./data/Tables";
-export { default as LandingDemo2 } from "./landing/LandingDemo2";
+export { default as Analytics } from "./dashboards/Analytics";
 export { default as Restaurant } from "./landing/Restaurant";
 export { default as Portfolio } from "./Portfolio";
-

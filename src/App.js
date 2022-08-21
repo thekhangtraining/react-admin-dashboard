@@ -1,7 +1,8 @@
+import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Navbar, Sidebar } from "./components";
-import { Construction, Imdb, Tables } from "./pages";
+import { Construction, MoviesDB, TravelBuddy } from "./pages";
 
 const App = () => {
   return (
@@ -18,7 +19,7 @@ const App = () => {
               <Route
                 path="/"
                 key="home"
-                element={<Navigate to="/clones/imdb" />}
+                element={<Navigate to="/apps/MoviesDB" />}
               />
 
               {/* Landing pages */}
@@ -27,58 +28,24 @@ const App = () => {
                 key="landing-restaurant"
                 element={<Construction />}
               />
-              <Route
-                path="/landing/demo2"
-                key="landing-demo-2"
-                element={<Construction />}
-              />
 
               {/* Admin dashboards */}
-              <Route
-                path="/dashboards/default"
-                key="dash-default"
-                element={<Construction />}
-              />
               <Route
                 path="/dashboards/analytics"
                 key="dash-analytics"
                 element={<Construction />}
               />
 
-              {/* Tables, Charts & Infographics */}
-              <Route path="/data/tables" key="tables" element={<Tables />} />
+              {/* Apps of many popular apps */}
               <Route
-                path="/data/charts"
-                key="charts"
-                element={<Construction />}
+                path="/apps/TravelBuddy"
+                key="TravelBuddy"
+                element={<TravelBuddy />}
               />
               <Route
-                path="/data/infographics"
-                key="infographics"
-                element={<Construction />}
-              />
-
-              {/* Clones of many popular apps */}
-              <Route
-                path="/clones/amazon"
-                key="clone-amazon"
-                element={<Construction />}
-              />
-              <Route path="/clones/imdb" key="clone-imdb" element={<Imdb />} />
-              <Route
-                path="/clones/gmail"
-                key="clone-gmail"
-                element={<Construction />}
-              />
-              <Route
-                path="/clones/messenger"
-                key="clone-messenger"
-                element={<Construction />}
-              />
-              <Route
-                path="/clones/spotify"
-                key="clone-spotify"
-                element={<Construction />}
+                path="/apps/MoviesDB"
+                key="MoviesDB"
+                element={<MoviesDB />}
               />
             </Routes>
           </main>
