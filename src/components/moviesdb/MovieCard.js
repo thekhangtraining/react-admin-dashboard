@@ -54,15 +54,15 @@ const MovieCard = ({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "1rem",
-      background: "rgba(0, 0, 0, 0.5)",
-      borderColor: "rgba(0, 0, 0, 0.5)",
+      background: "rgba(15, 23, 42, 0.9)",
+      borderColor: "rgba(15, 23, 42, 0.9)",
       // Make modal swipable
       maxHeight: "80vh",
       overflowY: "auto",
       width: "95vw",
     },
     overlay: {
-      background: "rgba(24, 24, 27, 0.7)",
+      background: "rgba(0, 0, 0, 0.5)",
       zIndex: 30,
     },
   };
@@ -125,7 +125,7 @@ const MovieCard = ({
   Modal.setAppElement("#root");
 
   return (
-    <div className="flex flex-col bg-zinc-900 w-full h-full text-xs">
+    <div className="flex flex-col bg-zinc-900 w-full h-full text-xs text-slate-400">
       {/* The modal for the movie card */}
       <Modal
         isOpen={modalIsOpen}
@@ -136,24 +136,22 @@ const MovieCard = ({
         onAfterOpen={() => (document.body.style.overflow = "hidden")}
         onAfterClose={() => (document.body.style.overflow = "unset")}
       >
-        <div className="grid grid-cols-12 gap-4 text-xs lg:text-sm">
+        <div className="grid grid-cols-12 gap-4 text-xs lg:text-sm text-slate-400">
           <div className="col-span-12 md:col-start-2 md:col-span-10 xl:col-start-3 xl:col-span-8">
             {/* Close modal button */}
             <div className="flex justify-end">
               <button
                 onClick={() => setModalIsOpen(!modalIsOpen)}
-                className="text-white hover:text-emerald-400"
+                className="hover:text-sky-400"
               >
                 <IoCloseSharp className="h-5 w-5" />
               </button>
             </div>
             <div className="flex flex-col space-y-2">
               {/* Modal title */}
-              <h2 className="text-emerald-400 font-medium">
-                {movieTitle}
-              </h2>
+              <h2 className="text-sky-400 font-medium text-sm">{movieTitle}</h2>
               {/* Modal backdrop */}
-              <div className="flex flex-col text-slate-200 justify-center items-center sm:flex-row sm:mr-2 sm:items-start">
+              <div className="flex flex-col justify-center items-center sm:flex-row sm:mr-2 sm:items-start">
                 <div>
                   <img
                     src={`https://image.tmdb.org/t/p/w500${backdropPath}`}
@@ -170,7 +168,7 @@ const MovieCard = ({
                     {genres.slice(0, 4).map((item) => (
                       <span
                         key={item}
-                        className="text-white px-1 font-medium rounded truncate text-center border border-slate-200"
+                        className="px-1 font-medium rounded truncate text-center border border-slate-400"
                       >
                         {item}
                       </span>
@@ -189,12 +187,12 @@ const MovieCard = ({
                         <div className="text-amber-400">
                           <BsStarFill />
                         </div>
-                        <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                          <p className="text-white font-semibold">
-                            {voteAvg}{" "}
-                            <span className="text-slate-200 font-normal">
-                              /10
-                            </span>
+                        <div className="flex flex-col justify-center items-center leading-tight tracking-tight">
+                          <p>
+                            <span className="font-bold text-slate-200 text-base">
+                              {voteAvg}{" "}
+                            </span>{" "}
+                            /10
                           </p>
                           <p>({voteCount})</p>
                         </div>
@@ -212,7 +210,7 @@ const MovieCard = ({
                           <BsFillHeartFill />
                         </div>
                         <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                          <p className="text-white font-semibold">
+                          <p className="font-bold text-slate-200 text-base">
                             {Math.round(popularity)}
                           </p>
                         </div>
@@ -226,9 +224,7 @@ const MovieCard = ({
                       {releaseDate}
                     </span>
                   </p>
-                  <p className="text-justify">
-                    {overview}
-                  </p>
+                  <p className="text-justify">{overview}</p>
                   <div className="flex space-x-2">
                     <TrailerButton
                       movieTitle={movieTitle}
@@ -237,7 +233,7 @@ const MovieCard = ({
                     />
                     <WatchButton />
                   </div>
-                  <div className="text-white p-1 flex flex-col lg:flex-row">
+                  <div className="p-1 flex flex-col lg:flex-row">
                     {/* Cast */}
                     <div className="flex flex-col space-y-2 w-full my-2">
                       <p className="uppercase">Cast</p>
@@ -253,7 +249,7 @@ const MovieCard = ({
                           />
                           <p className="">
                             {member.name}
-                            <span className="ml-3 text-emerald-500">
+                            <span className="ml-3 text-sky-500">
                               {member.character}
                             </span>
                           </p>
@@ -360,7 +356,7 @@ const MovieCard = ({
           onLoad={() => setIsLoading(false)}
         />
       </button>
-      <div className="p-2 flex flex-col justify-between overflow-hidden text-slate-200 h-full">
+      <div className="p-2 flex flex-col justify-between overflow-hidden h-full">
         <button
           onClick={() => setModalIsOpen(true)}
           className="flex flex-col text-left"
@@ -368,16 +364,14 @@ const MovieCard = ({
           <h2 className="font-medium line-clamp-1 text-amber-400">
             {movieTitle}
           </h2>
-          <p>
-            ({releaseDate.slice(0, 4)})
-          </p>
+          <p>({releaseDate.slice(0, 4)})</p>
           <p className="line-clamp-2">{overview}</p>
         </button>
         <div className="flex flex-start items-start space-x-1.5 mt-2">
           {genres.slice(0, 2).map((item) => (
             <span
               key={item}
-              className="text-black px-1 font-medium bg-slate-100 rounded-sm truncate text-center border border-slate-200"
+              className="text-black px-1 font-medium bg-slate-100 rounded-sm truncate text-center border border-slate-400"
             >
               {item}
             </span>

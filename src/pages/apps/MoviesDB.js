@@ -67,13 +67,13 @@ const MoviesDB = () => {
 
         <div className="grid grid-cols-2 gap-x-6">
           <div className="col-span-2 lg:col-span-1">
-            <h2 className="text-slate-50 truncate mt-4 font-bold">
+            <h2 className="text-slate-200 truncate mt-4 font-bold">
               Weekly Trending Movies
             </h2>
             <MoviesSwiper moviesList={trendingMovies} effect="coverflow" />
           </div>
           <div className="col-span-2 lg:col-span-1">
-            <h2 className="text-slate-50 truncate mt-4 font-bold">
+            <h2 className="text-slate-200 truncate mt-4 font-bold">
               Most Viewed Movies Of All Times
             </h2>
             <MoviesSwiper moviesList={mostRatedMovies} effect="coverflow" />

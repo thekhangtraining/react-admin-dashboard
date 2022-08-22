@@ -191,33 +191,37 @@ const ProjectsTable = () => {
       { Header: "App", accessor: "appName" },
       {
         Header: "Team Lead",
-        accessor: (item) => (
+        accessor: "manager",
+        Cell: ({ row }) => (
           <div className="flex items-center space-x-2">
             <img
-              src={`${item.avatar}`}
+              src={`${row.original.avatar}`}
               alt=""
               className="bg-zinc-100 rounded-full h-5 w-5 md:h-6 md:w-6"
             />
-            <span>{item.manager}</span>
+            <span>{row.original.manager}</span>
           </div>
         ),
       },
       {
         Header: "Customer",
-        accessor: (item) => (
+        accessor: "countryCode",
+        Cell: ({ row }) => (
           <Customer
-            countryCode={item.countryCode}
-            customerName={item.customer}
+            countryCode={row.original.countryCode}
+            customerName={row.original.customer}
           />
         ),
       },
       {
         Header: "Priority",
-        accessor: (item) => <Priority priority={item.priority} />,
+        accessor: "priority",
+        Cell: ({ row }) => <Priority priority={row.original.priority} />,
       },
       {
         Header: "Progress",
-        accessor: (item) => <ProgressBar progress={item.progress} />,
+        accessor: "progress",
+        Cell: ({ row }) => <ProgressBar progress={row.original.progress} />,
       },
     ],
     []
