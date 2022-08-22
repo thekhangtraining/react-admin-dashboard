@@ -49,23 +49,13 @@ const MoviesDB = () => {
   }, []);
 
   return (
-    <div className="text-sm p-4 grid grid-cols-12">
-      <div className="col-span-12 md:px-0 md:col-start-2 md:col-span-10">
-        <div className="flex justify-center animate-slideAndFadeIn h-10 mb-4 space-x-6 md:h-12 lg:h-14">
-          <a
-            href="https://developers.themoviedb.org/"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <img src={TheMovieDBLogo} className="h-full" alt="" />
-          </a>
-        </div>
-
+    <div className="p-4 flex justify-center text-slate-400">
+      <div className="w-full lg:max-w-7xl">
         <h2 className="text-pink-400 truncate font-[Pacifico]">
           Lu Xinh muốn xem phim gì ạ? 🥰
         </h2>
 
-        <div className="grid grid-cols-2 gap-x-6">
+        <div className="grid grid-cols-2 gap-x-6 mb-6">
           <div className="col-span-2 lg:col-span-1">
             <h2 className="text-slate-200 truncate mt-4 font-bold">
               Weekly Trending Movies
@@ -79,7 +69,23 @@ const MoviesDB = () => {
             <MoviesSwiper moviesList={mostRatedMovies} effect="coverflow" />
           </div>
         </div>
-        <div className="h-screen"></div>
+        <div className="h-12"></div>
+        <div className="flex justify-center">
+          <div className="flex flex-col space-y-1 items-center">
+            <strong className="text-sm">Powered by</strong>
+            <a
+              href="https://developers.themoviedb.org/"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src={TheMovieDBLogo}
+                className="h-12 md:h-16 animate-slideAndFadeIn rounded-sm"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

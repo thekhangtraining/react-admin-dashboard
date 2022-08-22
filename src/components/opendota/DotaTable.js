@@ -8,57 +8,103 @@ import {
 } from "react-icons/bi";
 import { usePagination, useTable } from "react-table";
 import { Select } from ".";
-import { mockProjects } from "../../data/mockProjects";
 
-var classnames = require("classnames");
+const PlaceholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
 
-const Priority = ({ priority }) => (
-  <p
-    className={classnames(
-      "text-xs text-center inline-block",
-      priority === 1 && "text-emerald-400",
-      priority === 2 && "text-yellow-400",
-      priority === 3 && "text-red-400"
-    )}
-  >
-    {priority === 1 ? "Low" : priority === 2 ? "Medium" : "High"}
-  </p>
+export const PlayerWinrate = ({ winRate, wins, losses }) => (
+  <div className="flex flex-col items-center float-left">
+    <p>{winRate}%</p>
+    <div className="flex space-x-3">
+      <span className="text-green-400">{wins}W</span>
+      <span className="text-red-400">{losses}L</span>
+    </div>
+  </div>
 );
-const Customer = ({ countryCode, customerName }) => {
-  const Flag = Flags[countryCode];
+
+export const PlayerHeroes = ({ heroes, id }) => (
+  <div>
+    {heroes.slice(0, 3).map((h) => (
+      <span key={`${id}-${h}`}>{`${h}, `}</span>
+    ))}
+  </div>
+);
+
+export const PlayerTeam = ({ teamLogo, teamName, teamId }) => (
+  <div className="flex space-x-1">
+    {" "}
+    <img
+      src={`${teamLogo}`}
+      alt=""
+      className="rounded-full h-5 w-5 md:h-6 md:w-6"
+      // Placeholder image
+      onError={(e) => {
+        e.target.onerror = null;
+        e.target.src = PlaceholderPath;
+      }}
+    />
+    <div className="flex flex-col">
+      <p className="text-sky-500">{teamName}</p>
+      {teamId !== 0 ? <p>{teamId}</p> : null}
+    </div>
+  </div>
+);
+
+export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
+  const Flag = countryCode !== "" ? Flags[countryCode] : null;
   return (
-    <div className="flex items-center space-x-1 text-xs">
-      <Flag className="w-3 h-2" />
-      <p>
-        {customerName}
-        <span className="text-xs uppercase font-bold text-sky-600">{` ${countryCode}`}</span>
-      </p>
+    <div className="flex items-center space-x-2">
+      <img
+        src={`${avatar}`}
+        alt=""
+        className="rounded-full h-5 w-5 md:h-6 md:w-6"
+        // Placeholder image
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = PlaceholderPath;
+        }}
+      />
+      <div className="flex flex-col">
+        <div className="flex space-x-1 items-center">
+          {teamTag !== "" && teamTag !== null ? (
+            <span>{`${teamTag}.`}</span>
+          ) : (
+            ""
+          )}
+          <span className="text-sky-500">{name}</span>
+          {countryCode !== "" ? <Flag className="w-3 h-2" /> : null}
+        </div>
+        <p className="font-2xs">{id}</p>
+      </div>
     </div>
   );
 };
 
-const ProgressBar = ({ progress }) => (
-  <div className="flex items-center space-x-1 md:space-x-2 text-2xs">
-    <p
-      className={classnames(
-        progress < 33 && "text-red-400",
-        progress >= 33 && progress < 67 && "text-yellow-400",
-        progress >= 67 && progress < 100 && "text-green-400"
-      )}
-    >{`${progress}%`}</p>
-    <div className="w-full bg-gray-200 h-1 rounded-full">
-      <div
-        className={classnames(
-          "h-1 rounded-full",
-          progress < 33 && "bg-red-400",
-          progress >= 33 && progress < 67 && "bg-yellow-400",
-          progress >= 67 && progress < 100 && "bg-green-400"
-        )}
-        style={{ width: `${progress}%` }}
-      ></div>
+export const Team = ({ name, teamTag, logo, id }) => {
+  return (
+    <div className="flex items-center space-x-2">
+      <img
+        src={`${logo}`}
+        alt=""
+        className="rounded-full h-5 w-6 md:h-6 md:w-7"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = PlaceholderPath;
+        }}
+      />
+      <div className="flex flex-col">
+        <div className="flex space-x-1 items-center">
+          <span className="text-sky-500">{name}</span>
+          {teamTag !== "" && teamTag !== null ? (
+            <span>{`${teamTag}`}</span>
+          ) : (
+            ""
+          )}
+        </div>
+        <p className="font-2xs">{id}</p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Table = ({ columns, data }) => {
   // Use the state and functions returned from useTable to build your UI
@@ -89,7 +135,7 @@ const Table = ({ columns, data }) => {
   );
 
   return (
-    <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto">
+    <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto my-2">
       <table className="w-full border border-slate-800" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -163,7 +209,7 @@ const Table = ({ columns, data }) => {
           </button>
           <span>
             Page
-            <strong className="mx-1.5 text-amber-400">{pageIndex + 1}</strong>of
+            <strong className="mx-1.5 text-sky-500">{pageIndex + 1}</strong>of
             <strong className="mx-1.5">{pageOptions.length}</strong>
           </span>
           <span className="w-full">
@@ -185,50 +231,10 @@ const Table = ({ columns, data }) => {
   );
 };
 
-const ProjectsTable = () => {
-  const columns = useMemo(
-    () => [
-      { Header: "App", accessor: "appName" },
-      {
-        Header: "Team Lead",
-        accessor: "manager",
-        Cell: ({ row }) => (
-          <div className="flex items-center space-x-2">
-            <img
-              src={`${row.original.avatar}`}
-              alt=""
-              className="bg-zinc-100 rounded-full h-5 w-5 md:h-6 md:w-6"
-            />
-            <span>{row.original.manager}</span>
-          </div>
-        ),
-      },
-      {
-        Header: "Customer",
-        accessor: "countryCode",
-        Cell: ({ row }) => (
-          <Customer
-            countryCode={row.original.countryCode}
-            customerName={row.original.customer}
-          />
-        ),
-      },
-      {
-        Header: "Priority",
-        accessor: "priority",
-        Cell: ({ row }) => <Priority priority={row.original.priority} />,
-      },
-      {
-        Header: "Progress",
-        accessor: "progress",
-        Cell: ({ row }) => <ProgressBar progress={row.original.progress} />,
-      },
-    ],
-    []
-  );
-
-  const data = useMemo(() => mockProjects, []);
+const DotaTable = ({ dataList, columnsDef }) => {
+  const data = useMemo(() => dataList, [dataList]);
+  const columns = useMemo(() => columnsDef, [columnsDef]);
 
   return <Table columns={columns} data={data} />;
 };
-export default ProjectsTable;
+export default DotaTable;

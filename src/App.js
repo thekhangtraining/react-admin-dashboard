@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Navbar, Sidebar } from "./components";
-import { Construction, MoviesDB, TravelBuddy } from "./pages";
+import { Construction, MoviesDB, OpenDota } from "./pages";
 
 const App = () => {
   return (
@@ -38,9 +38,9 @@ const App = () => {
 
               {/* Apps of many popular apps */}
               <Route
-                path="/apps/TravelBuddy"
-                key="TravelBuddy"
-                element={<TravelBuddy />}
+                path="/apps/OpenDota"
+                key="OpenDota"
+                element={<OpenDota />}
               />
               <Route
                 path="/apps/MoviesDB"

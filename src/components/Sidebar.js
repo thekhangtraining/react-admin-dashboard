@@ -1,7 +1,7 @@
 import React from "react";
 import { BsBoxArrowInLeft, BsGraphUp } from "react-icons/bs";
-import { FaGlobeAmericas } from "react-icons/fa";
 import { GiMeal } from "react-icons/gi";
+import { IoLogoGameControllerB } from "react-icons/io";
 import { MdLocalMovies } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { Footer } from "../components";
@@ -88,9 +88,9 @@ const Sidebar = () => {
                   address: "/MoviesDB",
                 },
                 {
-                  name: "TravelBuddy",
-                  icon: <FaGlobeAmericas />,
-                  address: "/TravelBuddy",
+                  name: "OpenDota",
+                  icon: <IoLogoGameControllerB />,
+                  address: "/OpenDota",
                 },
               ],
             },

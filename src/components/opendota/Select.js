@@ -8,10 +8,9 @@ var classnames = require("classnames");
 const Select = ({ setPageSize }) => {
   const options = [
     { value: 10, label: "Show 10" },
-    { value: 15, label: "Show 15" },
     { value: 20, label: "Show 20" },
-    { value: 25, label: "Show 25" },
     { value: 30, label: "Show 30" },
+    { value: 40, label: "Show 40" },
   ];
   const {
     isOpen,
@@ -56,7 +55,7 @@ const Select = ({ setPageSize }) => {
                 className={classnames(
                   highlightedIndex === index && "bg-slate-700",
                   // Compare value instead of "selectedItem === item" as in the documentation
-                  selectedItem.value === item.value && "text-amber-400",
+                  selectedItem.value === item.value && "text-sky-500",
                   "py-2 px-3 shadow-sm"
                 )}
                 key={`${item.value}${index}`}

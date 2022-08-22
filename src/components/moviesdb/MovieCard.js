@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { LoveButton, RatingButton, TrailerButton, WatchButton } from ".";
 import configs from "../../configs.json";
-import { moviesGenres } from "../../data/data";
+import movieGenres from "../../data/movie_genres.json";
 import "../../styles/modal.css";
 import "../../styles/swiper.css";
 
@@ -33,9 +33,9 @@ const MovieCard = ({
 }) => {
   var genres = [];
   for (let i = 0; i < genreIds.length; i++) {
-    for (let j = 0; j < moviesGenres.length; j++) {
-      if (genreIds[i] === moviesGenres[j].id) {
-        genres.push(moviesGenres[j].name);
+    for (let j = 0; j < movieGenres.length; j++) {
+      if (genreIds[i] === movieGenres[j].id) {
+        genres.push(movieGenres[j].name);
       }
     }
   }
@@ -125,7 +125,7 @@ const MovieCard = ({
   Modal.setAppElement("#root");
 
   return (
-    <div className="flex flex-col bg-zinc-900 w-full h-full text-xs text-slate-400">
+    <div className="flex flex-col bg-gray-900 w-full h-full text-xs text-slate-400">
       {/* The modal for the movie card */}
       <Modal
         isOpen={modalIsOpen}

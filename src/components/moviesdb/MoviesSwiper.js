@@ -54,7 +54,7 @@ const MoviesSwiper = ({ moviesList, effect }) => {
               spaceBetween: 10,
             },
             1024: {
-              slidesPerView: 2,
+              slidesPerView: 3,
               spaceBetween: 10,
             },
             1200: {
@@ -62,7 +62,7 @@ const MoviesSwiper = ({ moviesList, effect }) => {
               spaceBetween: 10,
             },
             1500: {
-              slidesPerView: 3,
+              slidesPerView: 4,
               spaceBetween: 10,
             },
           }}
