@@ -29,13 +29,13 @@ const Select = ({ setPageSize }) => {
 
   return (
     <div>
-      <div className="w-28 text-sm flex justify-center items-center overflow-auto rounded-sm">
+      <div className="w-24 flex justify-center items-center overflow-auto rounded-sm">
         <label className="text-sm sr-only" {...getLabelProps()}>
           Rows per page
         </label>
         <button
           aria-label="Select"
-          className="py-0.5 px-2 h-6 w-full flex justify-between items-center bg-slate-800"
+          className="py-0.5 px-2 h-5 w-full flex justify-between items-center bg-slate-800"
           type="button"
           {...getToggleButtonProps()}
         >
@@ -47,7 +47,7 @@ const Select = ({ setPageSize }) => {
       </div>
       <ul
         {...getMenuProps()}
-        className="absolute w-28 shadow-md max-h-42 bg-slate-800 rounded-b-sm overflow-auto text-gray-200"
+        className="absolute w-24 shadow-md max-h-42 bg-slate-800 rounded-b-sm overflow-auto text-slate-200"
       >
         {isOpen &&
           options.map((item, index) => {
@@ -62,7 +62,7 @@ const Select = ({ setPageSize }) => {
                 key={`${item.value}${index}`}
                 {...getItemProps({ item, index })}
               >
-                <span className="text-sm">{item.label}</span>
+                <span>{item.label}</span>
               </li>
             );
           })}

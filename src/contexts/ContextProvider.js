@@ -10,9 +10,9 @@ const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [currentColorGradient, setCurrentColorGradient] = useState(
-    "linear-gradient(to right, #047857, #7e22ce)"
+    "linear-gradient(to right, #075985, #7e22ce)"
   );
-  const [currentColor, setCurrentColor] = useState("#047857");
+  const [currentColor, setCurrentColor] = useState("#075985");
   const sidebarTrigger = useRef(null);
   const sidebar = useRef(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);

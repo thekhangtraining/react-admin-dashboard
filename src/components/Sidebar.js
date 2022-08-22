@@ -19,7 +19,7 @@ const Sidebar = () => {
   const activeLink =
     "flex text-sm items-center py-1 px-2 my-0.5 rounded-sm drop-shadow-xl animate-slideIn";
   const normalLink =
-    "flex text-sm items-center py-1 px-2 my-0.5 rounded-sm hover:bg-gradient-to-r from-[#047857]";
+    "flex text-sm items-center py-1 px-2 my-0.5 rounded-sm hover:bg-gradient-to-r from-sky-800";
 
   return (
     <div>
@@ -34,7 +34,7 @@ const Sidebar = () => {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col fixed bg-zinc-900 text-slate-50 z-20 left-0 top-0 h-screen overflow-y-auto w-56 p-1 shrink-0 transition-all duration-200 ease-in-out ${
+        className={`flex flex-col fixed bg-zinc-900 text-slate-200 z-20 left-0 top-0 h-screen overflow-y-auto w-56 p-1 shrink-0 transition-all duration-200 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-60"
         }`}
       >
@@ -45,7 +45,7 @@ const Sidebar = () => {
           {/* Close button */}
           <button
             ref={sidebarTrigger}
-            className="hover:text-emerald-500"
+            className="hover:text-sky-500"
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
@@ -96,7 +96,7 @@ const Sidebar = () => {
             },
           ].map((item) => (
             <div key={item.title}>
-              <p className="uppercase truncate mt-2 text-sm text-emerald-500">
+              <p className="uppercase truncate mt-2 text-sm text-sky-500">
                 {item.title}
               </p>
               {item.links.map((link) => (

@@ -49,7 +49,7 @@ const MoviesDB = () => {
   }, []);
 
   return (
-    <div className="p-4 bg-zinc-800 grid grid-cols-12">
+    <div className="text-sm p-4 grid grid-cols-12">
       <div className="col-span-12 md:px-0 md:col-start-2 md:col-span-10">
         <div className="flex justify-center animate-slideAndFadeIn h-10 mb-4 space-x-6 md:h-12 lg:h-14">
           <a
@@ -67,13 +67,13 @@ const MoviesDB = () => {
 
         <div className="grid grid-cols-2 gap-x-6">
           <div className="col-span-2 lg:col-span-1">
-            <h2 className="text-slate-50 truncate mt-4 font-[Poppins] font-bold">
+            <h2 className="text-slate-50 truncate mt-4 font-bold">
               Weekly Trending Movies
             </h2>
             <MoviesSwiper moviesList={trendingMovies} effect="coverflow" />
           </div>
           <div className="col-span-2 lg:col-span-1">
-            <h2 className="text-slate-50 truncate mt-4 font-[Poppins] font-bold">
+            <h2 className="text-slate-50 truncate mt-4 font-bold">
               Most Viewed Movies Of All Times
             </h2>
             <MoviesSwiper moviesList={mostRatedMovies} effect="coverflow" />

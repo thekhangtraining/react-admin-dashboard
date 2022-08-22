@@ -27,7 +27,7 @@ const MoviesSwiper = ({ moviesList, effect }) => {
           isLoading ? "" : "hidden"
         }`}
       >
-        <PuffLoader color="#10b981" loading={isLoading} />
+        <PuffLoader color="#0ea5e9" loading={isLoading} />
       </div>
       <div
         className={`w-full animate-slideAndFadeIn ${isLoading ? "hidden" : ""}`}

@@ -12,13 +12,13 @@ import { mockProjects } from "../../data/mockProjects";
 
 var classnames = require("classnames");
 
-const PriorityBadge = ({ priority }) => (
+const Priority = ({ priority }) => (
   <p
     className={classnames(
-      "uppercase rounded-sm text-xs px-2 font-bold text-center inline-block",
-      priority === 1 && "text-emerald-900 bg-emerald-300",
-      priority === 2 && "text-yellow-900 bg-yellow-300",
-      priority === 3 && "text-red-900 bg-red-300"
+      "text-xs text-center inline-block",
+      priority === 1 && "text-emerald-400",
+      priority === 2 && "text-yellow-400",
+      priority === 3 && "text-red-400"
     )}
   >
     {priority === 1 ? "Low" : priority === 2 ? "Medium" : "High"}
@@ -27,36 +27,32 @@ const PriorityBadge = ({ priority }) => (
 const Customer = ({ countryCode, customerName }) => {
   const Flag = Flags[countryCode];
   return (
-    <div className="flex items-center space-x-2 text-sm">
-      <Flag className="w-5 h-3" />
+    <div className="flex items-center space-x-1 text-xs">
+      <Flag className="w-3 h-2" />
       <p>
         {customerName}
-        <span className="text-xs uppercase font-bold text-emerald-200">{` ${countryCode}`}</span>
+        <span className="text-xs uppercase font-bold text-sky-600">{` ${countryCode}`}</span>
       </p>
     </div>
   );
 };
 
 const ProgressBar = ({ progress }) => (
-  <div className="flex items-center space-x-2 text-sm">
+  <div className="flex items-center space-x-1 md:space-x-2 text-2xs">
     <p
       className={classnames(
-        progress < 15 && "text-red-700",
-        progress >= 15 && progress < 35 && "text-orange-600",
-        progress >= 35 && progress < 80 && "text-yellow-500",
-        progress >= 80 && progress < 97 && "text-green-500",
-        progress >= 97 && "text-sky-500"
+        progress < 33 && "text-red-400",
+        progress >= 33 && progress < 67 && "text-yellow-400",
+        progress >= 67 && progress < 100 && "text-green-400"
       )}
     >{`${progress}%`}</p>
     <div className="w-full bg-gray-200 h-1 rounded-full">
       <div
         className={classnames(
           "h-1 rounded-full",
-          progress < 15 && "bg-red-700",
-          progress >= 15 && progress < 35 && "bg-orange-600",
-          progress >= 35 && progress < 80 && "bg-yellow-500",
-          progress >= 80 && progress < 97 && "bg-green-500",
-          progress >= 97 && "bg-sky-500"
+          progress < 33 && "bg-red-400",
+          progress >= 33 && progress < 67 && "bg-yellow-400",
+          progress >= 67 && progress < 100 && "bg-green-400"
         )}
         style={{ width: `${progress}%` }}
       ></div>
@@ -93,18 +89,18 @@ const Table = ({ columns, data }) => {
   );
 
   return (
-    <div className="w-full text-sm bg-slate-900 text-gray-100 p-4 rounded-sm overflow-auto">
-      <h2 className="px-3.5 mb-2 uppercase text-emerald-500 font-bold font-[Poppins]">
-        Projects
-      </h2>
-      <table className="table-auto w-full" {...getTableProps()}>
+    <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto">
+      <table className="w-full border border-slate-800" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
-            <tr {...headerGroup.getHeaderGroupProps()}>
+            <tr
+              className="text-slate-200 border-b border-slate-800 bg-gradient-to-r from-sky-800/30 via-sky-900/60 to-sky-800/30"
+              {...headerGroup.getHeaderGroupProps()}
+            >
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps()}
-                  className="py-1 px-1 first:pl-4 last:pr-4 text-left whitespace-nowrap text-amber-400 font-medium"
+                  className="py-4 first:pl-4 last:pr-4 text-left whitespace-nowrap uppercase font-medium"
                 >
                   {column.render("Header")}
                 </th>
@@ -112,19 +108,19 @@ const Table = ({ columns, data }) => {
             </tr>
           ))}
         </thead>
-        <tbody {...getTableBodyProps()} className="text-gray-300">
+        <tbody
+          {...getTableBodyProps()}
+          className="divide-y divide-slate-800 bg-gradient-to-r from-slate-900/30 via-slate-900/50 to-slate-900"
+        >
           {page.map((row) => {
             prepareRow(row);
             return (
-              <tr
-                {...row.getRowProps()}
-                className="even:bg-slate-800 rounded-full"
-              >
+              <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
                     <td
                       {...cell.getCellProps()}
-                      className="py-2 px-1 first:pl-4 last:pr-4 first:text-emerald-200"
+                      className="py-2 first:pl-4 last:pr-4"
                     >
                       {cell.render("Cell")}
                     </td>
@@ -135,52 +131,54 @@ const Table = ({ columns, data }) => {
           })}
         </tbody>
       </table>
-      <div className="pagination flex items-center space-x-1 md:space-x-2 mt-4 justify-between">
-        <button
-          className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
-          onClick={() => gotoPage(0)}
-          disabled={!canPreviousPage}
-        >
-          <BiChevronsLeft className="h-6 w-6" />
-        </button>
-        <button
-          className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
-          onClick={() => previousPage()}
-          disabled={!canPreviousPage}
-        >
-          <BiChevronLeft className="h-6 w-6" />
-        </button>
-        <button
-          className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-        >
-          <BiChevronRight className="h-6 w-6" />
-        </button>
-        <button
-          className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
-          onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
-        >
-          <BiChevronsRight className="h-6 w-6" />
-        </button>
-        <span>
-          Page
-          <strong className="mx-1.5 text-amber-400">{pageIndex + 1}</strong>of
-          <strong className="mx-1.5">{pageOptions.length}</strong>
-        </span>
-        <span className="w-full">
-          Go to page:
-          <input
-            type="number"
-            className="bg-slate-800 outline-0 px-2 rounded-sm p-0.5 mx-2 w-9"
-            defaultValue={pageIndex + 1}
-            onChange={(e) => {
-              const page = e.target.value ? Number(e.target.value) - 1 : 0;
-              gotoPage(page);
-            }}
-          />
-        </span>
+      <div className="flex flex-col space-y-1 my-3 text-xs text-slate-200 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex space-x-0.5 md:space-x-1 items-center">
+          <button
+            className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+          >
+            <BiChevronsLeft className="h-5 w-5" />
+          </button>
+          <button
+            className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+          >
+            <BiChevronLeft className="h-5 w-5" />
+          </button>
+          <button
+            className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+          >
+            <BiChevronRight className="h-5 w-5" />
+          </button>
+          <button
+            className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+          >
+            <BiChevronsRight className="h-5 w-5" />
+          </button>
+          <span>
+            Page
+            <strong className="mx-1.5 text-amber-400">{pageIndex + 1}</strong>of
+            <strong className="mx-1.5">{pageOptions.length}</strong>
+          </span>
+          <span className="w-full">
+            Go to page:
+            <input
+              type="number"
+              className="bg-slate-800 outline-0 px-2 rounded-sm p-0.5 mx-2 w-9"
+              defaultValue={pageIndex + 1}
+              onChange={(e) => {
+                const page = e.target.value ? Number(e.target.value) - 1 : 0;
+                gotoPage(page);
+              }}
+            />
+          </span>
+        </div>
         <Select setPageSize={setPageSize} />
       </div>
     </div>
@@ -215,7 +213,7 @@ const ProjectsTable = () => {
       },
       {
         Header: "Priority",
-        accessor: (item) => <PriorityBadge priority={item.priority} />,
+        accessor: (item) => <Priority priority={item.priority} />,
       },
       {
         Header: "Progress",

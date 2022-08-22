@@ -10,7 +10,7 @@ const Navbar = () => {
   let path = location.pathname.split("/").slice(1);
 
   return (
-    <div className="flex p-3 justify-start items-center space-x-4">
+    <div className="flex p-3 justify-start items-center space-x-4 border-b border-slate-800">
       {/* Hamburger button */}
       <button
         ref={sidebarTrigger}
@@ -20,21 +20,21 @@ const Navbar = () => {
           setSidebarOpen(!sidebarOpen);
         }}
       >
-        <BsFillMenuButtonWideFill className="text-emerald-500 text-xl" />
+        <BsFillMenuButtonWideFill className="text-sky-500 text-xl" />
       </button>
       <div className="flex items-center">
         {path.map((item, index) =>
           index === path.length - 1 ? (
             <div
               key={item}
-              className="text-sm capitalize text-emerald-500 font-bold"
+              className="text-sm capitalize text-sky-500 font-bold"
             >
               {item}
             </div>
           ) : (
             <div
               key={item}
-              className="flex items-center capitalize text-slate-100 text-sm"
+              className="flex items-center capitalize text-slate-200 text-sm"
             >
               {item}
               <span className="mx-2">

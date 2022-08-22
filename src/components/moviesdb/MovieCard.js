@@ -125,7 +125,7 @@ const MovieCard = ({
   Modal.setAppElement("#root");
 
   return (
-    <div className="flex flex-col bg-zinc-900 w-full h-full">
+    <div className="flex flex-col bg-zinc-900 w-full h-full text-xs">
       {/* The modal for the movie card */}
       <Modal
         isOpen={modalIsOpen}
@@ -136,7 +136,7 @@ const MovieCard = ({
         onAfterOpen={() => (document.body.style.overflow = "hidden")}
         onAfterClose={() => (document.body.style.overflow = "unset")}
       >
-        <div className="grid grid-cols-12 gap-4">
+        <div className="grid grid-cols-12 gap-4 text-xs lg:text-sm">
           <div className="col-span-12 md:col-start-2 md:col-span-10 xl:col-start-3 xl:col-span-8">
             {/* Close modal button */}
             <div className="flex justify-end">
@@ -149,7 +149,7 @@ const MovieCard = ({
             </div>
             <div className="flex flex-col space-y-2">
               {/* Modal title */}
-              <h2 className="text-emerald-400 font-medium md:text-xl">
+              <h2 className="text-emerald-400 font-medium">
                 {movieTitle}
               </h2>
               {/* Modal backdrop */}
@@ -170,7 +170,7 @@ const MovieCard = ({
                     {genres.slice(0, 4).map((item) => (
                       <span
                         key={item}
-                        className="text-xs text-white px-1 font-medium md:text-sm rounded truncate text-center border border-slate-200"
+                        className="text-white px-1 font-medium rounded truncate text-center border border-slate-200"
                       >
                         {item}
                       </span>
@@ -181,18 +181,18 @@ const MovieCard = ({
                 <div className="flex flex-col flex-start w-full space-y-2 mt-2 sm:ml-2 sm:mt-0">
                   <div className="grid grid-cols-2 gap-2 w-full border-y border-slate-500 p-2">
                     {/* Rating */}
-                    <div className="col-span-1 flex flex-col items-center">
-                      <h3 className="uppercase text-sm tracking-tight font-bold text-amber-400">
+                    <div className="col-span-1 flex flex-col items-center space-y-1">
+                      <h3 className="uppercase tracking-tight font-bold text-amber-400">
                         Rating
                       </h3>
                       <div className="flex items-center space-x-1">
-                        <div className="text-xl text-amber-400">
+                        <div className="text-amber-400">
                           <BsStarFill />
                         </div>
                         <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                          <p className="text-white text-lg font-semibold">
+                          <p className="text-white font-semibold">
                             {voteAvg}{" "}
-                            <span className="text-slate-200 text-base font-normal">
+                            <span className="text-slate-200 font-normal">
                               /10
                             </span>
                           </p>
@@ -201,18 +201,18 @@ const MovieCard = ({
                       </div>
                     </div>
                     {/* Popularity */}
-                    <div className="col-span-1 flex flex-col items-center">
-                      <h3 className="uppercase text-sm tracking-tight font-bold text-center text-red-500">
+                    <div className="col-span-1 flex flex-col items-center space-y-1">
+                      <h3 className="uppercase tracking-tight font-bold text-center text-red-500">
                         Weekly
                         <br />
                         Popularity
                       </h3>
                       <div className="flex items-center space-x-1">
-                        <div className="text-xl text-red-500">
+                        <div className="text-red-500">
                           <BsFillHeartFill />
                         </div>
                         <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                          <p className="text-white text-lg font-semibold">
+                          <p className="text-white font-semibold">
                             {Math.round(popularity)}
                           </p>
                         </div>
@@ -220,13 +220,13 @@ const MovieCard = ({
                     </div>
                   </div>
                   {/* Modal movie overview */}
-                  <p className="text-sm">
+                  <p>
                     Release Date:{" "}
                     <span className="text-amber-400 font-bold">
                       {releaseDate}
                     </span>
                   </p>
-                  <p className="text-sm tracking-tight text-justify md:text-sm">
+                  <p className="text-justify">
                     {overview}
                   </p>
                   <div className="flex space-x-2">
@@ -237,7 +237,7 @@ const MovieCard = ({
                     />
                     <WatchButton />
                   </div>
-                  <div className="text-white text-sm p-1 flex flex-col lg:flex-row">
+                  <div className="text-white p-1 flex flex-col lg:flex-row">
                     {/* Cast */}
                     <div className="flex flex-col space-y-2 w-full my-2">
                       <p className="uppercase">Cast</p>
@@ -365,19 +365,19 @@ const MovieCard = ({
           onClick={() => setModalIsOpen(true)}
           className="flex flex-col text-left"
         >
-          <h2 className="font-medium text-sm md:text-lg line-clamp-1 text-amber-400">
+          <h2 className="font-medium line-clamp-1 text-amber-400">
             {movieTitle}
           </h2>
-          <p className="text-xs md:text-sm">
+          <p>
             ({releaseDate.slice(0, 4)})
           </p>
-          <p className="text-xs md:text-sm line-clamp-2">{overview}</p>
+          <p className="line-clamp-2">{overview}</p>
         </button>
         <div className="flex flex-start items-start space-x-1.5 mt-2">
           {genres.slice(0, 2).map((item) => (
             <span
               key={item}
-              className="text-xs text-black px-1 md:text-sm font-medium bg-slate-100 rounded-sm truncate text-center border border-slate-200"
+              className="text-black px-1 font-medium bg-slate-100 rounded-sm truncate text-center border border-slate-200"
             >
               {item}
             </span>
@@ -385,7 +385,7 @@ const MovieCard = ({
         </div>
 
         <div className="flex flex-col mt-2 mb-0.5 items-center space-y-2 h-full justify-end">
-          <div className="flex justify-end space-x-2 w-full text-xs md:text-sm">
+          <div className="flex justify-end space-x-2 w-full">
             <LoveButton
               movieId={movieId}
               movieTitle={movieTitle}

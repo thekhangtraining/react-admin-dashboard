@@ -6,10 +6,10 @@ import { Construction, MoviesDB, TravelBuddy } from "./pages";
 
 const App = () => {
   return (
-    <div className="flex bg-zinc-900">
+    <div className="flex">
       <BrowserRouter>
         <Sidebar />
-        <div className="w-full">
+        <div className="w-full bg-gradient-to-tr from-slate-900 via-[#141e36] to-slate-900">
           <div className="w-full">
             <Navbar />
           </div>

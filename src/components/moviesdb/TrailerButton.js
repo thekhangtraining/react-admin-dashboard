@@ -72,8 +72,8 @@ const TrailerButton = ({ movieTitle, movieId, posterPath }) => {
           </button>
         </div>
         <div className="flex items-center">
-          <BsYoutube size="40px" color={"rgb(255, 0, 0)"} className="mx-2" />
-          <h2 className="text-lg text-white">
+          <BsYoutube size="20px" color={"rgb(255, 0, 0)"} className="mx-2" />
+          <h2 className="text-white">
             Watching
             <span className="text-emerald-400 font-medium"> {movieTitle} </span>
             trailer
@@ -98,10 +98,8 @@ const TrailerButton = ({ movieTitle, movieId, posterPath }) => {
         onClick={() => setModalIsOpen(true)}
         className="flex justify-center w-full rounded items-center px-2 bg-amber-400"
       >
-        <BsYoutube className="text-black mx-1 text-sm md:text-lg" />
-        <p className="text-sm md:text-base font-medium truncate text-black">
-          Trailer
-        </p>
+        <BsYoutube className="text-black mx-1" />
+        <p className="font-medium truncate text-black">Trailer</p>
       </button>
     </div>
   );
