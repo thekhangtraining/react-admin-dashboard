@@ -82,7 +82,7 @@ const OpenDota = () => {
     },
     {
       Header: "Losses",
-      accessor: "losses",
+      accessor: "stats.losses",
       Cell: ({ row }) => <p className="text-red-400">{row.original.losses}</p>,
     },
     {
@@ -93,23 +93,31 @@ const OpenDota = () => {
   ];
 
   return (
-    <div className="p-4 flex justify-center text-slate-400">
+    <div className="p-4 flex justify-center text-slate-400 text-sm">
       <div className="w-full lg:max-w-7xl">
-        <h2 className="text-slate-200 font-bold">Players</h2>
-        <DotaTable dataList={dotaPlayers} columnsDef={playersColumnsDef} />
+        <DotaTable
+          dataList={dotaPlayers}
+          columnsDef={playersColumnsDef}
+          tableTitle="Top Dota Players"
+        />
 
-        <h2 className="text-slate-200 font-bold">Teams</h2>
-        <DotaTable dataList={dotaTeams} columnsDef={teamsColumnsDef} />
+        <div className="h-[5vh]"></div>
+        <DotaTable
+          dataList={dotaTeams}
+          columnsDef={teamsColumnsDef}
+          tableTitle="Top Dota Teams"
+        />
 
-        <div className="flex justify-center">
-          <div className="flex flex-col space-y-1 items-center">
-            <strong className="text-sm">Powered by</strong>
+        <div className="h-[15vh]"></div>
+        <div className="flex flex-col space-y-1">
+          <strong className="text-xs md:text-sm">Powered by</strong>
+          <a href="https://www.opendota.com/" target="_blank" rel="noreferrer">
             <img
-              className="h-12 md:h-16 animate-slideAndFadeIn rounded-sm"
+              className="h-10 md:h-14 animate-slideAndFadeIn rounded-sm"
               src={OpenDotaLogo}
               alt=""
             />
-          </div>
+          </a>
         </div>
       </div>
     </div>

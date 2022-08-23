@@ -25,7 +25,7 @@ const Sidebar = () => {
     <div>
       {/* Sidebar backdrop */}
       <div
-        className={`fixed inset-0 bg-zinc-900 bg-opacity-50 z-20 transition-opacity duration-200 ${
+        className={`fixed inset-0 bg-slate-900 bg-opacity-50 z-20 transition-opacity duration-200 ${
           sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden="true"
@@ -34,7 +34,7 @@ const Sidebar = () => {
       <div
         id="sidebar"
         ref={sidebar}
-        className={`flex flex-col fixed bg-zinc-900 text-slate-200 z-20 left-0 top-0 h-screen overflow-y-auto w-56 p-1 shrink-0 transition-all duration-200 ease-in-out ${
+        className={`flex flex-col fixed bg-slate-900 text-slate-200 z-20 left-0 top-0 h-screen overflow-y-auto w-56 p-1 shrink-0 transition-all duration-200 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-60"
         }`}
       >

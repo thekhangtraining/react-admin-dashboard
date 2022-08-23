@@ -1,13 +1,21 @@
 import Flags from "country-flag-icons/react/3x2";
 import React, { useMemo } from "react";
 import {
+  BiCaretDown,
+  BiCaretUp,
   BiChevronLeft,
   BiChevronRight,
   BiChevronsLeft,
   BiChevronsRight,
+  BiSortAlt2
 } from "react-icons/bi";
-import { usePagination, useTable } from "react-table";
-import { Select } from ".";
+import {
+  useGlobalFilter,
+  usePagination,
+  useSortBy,
+  useTable
+} from "react-table";
+import { GlobalFilter, Select } from ".";
 
 const PlaceholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
 
@@ -30,7 +38,7 @@ export const PlayerHeroes = ({ heroes, id }) => (
 );
 
 export const PlayerTeam = ({ teamLogo, teamName, teamId }) => (
-  <div className="flex space-x-1">
+  <div className="flex space-x-1 items-center">
     {" "}
     <img
       src={`${teamLogo}`}
@@ -42,10 +50,7 @@ export const PlayerTeam = ({ teamLogo, teamName, teamId }) => (
         e.target.src = PlaceholderPath;
       }}
     />
-    <div className="flex flex-col">
-      <p className="text-sky-500">{teamName}</p>
-      {teamId !== 0 ? <p>{teamId}</p> : null}
-    </div>
+    <p className="text-sky-500">{teamName}</p>
   </div>
 );
 
@@ -63,7 +68,7 @@ export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
           e.target.src = PlaceholderPath;
         }}
       />
-      <div className="flex flex-col">
+      <div className="flex flex-col space-y-0.5">
         <div className="flex space-x-1 items-center">
           {teamTag !== "" && teamTag !== null ? (
             <span>{`${teamTag}.`}</span>
@@ -73,7 +78,7 @@ export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
           <span className="text-sky-500">{name}</span>
           {countryCode !== "" ? <Flag className="w-3 h-2" /> : null}
         </div>
-        <p className="font-2xs">{id}</p>
+        <p className="text-2xs">{id}</p>
       </div>
     </div>
   );
@@ -106,7 +111,7 @@ export const Team = ({ name, teamTag, logo, id }) => {
   );
 };
 
-const Table = ({ columns, data }) => {
+const Table = ({ columns, data, tableTitle }) => {
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -124,18 +129,25 @@ const Table = ({ columns, data }) => {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex },
+    setGlobalFilter,
+    state: { pageIndex, globalFilter },
   } = useTable(
     {
       columns,
       data,
       initialState: { pageIndex: 0 },
     },
+    useGlobalFilter,
+    useSortBy,
     usePagination
   );
 
   return (
-    <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto my-2">
+    <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto flex flex-col space-y-2 my-4">
+      <div className="flex justify-between items-end">
+        <h2 className="text-slate-200 font-bold text-sm">{tableTitle}</h2>
+        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+      </div>
       <table className="w-full border border-slate-800" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
@@ -145,10 +157,23 @@ const Table = ({ columns, data }) => {
             >
               {headerGroup.headers.map((column) => (
                 <th
-                  {...column.getHeaderProps()}
-                  className="py-4 first:pl-4 last:pr-4 text-left whitespace-nowrap uppercase font-medium"
+                  {...column.getHeaderProps(column.getSortByToggleProps())}
+                  className="py-3 first:pl-4 last:pr-4 text-left whitespace-nowrap uppercase font-medium"
                 >
-                  {column.render("Header")}
+                  <div className="flex items-center space-x-1">
+                    <span>{column.render("Header")}</span>
+                    <span>
+                      {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <BiCaretDown />
+                        ) : (
+                          <BiCaretUp />
+                        )
+                      ) : (
+                        <BiSortAlt2 />
+                      )}
+                    </span>
+                  </div>
                 </th>
               ))}
             </tr>
@@ -166,7 +191,7 @@ const Table = ({ columns, data }) => {
                   return (
                     <td
                       {...cell.getCellProps()}
-                      className="py-2 first:pl-4 last:pr-4"
+                      className="py-1.5 first:pl-4 last:pr-4"
                     >
                       {cell.render("Cell")}
                     </td>
@@ -231,10 +256,10 @@ const Table = ({ columns, data }) => {
   );
 };
 
-const DotaTable = ({ dataList, columnsDef }) => {
+const DotaTable = ({ dataList, columnsDef, tableTitle }) => {
   const data = useMemo(() => dataList, [dataList]);
   const columns = useMemo(() => columnsDef, [columnsDef]);
 
-  return <Table columns={columns} data={data} />;
+  return <Table columns={columns} data={data} tableTitle={tableTitle} />;
 };
 export default DotaTable;
