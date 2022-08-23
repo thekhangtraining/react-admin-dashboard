@@ -7,15 +7,16 @@ import {
   BiChevronRight,
   BiChevronsLeft,
   BiChevronsRight,
-  BiSortAlt2
+  BiSortAlt2,
 } from "react-icons/bi";
 import {
   useGlobalFilter,
   usePagination,
   useSortBy,
-  useTable
+  useTable,
 } from "react-table";
 import { GlobalFilter, Select } from ".";
+import heroes from "../../data/opendota/heroes.json";
 
 const PlaceholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
 
@@ -29,10 +30,26 @@ export const PlayerWinrate = ({ winRate, wins, losses }) => (
   </div>
 );
 
+const getHeroSrc = (heroName) => {
+  for (let i = 0; i < heroes.length; i++) {
+    if (heroes[i].localized_name === heroName)
+      return (
+        "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/" +
+        heroes[i].name.replace("npc_dota_hero_", "") +
+        ".png"
+      );
+  }
+};
+
 export const PlayerHeroes = ({ heroes, id }) => (
-  <div>
-    {heroes.slice(0, 3).map((h) => (
-      <span key={`${id}-${h}`}>{`${h}, `}</span>
+  <div className="flex space-x-2 overflow-y-auto">
+    {heroes.slice(0, 6).map((h) => (
+      <img
+        key={`${id}-${h}`}
+        className="h-4 w-6 shrink-0 rounded-xs"
+        alt=""
+        src={getHeroSrc(h)}
+      />
     ))}
   </div>
 );
@@ -78,7 +95,7 @@ export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
           <span className="text-sky-500">{name}</span>
           {countryCode !== "" ? <Flag className="w-3 h-2" /> : null}
         </div>
-        <p className="text-2xs">{id}</p>
+        <p>{id}</p>
       </div>
     </div>
   );
@@ -110,6 +127,19 @@ export const Team = ({ name, teamTag, logo, id }) => {
     </div>
   );
 };
+
+export const TeamLastMatch = ({ time, league, opposingTeam }) => (
+  <div className="flex flex-col">
+    <p>
+      {time.split(" ")[1]}
+      <span className="hidden md:inline">
+        {" "}
+        vs <span className="text-sky-500">{opposingTeam}</span>
+      </span>
+    </p>
+    <p className="hidden md:inline-flex">{league}</p>
+  </div>
+);
 
 const Table = ({ columns, data, tableTitle }) => {
   // Use the state and functions returned from useTable to build your UI

@@ -6,9 +6,10 @@ import {
   PlayerTeam,
   PlayerWinrate,
   Team,
+  TeamLastMatch,
 } from "../../components/opendota/DotaTable";
 import OpenDotaLogo from "../../data/images/logos/OpenDota.jpg";
-import dotaPlayers from "../../data/opendota/players_stats.json";
+import dotaPlayers from "../../data/opendota/players.json";
 import dotaTeams from "../../data/opendota/teams.json";
 
 const OpenDota = () => {
@@ -40,21 +41,21 @@ const OpenDota = () => {
     },
     {
       Header: "Winrate",
-      accessor: "stats.win_rate",
+      accessor: "matches.win_rate",
       Cell: ({ row }) => (
         <PlayerWinrate
-          winRate={row.original.stats.win_rate}
-          wins={row.original.stats.wins}
-          losses={row.original.stats.losses}
+          winRate={row.original.matches.win_rate}
+          wins={row.original.matches.wins}
+          losses={row.original.matches.losses}
         />
       ),
     },
     {
       Header: "Heroes",
-      accessor: "stats.heroes",
+      accessor: "matches.heroes",
       Cell: ({ row }) => (
         <PlayerHeroes
-          heroes={row.original.stats.heroes}
+          heroes={row.original.matches.heroes}
           id={row.original.account_id}
         />
       ),
@@ -82,13 +83,19 @@ const OpenDota = () => {
     },
     {
       Header: "Losses",
-      accessor: "stats.losses",
+      accessor: "losses",
       Cell: ({ row }) => <p className="text-red-400">{row.original.losses}</p>,
     },
     {
       Header: "Last match",
       accessor: "last_match_time",
-      Cell: ({ row }) => <p>{row.original.last_match_time.split(" ")[1]}</p>,
+      Cell: ({ row }) => (
+        <TeamLastMatch
+          time={row.original.last_match_time}
+          league={row.original.matches[0].league_name}
+          opposingTeam={row.original.matches[0].opposing_team_name}
+        />
+      ),
     },
   ];
 
