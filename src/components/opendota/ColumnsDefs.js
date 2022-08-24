@@ -12,7 +12,7 @@ import {
   Team,
   TeamLastMatch,
   TeamWinrate,
-  winMatch
+  winMatch,
 } from "../../components/opendota/ColumnsComponents";
 
 export const playersColumnsDef = [
@@ -111,19 +111,21 @@ export const teamsColumnsDef = [
 
 export const bestTeamColumnsDef = [
   {
-    Header: "ID",
+    Header: "Match",
     accessor: (item) => item.match_id + " " + item.league_name,
 
     Cell: ({ row }) => (
       <MatchId
         matchId={row.original.match_id}
         leagueName={row.original.league_name}
+        startTime={row.original.start_time}
       />
     ),
   },
   {
     Header: "Result",
-    accessor: (item) => winMatch(item.radiant, item.radiant_win),
+    accessor: (item) =>
+      winMatch(item.radiant, item.radiant_win) ? "Win" : "Loss",
     Cell: ({ row }) => (
       <MatchResult
         isRadiant={row.original.radiant}

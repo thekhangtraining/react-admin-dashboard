@@ -1,5 +1,5 @@
 import Flags from "country-flag-icons/react/3x2";
-import { secondsToMinutes } from "date-fns";
+import { differenceInDays, fromUnixTime, secondsToMinutes } from "date-fns";
 import heroes from "../../data/opendota/heroes.json";
 import dotaPlayers from "../../data/opendota/players.json";
 import { Tooltip } from "./";
@@ -155,12 +155,17 @@ export const TeamWinrate = ({ winRate, wins, losses }) => (
   </div>
 );
 
-export const MatchId = ({ matchId, leagueName }) => (
+export const MatchId = ({ matchId, leagueName, startTime }) => (
   <div className="flex flex-col">
     <Tooltip label={leagueName}>
       <p className="w-48 truncate text-sky-500">{leagueName}</p>
     </Tooltip>
-    <p>{matchId}</p>
+    <p>
+      <span className="mx-1">
+        {differenceInDays(new Date(), fromUnixTime(startTime))} days ago {">"}
+      </span>
+      {matchId}
+    </p>
   </div>
 );
 
