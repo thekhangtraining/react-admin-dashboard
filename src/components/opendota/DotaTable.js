@@ -1,147 +1,24 @@
-import Flags from "country-flag-icons/react/3x2";
 import React, { useMemo } from "react";
-import {
-  BiCaretDown,
-  BiCaretUp,
-  BiChevronLeft,
-  BiChevronRight,
-  BiChevronsLeft,
-  BiChevronsRight,
-  BiSortAlt2,
-} from "react-icons/bi";
+import { BiCaretDown, BiCaretUp, BiSortAlt2 } from "react-icons/bi";
 import {
   useGlobalFilter,
   usePagination,
   useSortBy,
   useTable,
 } from "react-table";
-import { GlobalFilter, Select } from ".";
-import heroes from "../../data/opendota/heroes.json";
+import { GlobalFilter, PaginationButtons } from ".";
 
-const PlaceholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
-
-export const PlayerWinrate = ({ winRate, wins, losses }) => (
-  <div className="flex flex-col items-center float-left">
-    <p>{winRate}%</p>
-    <div className="flex space-x-3">
-      <span className="text-green-400">{wins}W</span>
-      <span className="text-red-400">{losses}L</span>
-    </div>
-  </div>
-);
-
-const getHeroSrc = (heroName) => {
-  for (let i = 0; i < heroes.length; i++) {
-    if (heroes[i].localized_name === heroName)
-      return (
-        "https://cdn.cloudflare.steamstatic.com/apps/dota2/images/dota_react/heroes/" +
-        heroes[i].name.replace("npc_dota_hero_", "") +
-        ".png"
-      );
-  }
-};
-
-export const PlayerHeroes = ({ heroes, id }) => (
-  <div className="flex space-x-2 overflow-y-auto">
-    {heroes.slice(0, 6).map((h) => (
-      <img
-        key={`${id}-${h}`}
-        className="h-4 w-6 shrink-0 rounded-xs"
-        alt=""
-        src={getHeroSrc(h)}
-      />
-    ))}
-  </div>
-);
-
-export const PlayerTeam = ({ teamLogo, teamName, teamId }) => (
-  <div className="flex space-x-1 items-center">
-    {" "}
-    <img
-      src={`${teamLogo}`}
-      alt=""
-      className="rounded-full h-5 w-5 md:h-6 md:w-6"
-      // Placeholder image
-      onError={(e) => {
-        e.target.onerror = null;
-        e.target.src = PlaceholderPath;
-      }}
-    />
-    <p className="text-sky-500">{teamName}</p>
-  </div>
-);
-
-export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
-  const Flag = countryCode !== "" ? Flags[countryCode] : null;
-  return (
-    <div className="flex items-center space-x-2">
-      <img
-        src={`${avatar}`}
-        alt=""
-        className="rounded-full h-5 w-5 md:h-6 md:w-6"
-        // Placeholder image
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = PlaceholderPath;
-        }}
-      />
-      <div className="flex flex-col space-y-0.5">
-        <div className="flex space-x-1 items-center">
-          {teamTag !== "" && teamTag !== null ? (
-            <span>{`${teamTag}.`}</span>
-          ) : (
-            ""
-          )}
-          <span className="text-sky-500">{name}</span>
-          {countryCode !== "" ? <Flag className="w-3 h-2" /> : null}
-        </div>
-        <p>{id}</p>
-      </div>
-    </div>
-  );
-};
-
-export const Team = ({ name, teamTag, logo, id }) => {
-  return (
-    <div className="flex items-center space-x-2">
-      <img
-        src={`${logo}`}
-        alt=""
-        className="rounded-full h-5 w-6 md:h-6 md:w-7"
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = PlaceholderPath;
-        }}
-      />
-      <div className="flex flex-col">
-        <div className="flex space-x-1 items-center">
-          <span className="text-sky-500">{name}</span>
-          {teamTag !== "" && teamTag !== null ? (
-            <span>{`${teamTag}`}</span>
-          ) : (
-            ""
-          )}
-        </div>
-        <p className="font-2xs">{id}</p>
-      </div>
-    </div>
-  );
-};
-
-export const TeamLastMatch = ({ time, league, opposingTeam }) => (
-  <div className="flex flex-col">
-    <p>
-      {time.split(" ")[1]}
-      <span className="hidden md:inline">
-        {" "}
-        vs <span className="text-sky-500">{opposingTeam}</span>
-      </span>
-    </p>
-    <p className="hidden md:inline-flex">{league}</p>
-  </div>
-);
-
-const Table = ({ columns, data, tableTitle }) => {
+const DotaTable = ({
+  columnsDef,
+  data,
+  tableTitle,
+  disableSortBy,
+  disableGlobalFilter,
+  disableFilters,
+  disablePagination,
+}) => {
+  const dataMemo = useMemo(() => data, [data]);
+  const columnsMemo = useMemo(() => columnsDef, [columnsDef]);
   // Use the state and functions returned from useTable to build your UI
   const {
     getTableProps,
@@ -163,9 +40,13 @@ const Table = ({ columns, data, tableTitle }) => {
     state: { pageIndex, globalFilter },
   } = useTable(
     {
-      columns,
-      data,
+      columns: columnsMemo,
+      data: dataMemo,
       initialState: { pageIndex: 0 },
+      disableSortBy: disableSortBy,
+      disableGlobalFilter: disableGlobalFilter,
+      disableFilters: disableFilters,
+      disablePagination: disablePagination,
     },
     useGlobalFilter,
     useSortBy,
@@ -176,7 +57,9 @@ const Table = ({ columns, data, tableTitle }) => {
     <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto flex flex-col space-y-2 my-4">
       <div className="flex justify-between items-end">
         <h2 className="text-slate-200 font-bold text-sm">{tableTitle}</h2>
-        <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+        {disableGlobalFilter ? null : (
+          <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
+        )}
       </div>
       <table className="w-full border border-slate-800" {...getTableProps()}>
         <thead>
@@ -199,8 +82,10 @@ const Table = ({ columns, data, tableTitle }) => {
                         ) : (
                           <BiCaretUp />
                         )
-                      ) : (
+                      ) : column.canSort ? (
                         <BiSortAlt2 />
+                      ) : (
+                        ""
                       )}
                     </span>
                   </div>
@@ -221,7 +106,7 @@ const Table = ({ columns, data, tableTitle }) => {
                   return (
                     <td
                       {...cell.getCellProps()}
-                      className="py-1.5 first:pl-4 last:pr-4"
+                      className="py-1.5 first:pl-4 last:pr-4 truncate"
                     >
                       {cell.render("Cell")}
                     </td>
@@ -232,64 +117,19 @@ const Table = ({ columns, data, tableTitle }) => {
           })}
         </tbody>
       </table>
-      <div className="flex flex-col space-y-1 my-3 text-xs text-slate-200 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex space-x-0.5 md:space-x-1 items-center">
-          <button
-            className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
-            onClick={() => gotoPage(0)}
-            disabled={!canPreviousPage}
-          >
-            <BiChevronsLeft className="h-5 w-5" />
-          </button>
-          <button
-            className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
-            onClick={() => previousPage()}
-            disabled={!canPreviousPage}
-          >
-            <BiChevronLeft className="h-5 w-5" />
-          </button>
-          <button
-            className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
-            onClick={() => nextPage()}
-            disabled={!canNextPage}
-          >
-            <BiChevronRight className="h-5 w-5" />
-          </button>
-          <button
-            className="rounded-md enabled:hover:bg-slate-600 disabled:cursor-not-allowed"
-            onClick={() => gotoPage(pageCount - 1)}
-            disabled={!canNextPage}
-          >
-            <BiChevronsRight className="h-5 w-5" />
-          </button>
-          <span>
-            Page
-            <strong className="mx-1.5 text-sky-500">{pageIndex + 1}</strong>of
-            <strong className="mx-1.5">{pageOptions.length}</strong>
-          </span>
-          <span className="w-full">
-            Go to page:
-            <input
-              type="number"
-              className="bg-slate-800 outline-0 px-2 rounded-sm p-0.5 mx-2 w-9"
-              defaultValue={pageIndex + 1}
-              onChange={(e) => {
-                const page = e.target.value ? Number(e.target.value) - 1 : 0;
-                gotoPage(page);
-              }}
-            />
-          </span>
-        </div>
-        <Select setPageSize={setPageSize} />
-      </div>
+      <PaginationButtons
+        pageIndex={pageIndex}
+        pageCount={pageCount}
+        pageOptions={pageOptions}
+        canPreviousPage={canPreviousPage}
+        canNextPage={canNextPage}
+        nextPage={nextPage}
+        previousPage={previousPage}
+        gotoPage={gotoPage}
+        setPageSize={setPageSize}
+      />
     </div>
   );
 };
 
-const DotaTable = ({ dataList, columnsDef, tableTitle }) => {
-  const data = useMemo(() => dataList, [dataList]);
-  const columns = useMemo(() => columnsDef, [columnsDef]);
-
-  return <Table columns={columns} data={data} tableTitle={tableTitle} />;
-};
 export default DotaTable;

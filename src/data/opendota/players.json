@@ -1048,7 +1048,7 @@
         "team_name": "Nigma Galaxy",
         "team_tag": "NGX",
         "team_logo": "https://steamusercontent-a.akamaihd.net/ugc/1827894588975105240/421C0D8318D71D5DD31FD08A7933AB622AE26590/",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 14,
             "losses": 6,
@@ -1475,7 +1475,7 @@
         "team_name": "Soniqs",
         "team_tag": "SQ",
         "team_logo": "https://steamusercontent-a.akamaihd.net/ugc/1884212415048457859/69CEB7F262EC4D67616798C7E1D06FED7197CC04/",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 6,
             "losses": 14,
@@ -1861,7 +1861,7 @@
         "team_name": "BOOM Esports",
         "team_tag": "BOOM",
         "team_logo": "https://steamusercontent-a.akamaihd.net/ugc/768365068750604173/EF3216F4B02A0DA2327AC3190A369349C7BF3A24/",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 16,
             "losses": 4,
@@ -3231,7 +3231,7 @@
         "team_name": "Hokori",
         "team_tag": "Hokori",
         "team_logo": "https://steamusercontent-a.akamaihd.net/ugc/1704034371947308886/699822F5C75F7B674A0FFED975AAEC17A32B96A2/",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 16,
             "losses": 4,
@@ -3321,7 +3321,7 @@
         "team_name": "BetBoom Team",
         "team_tag": "BetBoom",
         "team_logo": "https://steamusercontent-a.akamaihd.net/ugc/1845922937363804366/B718AFD0F76379ACDDE28F7512FC91B76C478985/",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 14,
             "losses": 6,
@@ -5042,7 +5042,7 @@
         "team_name": "CDEC ",
         "team_tag": "CDEC",
         "team_logo": "https://steamcdn-a.akamaihd.net/apps/dota2/images/team_logos/1520578.png",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 12,
             "losses": 8,
@@ -6109,7 +6109,7 @@
         "team_name": "EHOME",
         "team_tag": "EHOME",
         "team_logo": "https://steamcdn-a.akamaihd.net/apps/dota2/images/team_logos/4.png",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 12,
             "losses": 8,
@@ -12782,7 +12782,7 @@
         "team_name": "The Cut",
         "team_tag": "TC",
         "team_logo": "https://steamusercontent-a.akamaihd.net/ugc/1647718150508756948/90879B998647BD093E090BA3A03C501778A8BBFC/",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 12,
             "losses": 8,
@@ -12931,7 +12931,7 @@
         "team_name": "CDEC ",
         "team_tag": "CDEC",
         "team_logo": "https://steamcdn-a.akamaihd.net/apps/dota2/images/team_logos/1520578.png",
-        "rank": -1,
+        "rank": 9999,
         "matches": {
             "wins": 14,
             "losses": 6,
