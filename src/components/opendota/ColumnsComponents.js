@@ -1,14 +1,15 @@
 import Flags from "country-flag-icons/react/3x2";
 import heroes from "../../data/opendota/heroes.json";
 import { Tooltip } from "./";
+import bestTeamPlayers from "../../data/opendota/best_team_players.json";
 
 const classnames = require("classnames");
-const PlaceholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
+const placeholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
 
 export const PlayerWinrate = ({ winRate, wins, losses }) => (
-  <div className="flex flex-col items-center float-left">
+  <div className="flex flex-col float-left">
     <p>{winRate}%</p>
-    <div className="flex space-x-3">
+    <div className="flex space-x-1">
       <span className="text-green-400">{wins}W</span>
       <span className="text-red-400">{losses}L</span>
     </div>
@@ -27,15 +28,10 @@ function getHeroImgSrc(heroName) {
 }
 
 export const PlayerHeroes = ({ heroes, id }) => (
-  <div className="flex space-x-2">
-    {heroes.slice(0, 6).map((h) => (
-      <Tooltip label={h}>
-        <img
-          key={`${id}-${h}`}
-          className="h-5 w-8 shrink-0 rounded-xs"
-          alt=""
-          src={getHeroImgSrc(h)}
-        />
+  <div className="flex space-x-2 overflow-auto">
+    {heroes.slice(0, 5).map((h) => (
+      <Tooltip key={`${id}-${h}`} label={h}>
+        <img className="h-5 w-9 rounded-xs" alt="" src={getHeroImgSrc(h)} />
       </Tooltip>
     ))}
   </div>
@@ -45,13 +41,13 @@ export const PlayerTeam = ({ teamLogo, teamName }) => (
   <div className="flex space-x-1 items-center">
     {" "}
     <img
-      src={`${teamLogo}`}
+      src={teamLogo}
       alt=""
       className="rounded-full h-5 w-5 md:h-6 md:w-6"
       // Placeholder image
       onError={(e) => {
         e.target.onerror = null;
-        e.target.src = PlaceholderPath;
+        e.target.src = placeholderPath;
       }}
     />
     <p className="text-sky-500">{teamName}</p>
@@ -63,13 +59,13 @@ export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
   return (
     <div className="flex items-center space-x-2">
       <img
-        src={`${avatar}`}
+        src={avatar}
         alt=""
         className="rounded-full h-5 w-5 md:h-6 md:w-6"
         // Placeholder image
         onError={(e) => {
           e.target.onerror = null;
-          e.target.src = PlaceholderPath;
+          e.target.src = placeholderPath;
         }}
       />
       <div className="flex flex-col space-y-0.5">
@@ -92,12 +88,12 @@ export const Team = ({ name, teamTag, logo, id }) => {
   return (
     <div className="flex items-center space-x-2">
       <img
-        src={`${logo}`}
+        src={logo}
         alt=""
         className="rounded-full h-5 w-6 md:h-6 md:w-7"
         onError={(e) => {
           e.target.onerror = null;
-          e.target.src = PlaceholderPath;
+          e.target.src = placeholderPath;
         }}
       />
       <div className="flex flex-col">
@@ -144,3 +140,15 @@ export const TeamLastMatch = ({
     <p>{league}</p>
   </div>
 );
+
+export const TeamWinrate = ({ winRate, wins, losses }) => (
+  <div className="flex flex-col float-left">
+    <p>{winRate}%</p>
+    <div className="flex space-x-1">
+      <span className="text-green-400">{wins}W</span>
+      <span className="text-red-400">{losses}L</span>
+    </div>
+  </div>
+);
+
+export const TeamPlayers = ({ bestTeamPlayers }) => {};

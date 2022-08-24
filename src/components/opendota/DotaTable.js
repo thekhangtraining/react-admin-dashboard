@@ -54,8 +54,8 @@ const DotaTable = ({
   );
 
   return (
-    <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto flex flex-col space-y-2 my-4">
-      <div className="flex justify-between items-end">
+    <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto flex flex-col space-y-2 py-2 my-2">
+      <div className="flex items-end justify-between">
         <h2 className="text-slate-200 font-bold text-sm">{tableTitle}</h2>
         {disableGlobalFilter ? null : (
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
@@ -71,7 +71,7 @@ const DotaTable = ({
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className="py-3 first:pl-4 last:pr-4 text-left whitespace-nowrap uppercase font-medium"
+                  className="py-3 first:pl-4 last:pr-4 text-left uppercase font-medium"
                 >
                   <div className="flex items-center space-x-1">
                     <span>{column.render("Header")}</span>

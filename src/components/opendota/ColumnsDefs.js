@@ -5,7 +5,8 @@ import {
   PlayerTeam,
   PlayerWinrate,
   Team,
-  TeamLastMatch
+  TeamLastMatch,
+  TeamWinrate,
 } from "../../components/opendota/ColumnsComponents";
 
 export const playersColumnsDef = [
@@ -77,14 +78,15 @@ export const teamsColumnsDef = [
   },
   { Header: "Rating", accessor: "rating" },
   {
-    Header: "Wins",
-    accessor: "wins",
-    Cell: ({ row }) => <p className="text-green-400">{row.original.wins}</p>,
-  },
-  {
-    Header: "Losses",
-    accessor: "losses",
-    Cell: ({ row }) => <p className="text-red-400">{row.original.losses}</p>,
+    Header: "Win Rate",
+    accessor: "win_rate",
+    Cell: ({ row }) => (
+      <TeamWinrate
+        wins={row.original.wins}
+        losses={row.original.losses}
+        winRate={row.original.win_rate}
+      />
+    ),
   },
   {
     Header: "Last match",
