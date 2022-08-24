@@ -16,6 +16,7 @@ const DotaTable = ({
   disableGlobalFilter,
   disableFilters,
   disablePagination,
+  disableFlexLayout,
 }) => {
   const dataMemo = useMemo(() => data, [data]);
   const columnsMemo = useMemo(() => columnsDef, [columnsDef]);
@@ -47,6 +48,7 @@ const DotaTable = ({
       disableGlobalFilter: disableGlobalFilter,
       disableFilters: disableFilters,
       disablePagination: disablePagination,
+      disableFlexLayout: disableFlexLayout,
     },
     useGlobalFilter,
     useSortBy,
@@ -71,7 +73,7 @@ const DotaTable = ({
               {headerGroup.headers.map((column) => (
                 <th
                   {...column.getHeaderProps(column.getSortByToggleProps())}
-                  className="py-3 first:pl-4 last:pr-4 text-left uppercase font-medium"
+                  className="py-3 first:pl-4 last:pr-4 text-left uppercase font-medium whitespace-nowrap overflow-x-auto"
                 >
                   <div className="flex items-center space-x-1">
                     <span>{column.render("Header")}</span>
@@ -106,7 +108,7 @@ const DotaTable = ({
                   return (
                     <td
                       {...cell.getCellProps()}
-                      className="py-1.5 first:pl-4 last:pr-4 truncate"
+                      className="py-1 px-2 first:pl-4 last:pr-4 whitespace-nowrap"
                     >
                       {cell.render("Cell")}
                     </td>
@@ -117,17 +119,19 @@ const DotaTable = ({
           })}
         </tbody>
       </table>
-      <PaginationButtons
-        pageIndex={pageIndex}
-        pageCount={pageCount}
-        pageOptions={pageOptions}
-        canPreviousPage={canPreviousPage}
-        canNextPage={canNextPage}
-        nextPage={nextPage}
-        previousPage={previousPage}
-        gotoPage={gotoPage}
-        setPageSize={setPageSize}
-      />
+      {disablePagination ? null : (
+        <PaginationButtons
+          pageIndex={pageIndex}
+          pageCount={pageCount}
+          pageOptions={pageOptions}
+          canPreviousPage={canPreviousPage}
+          canNextPage={canNextPage}
+          nextPage={nextPage}
+          previousPage={previousPage}
+          gotoPage={gotoPage}
+          setPageSize={setPageSize}
+        />
+      )}
     </div>
   );
 };

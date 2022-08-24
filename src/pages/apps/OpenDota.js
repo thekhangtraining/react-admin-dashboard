@@ -4,11 +4,15 @@ import { GoGraph } from "react-icons/go";
 import { IoMdChatbubbles } from "react-icons/io";
 import { DotaTable, HeroCard } from "../../components/opendota";
 import {
+  bestTeamColumnsDef,
+  bestTeamPlayersColumnsDef,
   playersColumnsDef,
-  teamsColumnsDef,
+  teamsColumnsDef
 } from "../../components/opendota/ColumnsDefs";
 import bgImg from "../../data/images/opendota/background.jpg";
 import openDotaLogo from "../../data/images/opendota/opendota.jpg";
+import bestTeamMatches from "../../data/opendota/best_team_matches.json";
+import bestTeamPlayers from "../../data/opendota/best_team_players.json";
 import dotaPlayers from "../../data/opendota/players.json";
 import dotaTeams from "../../data/opendota/teams.json";
 
@@ -23,7 +27,7 @@ const OpenDota = () => {
     <div className="text-slate-400 text-sm flex flex-col items-center">
       <div
         style={bgImgStyle}
-        className="w-full h-48 sm:h-56 md:h-60 lg:h-64 animate-slideAndFadeIn text-slate-200"
+        className="w-full h-48 sm:h-60 md:h-72 lg:h-80 xl:h-96 animate-slideAndFadeIn text-slate-200"
       >
         <div className="h-full lg:max-w-7x flex flex-col justify-center items-center space-y-1 md:space-y-2">
           <h2
@@ -32,7 +36,7 @@ const OpenDota = () => {
           >
             OpenDota
           </h2>
-          <div className="flex space-x-1 md:space-x-2">
+          <div className="flex space-x-1 sm:space-x-2 lg:space-x-4">
             <HeroCard
               title="Community"
               icon={<BsPeopleFill className="h-4 w-4 md:h-6 md:w-6" />}
@@ -63,6 +67,21 @@ const OpenDota = () => {
           columnsDef={teamsColumnsDef}
           tableTitle="Top Dota Teams"
         />
+
+        <div className="flex w-full flex-col justify-between md:flex-row md:gap-6">
+          <DotaTable
+            data={bestTeamMatches}
+            columnsDef={bestTeamColumnsDef}
+            tableTitle="PSG.LGD Recent Matches"
+          />
+          <DotaTable
+            data={bestTeamPlayers}
+            columnsDef={bestTeamPlayersColumnsDef}
+            tableTitle="PSG.LGD Players"
+            disablePagination
+            disableGlobalFilter
+          />
+        </div>
         <div className="flex w-full">
           <div className="flex flex-col space-y-1">
             <strong className="text-xs md:text-sm">Powered by</strong>

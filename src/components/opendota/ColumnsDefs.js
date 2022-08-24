@@ -1,5 +1,10 @@
 import React from "react";
 import {
+  getPlayer,
+  MatchDuration,
+  MatchId,
+  MatchResult,
+  OpposingTeam,
   Player,
   PlayerHeroes,
   PlayerTeam,
@@ -7,6 +12,7 @@ import {
   Team,
   TeamLastMatch,
   TeamWinrate,
+  winMatch
 } from "../../components/opendota/ColumnsComponents";
 
 export const playersColumnsDef = [
@@ -23,7 +29,7 @@ export const playersColumnsDef = [
       />
     ),
   },
-  { Header: "Persona", accessor: "personaname" },
+  { Header: "Persona", accessor: "personaname", width: 50 },
   {
     Header: "Team",
     accessor: "team_name",
@@ -76,7 +82,7 @@ export const teamsColumnsDef = [
       />
     ),
   },
-  { Header: "Rating", accessor: "rating" },
+  { Header: "Rating", accessor: "rating", width: 30 },
   {
     Header: "Win Rate",
     accessor: "win_rate",
@@ -100,5 +106,78 @@ export const teamsColumnsDef = [
         radiantWin={row.original.matches[0].radiant_win}
       />
     ),
+  },
+];
+
+export const bestTeamColumnsDef = [
+  {
+    Header: "ID",
+    accessor: (item) => item.match_id + " " + item.league_name,
+
+    Cell: ({ row }) => (
+      <MatchId
+        matchId={row.original.match_id}
+        leagueName={row.original.league_name}
+      />
+    ),
+  },
+  {
+    Header: "Result",
+    accessor: (item) => winMatch(item.radiant, item.radiant_win),
+    Cell: ({ row }) => (
+      <MatchResult
+        isRadiant={row.original.radiant}
+        radiantWin={row.original.radiant_win}
+      />
+    ),
+  },
+  {
+    Header: "Opposing Team",
+    accessor: "opposing_team_name",
+    Cell: ({ row }) => (
+      <OpposingTeam
+        opposingTeamId={row.original.opposing_team_id}
+        opposingTeamName={row.original.opposing_team_name}
+        opposingTeamLogo={row.original.opposing_team_logo}
+      />
+    ),
+  },
+  {
+    Header: "Duration",
+    accessor: "duration",
+    Cell: ({ row }) => <MatchDuration matchDuration={row.original.duration} />,
+  },
+];
+
+export const bestTeamPlayersColumnsDef = [
+  {
+    Header: "Player",
+    accessor: "name",
+    Cell: ({ row }) => {
+      let player = getPlayer(row.original.account_id);
+      return (
+        <Player
+          teamTag={player.team_tag}
+          name={player.name}
+          avatar={player.avatar}
+          countryCode={player.country_code.toUpperCase()}
+          id={player.account_id}
+        />
+      );
+    },
+  },
+  {
+    Header: "Win Rate",
+    accessor: "win_rate",
+    Cell: ({ row }) => {
+      let player = getPlayer(row.original.account_id);
+      return (
+        <PlayerWinrate
+          wins={player.matches.wins}
+          losses={player.matches.losses}
+          winRate={player.matches.win_rate}
+        />
+      );
+    },
   },
 ];
