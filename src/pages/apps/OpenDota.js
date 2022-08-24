@@ -23,7 +23,7 @@ const OpenDota = () => {
     <div className="text-slate-400 text-sm flex flex-col items-center">
       <div
         style={bgImgStyle}
-        className="w-full h-[20vh] sm:h-[25vh] md:h-[35vh] lg:h-[45vh] animate-slideAndFadeIn  text-slate-200"
+        className="w-full h-48 sm:h-56 md:h-60 lg:h-64 animate-slideAndFadeIn text-slate-200"
       >
         <div className="h-full lg:max-w-7x flex flex-col justify-center items-center space-y-1 md:space-y-2">
           <h2
