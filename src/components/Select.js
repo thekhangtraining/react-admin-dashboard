@@ -1,8 +1,11 @@
 import { useSelect } from "downshift";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useStateContext } from "../contexts/ContextProvider";
 
 let classnames = require("classnames");
 const Select = ({ setState, options, isThemeSelect }) => {
+  const { theme } = useStateContext();
+
   const {
     isOpen,
     getToggleButtonProps,
@@ -16,7 +19,9 @@ const Select = ({ setState, options, isThemeSelect }) => {
     initialSelectedItem: options[0],
     onSelectedItemChange: ({ selectedItem }) => {
       setState(selectedItem.value);
-      if (isThemeSelect) localStorage.setItem("theme", selectedItem.value);
+      if (isThemeSelect) {
+        localStorage.setItem("theme", selectedItem.value);
+      }
     },
   });
 
@@ -32,7 +37,7 @@ const Select = ({ setState, options, isThemeSelect }) => {
           type="button"
           {...getToggleButtonProps()}
         >
-          <span>{selectedItem.label}</span>
+          <span>{isThemeSelect ? theme : selectedItem.label}</span>
           <span className={classnames(isOpen && "rotate-180")}>
             <IoMdArrowDropdown />
           </span>
