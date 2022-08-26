@@ -4,5 +4,5 @@ export { default as Navbar } from "./Navbar";
 export { default as Select } from "./Select";
 export { default as SettingsSidebar } from "./SettingsSidebar";
 export { default as Sidebar } from "./Sidebar";
+export { default as ThemeSelect } from "./ThemeSelect";
 export { default as Tooltip } from "./Tooltip";
-

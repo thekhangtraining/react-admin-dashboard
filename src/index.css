@@ -50,9 +50,17 @@ body {
   .theme-emerald {
     --color-text-base: 148, 163, 184;
     --color-text-strong: 226, 232, 240;
-    --color-fill: 1, 18, 13;
+    --color-fill: 3, 13, 8;
     --color-fill-1: 3, 43, 30;
     --color-primary: 16, 185, 129;
     --color-secondary: 1, 64, 44;
+  }
+  .theme-maroon {
+    --color-text-base: 148, 163, 184;
+    --color-text-strong: 226, 232, 240;
+    --color-fill: 20, 0, 4;
+    --color-fill-1: 54, 3, 13;
+    --color-primary: 242, 82, 115;
+    --color-secondary: 166, 35, 83;
   }
 }

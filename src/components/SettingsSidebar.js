@@ -1,7 +1,7 @@
 import React from "react";
 import { BsBoxArrowInRight } from "react-icons/bs";
 import { useStateContext } from "../contexts/ContextProvider";
-import { Select } from "./";
+import { ThemeSelect } from "./";
 
 const classnames = require("classnames");
 
@@ -9,14 +9,9 @@ const SettingsSidebar = () => {
   const {
     settingsSidebarOpen,
     setSettingsSidebarOpen,
-    setTheme,
     settingsSidebarBackdropRef,
   } = useStateContext();
 
-  const options = [
-    { value: "Nord", label: "Nord" },
-    { value: "Emerald", label: "Emerald" },
-  ];
   return (
     <div>
       {/* Backdrop */}
@@ -43,11 +38,7 @@ const SettingsSidebar = () => {
         <div className="px-4">
           <div className="flex items-center justify-between">
             <p>Theme</p>
-            <Select
-              setState={setTheme}
-              options={options}
-              isThemeSelect={true}
-            />
+            <ThemeSelect />
           </div>
         </div>
       </div>

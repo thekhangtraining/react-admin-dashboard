@@ -21,7 +21,7 @@ export const ContextProvider = ({ children }) => {
 
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
-    if (storedTheme !== null) setTheme(storedTheme);
+    if (storedTheme !== undefined) setTheme(storedTheme);
   }, []);
 
   // Close on click outside

@@ -14,7 +14,8 @@ const App = () => {
       className={classnames(
         "flex text-xs bg-skin-fill text-skin-base",
         theme === "Nord" && "theme-nord",
-        theme === "Emerald" && "theme-emerald"
+        theme === "Emerald" && "theme-emerald",
+        theme === "Maroon" && "theme-maroon"
       )}
     >
       <BrowserRouter>

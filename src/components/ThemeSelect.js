@@ -1,21 +1,29 @@
 import { useSelect } from "downshift";
 import { IoMdArrowDropdown } from "react-icons/io";
+import { useStateContext } from "../contexts/ContextProvider";
 
 let classnames = require("classnames");
-const Select = ({ setState, options }) => {
+const ThemeSelect = () => {
+  const { theme, setTheme } = useStateContext();
+  const options = [
+    { value: "Nord", label: "Nord" },
+    { value: "Emerald", label: "Emerald" },
+    { value: "Maroon", label: "Maroon" },
+  ];
+
   const {
     isOpen,
     getToggleButtonProps,
     getLabelProps,
     getMenuProps,
-    selectedItem,
     highlightedIndex,
     getItemProps,
   } = useSelect({
     items: options,
     initialSelectedItem: options[0],
     onSelectedItemChange: ({ selectedItem }) => {
-      setState(selectedItem.value);
+      setTheme(selectedItem.value);
+      localStorage.setItem("theme", selectedItem.value);
     },
   });
 
@@ -31,7 +39,7 @@ const Select = ({ setState, options }) => {
           type="button"
           {...getToggleButtonProps()}
         >
-          <span>{selectedItem.label}</span>
+          <span>{theme}</span>
           <span className={classnames(isOpen && "rotate-180")}>
             <IoMdArrowDropdown />
           </span>
@@ -49,7 +57,7 @@ const Select = ({ setState, options }) => {
                   className={classnames(
                     highlightedIndex === index && "bg-skin-secondary",
                     // Compare value instead of "selectedItem === item" as in the documentation
-                    selectedItem.value === item.value && "text-skin-primary",
+                    theme === item.value && "text-skin-primary",
                     "py-1.5 px-3 shadow-sm flex items-center w-full"
                   )}
                   {...getItemProps({ item, index })}
@@ -64,4 +72,4 @@ const Select = ({ setState, options }) => {
   );
 };
 
-export default Select;
+export default ThemeSelect;
