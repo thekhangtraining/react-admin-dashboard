@@ -3,7 +3,7 @@ import React, {
   useContext,
   useEffect,
   useRef,
-  useState
+  useState,
 } from "react";
 
 const StateContext = createContext();
@@ -18,6 +18,11 @@ export const ContextProvider = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [settingsSidebarOpen, setSettingsSidebarOpen] = useState(false);
   const [theme, setTheme] = useState("Nord");
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    if (storedTheme !== null) setTheme(storedTheme);
+  }, []);
 
   // Close on click outside
   useEffect(() => {

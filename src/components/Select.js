@@ -2,7 +2,7 @@ import { useSelect } from "downshift";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 let classnames = require("classnames");
-const Select = ({ setState, options }) => {
+const Select = ({ setState, options, isThemeSelect }) => {
   const {
     isOpen,
     getToggleButtonProps,
@@ -14,7 +14,10 @@ const Select = ({ setState, options }) => {
   } = useSelect({
     items: options,
     initialSelectedItem: options[0],
-    onSelectedItemChange: ({ selectedItem }) => setState(selectedItem.value),
+    onSelectedItemChange: ({ selectedItem }) => {
+      setState(selectedItem.value);
+      if (isThemeSelect) localStorage.setItem("theme", selectedItem.value);
+    },
   });
 
   return (

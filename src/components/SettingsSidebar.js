@@ -43,7 +43,11 @@ const SettingsSidebar = () => {
         <div className="px-4">
           <div className="flex items-center justify-between">
             <p>Theme</p>
-            <Select setState={setTheme} options={options} />
+            <Select
+              setState={setTheme}
+              options={options}
+              isThemeSelect={true}
+            />
           </div>
         </div>
       </div>
