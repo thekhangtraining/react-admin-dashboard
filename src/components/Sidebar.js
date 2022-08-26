@@ -7,45 +7,34 @@ import { NavLink } from "react-router-dom";
 import { Footer } from "../components";
 import { useStateContext } from "../contexts/ContextProvider";
 
-const Sidebar = () => {
-  const {
-    currentColorGradient,
-    sidebarOpen,
-    setSidebarOpen,
-    sidebar,
-    sidebarTrigger,
-  } = useStateContext();
+const classnames = require("classnames");
 
-  const activeLink =
-    "flex text-sm items-center py-1 px-2 my-0.5 rounded-sm drop-shadow-xl animate-slideIn";
-  const normalLink =
-    "flex text-sm items-center py-1 px-2 my-0.5 rounded-sm hover:bg-gradient-to-r from-sky-800";
+const Sidebar = () => {
+  const { sidebarOpen, setSidebarOpen, sidebarBackdropRef } = useStateContext();
 
   return (
-    <div>
+    <div className="text-sm text-skin-strong">
       {/* Sidebar backdrop */}
       <div
-        className={`fixed inset-0 bg-slate-900 bg-opacity-50 z-20 transition-opacity duration-200 ${
+        ref={sidebarBackdropRef}
+        className={`fixed inset-0 bg-skin-fill bg-opacity-50 z-20 transition-opacity duration-200 ${
           sidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"
         }`}
         aria-hidden="true"
       ></div>
       {/* Sidebar */}
       <div
-        id="sidebar"
-        ref={sidebar}
-        className={`flex flex-col fixed bg-slate-900 text-slate-200 z-20 left-0 top-0 h-screen overflow-y-auto w-56 p-1 shrink-0 transition-all duration-200 ease-in-out ${
+        className={`flex flex-col fixed px-2 py-1 gap-2 bg-skin-fill border-r border-border-base -x-bright z-20 left-0 top-0 h-screen overflow-y-auto w-56 shrink-0 transition-all duration-200 ease-in-out ${
           sidebarOpen ? "translate-x-0" : "-translate-x-60"
         }`}
       >
         {/* Sidebar header */}
-        <div className="flex justify-between gap-x-2 items-center p-2 pb-0">
+        <div className="flex justify-between gap-x-2 items-center pb-0">
           <Footer />
 
           {/* Close button */}
           <button
-            ref={sidebarTrigger}
-            className="hover:text-sky-500"
+            className="hover:"
             onClick={() => setSidebarOpen(!sidebarOpen)}
             aria-controls="sidebar"
             aria-expanded={sidebarOpen}
@@ -54,7 +43,7 @@ const Sidebar = () => {
           </button>
         </div>
         {/* NavLinks */}
-        <div className="grow p-2 py-1">
+        <div className="grow flex flex-col gap-2">
           {[
             {
               title: "Landing Pages",
@@ -95,8 +84,8 @@ const Sidebar = () => {
               ],
             },
           ].map((item) => (
-            <div key={item.title}>
-              <p className="uppercase truncate mt-2 text-sm text-sky-500">
+            <div key={item.title} className="flex flex-col">
+              <p className="uppercase truncate text-sm text-skin-primary">
                 {item.title}
               </p>
               {item.links.map((link) => (
@@ -104,14 +93,15 @@ const Sidebar = () => {
                   onClick={() => setSidebarOpen(false)}
                   to={item.baseAddress + link.address}
                   key={link.name}
-                  style={({ isActive }) => ({
-                    background: isActive ? currentColorGradient : "",
-                  })}
                   className={({ isActive }) =>
-                    isActive ? activeLink : normalLink
+                    classnames(
+                      "flex items-center my-0.5 rounded-sm py-0.5 px-2 mx-2",
+                      (isActive && "animate-slideIn bg-skin-secondary") ||
+                        "hover:bg-skin-secondary"
+                    )
                   }
                 >
-                  <div className="flex items-center space-x-2 h-[1.25rem]">
+                  <div className="flex items-center space-x-2">
                     <div>{link.icon}</div>
                     <span className="truncate capitalize">{link.name}</span>
                   </div>

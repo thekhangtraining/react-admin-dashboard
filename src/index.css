@@ -37,3 +37,22 @@ body {
 ::-webkit-scrollbar-button {
   display: none;
 }
+
+@layer base {
+  .theme-nord {
+    --color-text-base: 148, 163, 184;
+    --color-text-strong: 226, 232, 240;
+    --color-fill: 15, 23, 42;
+    --color-fill-1: 30, 41, 59;
+    --color-primary: 14, 165, 233;
+    --color-secondary: 12, 74, 110;
+  }
+  .theme-emerald {
+    --color-text-base: 148, 163, 184;
+    --color-text-strong: 226, 232, 240;
+    --color-fill: 1, 18, 13;
+    --color-fill-1: 3, 43, 30;
+    --color-primary: 16, 185, 129;
+    --color-secondary: 1, 64, 44;
+  }
+}

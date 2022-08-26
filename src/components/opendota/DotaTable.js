@@ -56,18 +56,20 @@ const DotaTable = ({
   );
 
   return (
-    <div className="w-full text-xs text-slate-400 rounded-sm overflow-auto flex flex-col space-y-2 py-2 my-2">
+    <div className="w-full text-xs rounded-sm overflow-auto flex flex-col space-y-2 py-2 my-2">
       <div className="flex items-end justify-between">
-        <h2 className="text-slate-200 font-bold text-sm">{tableTitle}</h2>
+        <h2 className="font-bold text-sm">
+          {tableTitle}
+        </h2>
         {disableGlobalFilter ? null : (
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
         )}
       </div>
-      <table className="w-full border border-slate-800" {...getTableProps()}>
+      <table className="w-full border border-border-base" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr
-              className="text-slate-200 border-b border-slate-800 bg-gradient-to-r from-sky-800/30 via-sky-900/60 to-sky-800/30"
+              className="text-skin-strong border-b border-border-base bg-skin-secondary"
               {...headerGroup.getHeaderGroupProps()}
             >
               {headerGroup.headers.map((column) => (
@@ -96,14 +98,14 @@ const DotaTable = ({
             </tr>
           ))}
         </thead>
-        <tbody
-          {...getTableBodyProps()}
-          className="divide-y divide-slate-800 bg-gradient-to-r from-slate-900/30 via-slate-900/50 to-slate-900"
-        >
+        <tbody {...getTableBodyProps()}>
           {page.map((row) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr
+                className="border-b border-border-base"
+                {...row.getRowProps()}
+              >
                 {row.cells.map((cell) => {
                   return (
                     <td

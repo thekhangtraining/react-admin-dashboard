@@ -2,7 +2,7 @@ import Flags from "country-flag-icons/react/3x2";
 import { differenceInDays, fromUnixTime, secondsToMinutes } from "date-fns";
 import heroes from "../../data/opendota/heroes.json";
 import dotaPlayers from "../../data/opendota/players.json";
-import { Tooltip } from "./";
+import { Tooltip } from "../";
 
 const classnames = require("classnames");
 const placeholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
@@ -51,46 +51,54 @@ export const PlayerTeam = ({ teamLogo, teamName }) => (
         e.target.src = placeholderPath;
       }}
     />
-    <p className="text-sky-500">{teamName}</p>
+    <p className="text-skin-primary">{teamName}</p>
   </div>
 );
 
 export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
   const Flag = countryCode !== "" ? Flags[countryCode] : null;
   return (
-    <div className="flex items-center space-x-2">
-      <img
-        src={avatar}
-        alt=""
-        className="rounded-full h-5 w-5 md:h-6 md:w-6"
-        // Placeholder image
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = placeholderPath;
-        }}
-      />
+    <Tooltip label={`${teamTag}. ${name} (${countryCode})`}>
+      <div className="flex items-center space-x-2 w-48 truncate">
+        <img
+          src={avatar}
+          alt=""
+          className="rounded-full h-5 w-5 md:h-6 md:w-6"
+          // Placeholder image
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = placeholderPath;
+          }}
+        />
 
-      <div className="flex space-x-1 items-center">
-        <div className="flex flex-col">
-          <div className="flex items-center">
-            {teamTag !== "" && teamTag !== null ? (
-              <span>{`${teamTag}.`}</span>
-            ) : (
-              ""
-            )}
-            <p className="text-sky-500 mx-1">{name}</p>
-            {countryCode !== "" ? <Flag className="w-3 h-2" /> : null}
+        <div className="flex space-x-1 items-center">
+          <div className="flex flex-col">
+            <div className="flex items-center">
+              {teamTag !== "" && teamTag !== null ? (
+                <span>{`${teamTag}.`}</span>
+              ) : (
+                ""
+              )}
+              <p className="text-skin-primary mx-1">{name}</p>
+              {countryCode !== "" ? <Flag className="w-3 h-2" /> : null}
+            </div>
+            <p>{id}</p>
           </div>
-          <p>{id}</p>
         </div>
       </div>
-    </div>
+    </Tooltip>
   );
 };
 
+export const PlayerPersona = ({ persona }) => (
+  <Tooltip label={persona}>
+    <p className="w-28 truncate">{persona}</p>
+  </Tooltip>
+);
+
 export const Team = ({ name, teamTag, logo, id }) => {
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-2 w-40">
       <img
         src={logo}
         alt=""
@@ -102,7 +110,7 @@ export const Team = ({ name, teamTag, logo, id }) => {
       />
       <div className="flex flex-col">
         <div className="flex space-x-1 items-center">
-          <span className="text-sky-500">{name}</span>
+          <span className="text-skin-primary">{name}</span>
           {teamTag !== "" && teamTag !== null ? (
             <span>{`${teamTag}`}</span>
           ) : (
@@ -138,7 +146,7 @@ export const TeamLastMatch = ({
         >
           {winMatch(isRadiant, radiantWin) ? " Win " : " Loss "}
         </span>
-        vs <span className="text-sky-500">{opposingTeam}</span>
+        vs <span className="text-skin-primary">{opposingTeam}</span>
       </span>
     </p>
     <p>{league}</p>
@@ -158,7 +166,7 @@ export const TeamWinrate = ({ winRate, wins, losses }) => (
 export const MatchId = ({ matchId, leagueName, startTime }) => (
   <div className="flex flex-col">
     <Tooltip label={leagueName}>
-      <p className="w-48 truncate text-sky-500">{leagueName}</p>
+      <p className="w-48 truncate text-skin-primary">{leagueName}</p>
     </Tooltip>
     <p>
       <span className="mx-1">
@@ -205,7 +213,7 @@ export const OpposingTeam = ({
     />
 
     <div className="flex flex-col">
-      <p className="text-sky-500">{opposingTeamName}</p>
+      <p className="text-skin-primary">{opposingTeamName}</p>
       <p>{opposingTeamId}</p>
     </div>
   </div>

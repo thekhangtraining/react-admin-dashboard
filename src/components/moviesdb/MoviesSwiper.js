@@ -9,13 +9,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { MovieCard } from ".";
 import "../../styles/swiper.css";
 
-const coverflowEffect = {
-  rotate: 30,
-  stretch: 0,
-  depth: 50,
-  modifier: 1,
-  slideShadows: true,
-};
+// const coverflowEffect = {
+//   rotate: 30,
+//   stretch: 0,
+//   depth: 50,
+//   modifier: 1,
+//   slideShadows: true,
+// };
 
 const MoviesSwiper = ({ moviesList, effect }) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,33 +43,33 @@ const MoviesSwiper = ({ moviesList, effect }) => {
           breakpoints={{
             350: {
               slidesPerView: 2,
-              spaceBetween: 5,
+              spaceBetween: 3,
             },
             470: {
               slidesPerView: 3,
-              spaceBetween: 10,
+              spaceBetween: 3,
             },
             650: {
               slidesPerView: 4,
-              spaceBetween: 10,
+              spaceBetween: 3,
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 10,
+              spaceBetween: 3,
             },
             1200: {
               slidesPerView: 3,
-              spaceBetween: 10,
+              spaceBetween: 3,
             },
             1500: {
               slidesPerView: 4,
-              spaceBetween: 10,
+              spaceBetween: 3,
             },
           }}
           modules={[Pagination, Navigation, EffectCoverflow]}
           grabCursor={true}
-          effect={effect}
-          coverflowEffect={coverflowEffect}
+          // effect={effect}
+          // coverflowEffect={coverflowEffect}
         >
           {moviesList.map((item) => (
             <SwiperSlide key={`swiper-slide-${item.id}`}>

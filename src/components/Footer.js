@@ -4,10 +4,10 @@ import { Avatar } from "./";
 
 const Footer = () => {
   return (
-    <div className="flex justify-center items-center gap-x-2 text-slate-200 font-bold text-sm">
+    <div className="flex justify-center items-center gap-x-2 font-bold text-sm">
       <Avatar round />
       <div className="flex-col gap-y-1">
-        <div className="text-xs font-[Pacifico] p-0.5 text-slate-200">The-Khang Nguyen</div>
+        <div className="text-xs font-[Pacifico] p-0.5">The-Khang Nguyen</div>
         <div className="flex justify-center text-xl gap-x-2">
           <a
             href="https://www.linkedin.com/in/thekhangnguyen/"

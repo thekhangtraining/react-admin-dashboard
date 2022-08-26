@@ -7,9 +7,8 @@ import {
   bestTeamColumnsDef,
   bestTeamPlayersColumnsDef,
   playersColumnsDef,
-  teamsColumnsDef
+  teamsColumnsDef,
 } from "../../components/opendota/ColumnsDefs";
-import bgImg from "../../data/images/opendota/background.jpg";
 import openDotaLogo from "../../data/images/opendota/opendota.jpg";
 import bestTeamMatches from "../../data/opendota/best_team_matches.json";
 import bestTeamPlayers from "../../data/opendota/best_team_players.json";
@@ -17,22 +16,15 @@ import dotaPlayers from "../../data/opendota/players.json";
 import dotaTeams from "../../data/opendota/teams.json";
 
 const OpenDota = () => {
-  const bgImgStyle = {
-    background: `linear-gradient(to right, rgba(12,74,110,0.2), rgba(15,23,42,0.2)), url(${bgImg}) no-repeat`,
-    backgroundSize: "cover",
-  };
-  const textShadow = { textShadow: "3px 3px 3px rgb(12,74,110)" };
+  const textShadow = { textShadow: "3px 3px 3px rgb(0,0,0)" };
 
   return (
-    <div className="text-slate-400 text-sm flex flex-col items-center">
-      <div
-        style={bgImgStyle}
-        className="w-full h-48 sm:h-60 md:h-72 lg:h-80 xl:h-96 animate-slideAndFadeIn text-slate-200"
-      >
+    <div className="text-sm flex flex-col items-center">
+      <div className="w-full h-48 sm:h-60 md:h-72 lg:h-80 xl:h-96 imanate-slideAndFadeIn bg-opendota bg-no-repeat bg-cover ">
         <div className="h-full lg:max-w-7x flex flex-col justify-center items-center space-y-1 md:space-y-2">
           <h2
             style={textShadow}
-            className="text-xl md:text-2xl lg:text-3xl xl:text-4xl drop-shadow-lg font-bold rounded"
+            className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-skin-strong font-bold rounded"
           >
             OpenDota
           </h2>
@@ -83,7 +75,7 @@ const OpenDota = () => {
           />
         </div>
         <div className="flex w-full">
-          <div className="flex flex-col space-y-1">
+          <div className="flex flex-col space-y-1 items-center w-full">
             <strong className="text-xs md:text-sm">Powered by</strong>
             <a
               href="https://www.opendota.com/"

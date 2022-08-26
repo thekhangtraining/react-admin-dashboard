@@ -3,7 +3,7 @@ import React, {
   useContext,
   useEffect,
   useRef,
-  useState,
+  useState
 } from "react";
 
 const StateContext = createContext();
@@ -13,26 +13,23 @@ export const ContextProvider = ({ children }) => {
     "linear-gradient(to right, #075985, #7e22ce)"
   );
   const [currentColor, setCurrentColor] = useState("#075985");
-  const sidebarTrigger = useRef(null);
-  const sidebar = useRef(null);
+  const settingsSidebarBackdropRef = useRef(null);
+  const sidebarBackdropRef = useRef(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
-  const [sidebarExpanded, setSidebarExpanded] = useState(
-    storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
-  );
+  const [settingsSidebarOpen, setSettingsSidebarOpen] = useState(false);
+  const [theme, setTheme] = useState("Nord");
 
   // Close on click outside
   useEffect(() => {
     const clickHandler = ({ target }) => {
-      if (!sidebar.current || !sidebarTrigger.current) return;
       if (
-        !sidebarOpen ||
-        sidebar.current.contains(target) ||
-        sidebarTrigger.current.contains(target)
+        !sidebarBackdropRef.current.contains(target) &&
+        !settingsSidebarBackdropRef.current.contains(target)
       )
         return;
 
       setSidebarOpen(false);
+      setSettingsSidebarOpen(false);
     };
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
@@ -41,21 +38,13 @@ export const ContextProvider = ({ children }) => {
   // Close if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }) => {
-      if (!sidebarOpen || keyCode !== 27) return;
+      if ((!sidebarOpen && !settingsSidebarOpen) || keyCode !== 27) return;
       setSidebarOpen(false);
+      setSettingsSidebarOpen(false);
     };
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   });
-
-  useEffect(() => {
-    localStorage.setItem("sidebar-expanded", sidebarExpanded);
-    if (sidebarExpanded) {
-      document.querySelector("body").classList.add("sidebar-expanded");
-    } else {
-      document.querySelector("body").classList.remove("sidebar-expanded");
-    }
-  }, [sidebarExpanded]);
 
   return (
     <StateContext.Provider
@@ -66,10 +55,12 @@ export const ContextProvider = ({ children }) => {
         setCurrentColorGradient,
         sidebarOpen,
         setSidebarOpen,
-        sidebar,
-        sidebarTrigger,
-        sidebarExpanded,
-        setSidebarExpanded,
+        setSettingsSidebarOpen,
+        settingsSidebarOpen,
+        theme,
+        setTheme,
+        sidebarBackdropRef,
+        settingsSidebarBackdropRef,
       }}
     >
       {children}

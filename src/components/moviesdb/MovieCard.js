@@ -11,12 +11,12 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { LoveButton, RatingButton, TrailerButton, WatchButton } from ".";
 import configs from "../../configs.json";
+import { useStateContext } from "../../contexts/ContextProvider";
 import movieGenres from "../../data/movie_genres.json";
 import "../../styles/modal.css";
 import "../../styles/swiper.css";
 
-// TODO: Revenue graph for each movie, compared to budget
-// https://developers.themoviedb.org/3/movies/get-movie-details
+let classnames = require("classnames");
 
 const MovieCard = ({
   movieId,
@@ -44,6 +44,7 @@ const MovieCard = ({
   const [directors, setDirectors] = useState([]);
   const [writers, setWriters] = useState([]);
   const [movieImgs, setMovieImgs] = useState([]);
+  const { theme } = useStateContext();
 
   const modalStyle = {
     content: {
@@ -54,8 +55,8 @@ const MovieCard = ({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       padding: "1rem",
-      background: "rgba(15, 23, 42, 0.9)",
-      borderColor: "rgba(15, 23, 42, 0.9)",
+      background: "rgba(0, 0, 0, 0.8)",
+      borderColor: "rgba(0, 0, 0, 0.8)",
       // Make modal swipable
       maxHeight: "80vh",
       overflowY: "auto",
@@ -125,7 +126,7 @@ const MovieCard = ({
   Modal.setAppElement("#root");
 
   return (
-    <div className="flex flex-col bg-gray-900 w-full h-full text-xs text-slate-400">
+    <div className="flex flex-col border border-border-base w-full h-full text-xs">
       {/* The modal for the movie card */}
       <Modal
         isOpen={modalIsOpen}
@@ -136,20 +137,25 @@ const MovieCard = ({
         onAfterOpen={() => (document.body.style.overflow = "hidden")}
         onAfterClose={() => (document.body.style.overflow = "unset")}
       >
-        <div className="grid grid-cols-12 gap-4 text-xs lg:text-sm text-slate-400">
+        <div
+          className={classnames(
+            "grid grid-cols-12 gap-4 text-xs lg:text-sm text-skin-base",
+            theme === "Nord" && "theme-nord",
+            theme === "Emerald" && "theme-emerald"
+          )}
+        >
           <div className="col-span-12 md:col-start-2 md:col-span-10 xl:col-start-3 xl:col-span-8">
             {/* Close modal button */}
             <div className="flex justify-end">
-              <button
-                onClick={() => setModalIsOpen(!modalIsOpen)}
-                className="hover:text-sky-400"
-              >
+              <button onClick={() => setModalIsOpen(!modalIsOpen)}>
                 <IoCloseSharp className="h-5 w-5" />
               </button>
             </div>
             <div className="flex flex-col space-y-2">
               {/* Modal title */}
-              <h2 className="text-sky-400 font-medium text-sm">{movieTitle}</h2>
+              <h2 className="font-bold text-sm text-skin-primary">
+                {movieTitle}
+              </h2>
               {/* Modal backdrop */}
               <div className="flex flex-col justify-center items-center sm:flex-row sm:mr-2 sm:items-start">
                 <div>
@@ -189,7 +195,7 @@ const MovieCard = ({
                         </div>
                         <div className="flex flex-col justify-center items-center leading-tight tracking-tight">
                           <p>
-                            <span className="font-bold text-slate-200 text-base">
+                            <span className="font-bold text-base">
                               {voteAvg}{" "}
                             </span>{" "}
                             /10
@@ -209,8 +215,8 @@ const MovieCard = ({
                         <div className="text-red-500">
                           <BsFillHeartFill />
                         </div>
-                        <div className="flex flex-col justify-center items-center leading-tight tracking-tight text-slate-200">
-                          <p className="font-bold text-slate-200 text-base">
+                        <div className="flex flex-col justify-center items-center leading-tight tracking-tight">
+                          <p className="font-bold text-base">
                             {Math.round(popularity)}
                           </p>
                         </div>
@@ -249,9 +255,7 @@ const MovieCard = ({
                           />
                           <p className="">
                             {member.name}
-                            <span className="ml-3 text-sky-500">
-                              {member.character}
-                            </span>
+                            <span className="ml-3">{member.character}</span>
                           </p>
                         </div>
                       ))}
@@ -361,7 +365,7 @@ const MovieCard = ({
           onClick={() => setModalIsOpen(true)}
           className="flex flex-col text-left"
         >
-          <h2 className="font-medium line-clamp-1 text-amber-400">
+          <h2 className="font-bold line-clamp-1 text-skin-primary">
             {movieTitle}
           </h2>
           <p>({releaseDate.slice(0, 4)})</p>
@@ -371,7 +375,7 @@ const MovieCard = ({
           {genres.slice(0, 2).map((item) => (
             <span
               key={item}
-              className="text-black px-1 font-medium bg-slate-100 rounded-sm truncate text-center border border-slate-400"
+              className="px-1 rounded-sm truncate text-center border border-slate-600 text-skin-base"
             >
               {item}
             </span>

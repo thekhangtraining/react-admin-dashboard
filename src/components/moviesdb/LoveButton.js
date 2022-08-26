@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const LoveButton = ({ movieId, movieTitle, popularity }) => {
   const LoveNoti = () => (
-    <div className="text-slate-400">
+    <div className="text-skin-strong">
       I'm glad that you enjoyed the movie{" "}
       <span className="text-[rgb(4,120,87)]">{movieTitle}</span>
     </div>
@@ -25,7 +25,7 @@ const LoveButton = ({ movieId, movieTitle, popularity }) => {
         data-for="love-tooltip"
         type="button"
         // Adhoc styling
-        className="flex items-center rounded px-1 md:py-0.5 border border-slate-200 hover:border-black group-hover:[&>p]:text-black group-hover:bg-pink-100"
+        className="flex items-center rounded px-1 md:py-0.5 border border-slate-500 hover:border-black group-hover:[&>p]:text-black group-hover:bg-pink-100"
         // Show notification
         onClick={notify}
       >

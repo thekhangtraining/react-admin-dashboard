@@ -1,15 +1,26 @@
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
-import { Navbar, Sidebar } from "./components";
+import { Navbar, SettingsSidebar, Sidebar } from "./components";
+import { useStateContext } from "./contexts/ContextProvider";
 import { Construction, MoviesDB, OpenDota } from "./pages";
 
+let classnames = require("classnames");
+
 const App = () => {
+  const { theme } = useStateContext();
   return (
-    <div className="flex">
+    <div
+      className={classnames(
+        "flex text-xs bg-skin-fill text-skin-base",
+        theme === "Nord" && "theme-nord",
+        theme === "Emerald" && "theme-emerald"
+      )}
+    >
       <BrowserRouter>
         <Sidebar />
-        <div className="w-full bg-gradient-to-tr from-slate-900 via-[#141e36] to-slate-900">
+        <SettingsSidebar />
+        <div className="w-full">
           <div className="w-full">
             <Navbar />
           </div>
@@ -19,7 +30,7 @@ const App = () => {
               <Route
                 path="/"
                 key="home"
-                element={<Navigate to="/apps/MoviesDB" />}
+                element={<Navigate to="/apps/OpenDota" />}
               />
 
               {/* Landing pages */}

@@ -1,10 +1,40 @@
 const plugin = require("tailwindcss/plugin");
 
+function withOpacity(varName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgba(var(${varName}), ${opacityValue})`;
+    }
+    return `rgb(var(${varName}))`;
+  };
+}
+
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   darkMode: "class",
   theme: {
     extend: {
+      colors: {
+        "border-base": withOpacity("--color-fill-1"),
+      },
+      textColor: {
+        skin: {
+          base: withOpacity("--color-text-base"),
+          strong: withOpacity("--color-text-strong"),
+          primary: withOpacity("--color-primary"),
+        },
+      },
+      backgroundColor: {
+        skin: {
+          fill: withOpacity("--color-fill"),
+          "fill-1": withOpacity("--color-fill-1"),
+          primary: withOpacity("--color-primary"),
+          secondary: withOpacity("--color-secondary"),
+        },
+      },
+      backgroundImage: {
+        opendota: "url('./data/images/opendota/background.jpg')",
+      },
       fontFamily: {
         firaCond: ["Fira Sans Condensed", "sans-serif"],
       },
@@ -61,19 +91,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require("@tailwindcss/line-clamp"),
-
-    // add custom variant for expanding sidebar
-    plugin(({ addVariant, e }) => {
-      addVariant("sidebar-expanded", ({ modifySelectors, separator }) => {
-        modifySelectors(
-          ({ className }) =>
-            `.sidebar-expanded .${e(
-              `sidebar-expanded${separator}${className}`
-            )}`
-        );
-      });
-    }),
-  ],
+  plugins: [require("@tailwindcss/line-clamp")],
 };

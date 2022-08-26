@@ -7,12 +7,13 @@ import {
   OpposingTeam,
   Player,
   PlayerHeroes,
+  PlayerPersona,
   PlayerTeam,
   PlayerWinrate,
   Team,
   TeamLastMatch,
   TeamWinrate,
-  winMatch,
+  winMatch
 } from "../../components/opendota/ColumnsComponents";
 
 export const playersColumnsDef = [
@@ -29,7 +30,11 @@ export const playersColumnsDef = [
       />
     ),
   },
-  { Header: "Persona", accessor: "personaname", width: 50 },
+  {
+    Header: "Persona",
+    accessor: "personaname",
+    Cell: ({ value }) => <PlayerPersona persona={value} />,
+  },
   {
     Header: "Team",
     accessor: "team_name",
@@ -59,7 +64,7 @@ export const playersColumnsDef = [
   },
   {
     Header: "Heroes",
-    accessor: "matches.heroes",
+    accessor: "matches.heroes[0]",
     Cell: ({ row }) => (
       <PlayerHeroes
         heroes={row.original.matches.heroes}

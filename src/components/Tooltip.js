@@ -38,13 +38,14 @@ const Tooltip = ({ children, label, placement = "top" }) => {
   );
 
   return (
-    <div className="shrink-0">
+    <div className="shrink-0 flex items-center justify-start">
       {cloneElement(children, getReferenceProps({ ref, ...children.props }))}
       {open && (
         <div
           {...getFloatingProps({
             ref: floating,
-            className: "bg-zinc-900/70 px-2 py-1 rounded-sm text-slate-200",
+            className:
+              "bg-skin-fill-1 px-2 py-1 rounded-sm text-skin-strong text-xs",
             style: {
               position: strategy,
               top: y ?? 0,
