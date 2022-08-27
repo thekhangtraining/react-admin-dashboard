@@ -57,8 +57,11 @@ const TrailerButton = ({ movieTitle, movieId, posterPath }) => {
       });
   }, [movieId]);
 
+  Modal.setAppElement(document.getElementById("root"));
+
   return (
     <div className="w-full">
+
       {/* Modal for playing trailer */}
       <Modal
         isOpen={modalIsOpen}
@@ -70,11 +73,12 @@ const TrailerButton = ({ movieTitle, movieId, posterPath }) => {
           className={classnames(
             "w-full h-full",
             theme === "Nord" && "theme-nord",
-            theme === "Emerald" && "theme-emerald"
+            theme === "Emerald" && "theme-emerald",
+            theme === "Maroon" && "theme-maroon"
           )}
         >
           {/* Close modal button */}
-          <div className="flex justify-end">
+          <div className="flex justify-end text-skin-base">
             <button
               onClick={() => setModalIsOpen(!modalIsOpen)}
               className="hover:text-skin-primary"

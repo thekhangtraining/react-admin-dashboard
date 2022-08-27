@@ -42,7 +42,7 @@ module.exports = {
         "2xs": ["0.625rem", "0.75rem"],
       },
       animation: {
-        fadeIn: "fadeIn 2s",
+        fadeIn: "fadeIn 0.2s",
         slideIn: "slideIn 0.5s",
         slideAndFadeIn: "slideAndFadeIn 1s",
         float: "float 4s ease-in-out infinite",

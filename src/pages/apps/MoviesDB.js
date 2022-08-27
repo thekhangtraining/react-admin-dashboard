@@ -54,7 +54,6 @@ const MoviesDB = () => {
         {/* <h2 className="text-pink-400 truncate font-[Pacifico]">
           Lu Xinh muốn xem phim gì ạ? 🥰
         </h2> */}
-
         <div className="grid grid-cols-2 gap-x-6 mb-6">
           <div className="col-span-2 lg:col-span-1">
             <h2 className="truncate mt-4 font-bold">Weekly Trending Movies</h2>

@@ -7,7 +7,7 @@ import {
   bestTeamColumnsDef,
   bestTeamPlayersColumnsDef,
   playersColumnsDef,
-  teamsColumnsDef,
+  teamsColumnsDef
 } from "../../components/opendota/ColumnsDefs";
 import openDotaLogo from "../../data/images/opendota/opendota.jpg";
 import bestTeamMatches from "../../data/opendota/best_team_matches.json";
@@ -20,8 +20,8 @@ const OpenDota = () => {
 
   return (
     <div className="text-sm flex flex-col items-center">
-      <div className="w-full h-48 sm:h-60 md:h-72 lg:h-80 xl:h-96 imanate-slideAndFadeIn bg-opendota bg-no-repeat bg-cover ">
-        <div className="h-full lg:max-w-7x flex flex-col justify-center items-center space-y-1 md:space-y-2">
+      <div className="w-full h-48 sm:h-60 md:h-72 flex justify-center lg:h-80 xl:h-96 animate-slideAndFadeIn bg-opendota bg-no-repeat bg-cover">
+        <div className="h-full lg:max-w-7xl flex flex-col justify-center items-center space-y-1 md:space-y-2">
           <h2
             style={textShadow}
             className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-skin-strong font-bold rounded"
