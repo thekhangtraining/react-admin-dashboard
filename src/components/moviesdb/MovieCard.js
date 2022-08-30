@@ -120,11 +120,17 @@ const MovieCard = ({
                   src={`https://image.tmdb.org/t/p/w500${backdropPath}`}
                   alt=""
                   className="sm:hidden"
+                  onError={(e) =>
+                    (e.target.src = `https://image.tmdb.org/t/p/w500${backdropPath}`)
+                  }
                 />
                 <img
                   src={`https://image.tmdb.org/t/p/w500${posterPath}`}
                   alt=""
                   className="hidden sm:inline-flex"
+                  onError={(e) =>
+                    (e.target.src = `https://image.tmdb.org/t/p/w500${posterPath}`)
+                  }
                 />
                 {/* Movie genres */}
                 <div className="flex flex-start items-start space-x-1 mt-2 justify-center">
@@ -209,6 +215,9 @@ const MovieCard = ({
                           className="rounded-md h-9 w-6.5"
                           src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                           alt=""
+                          onError={(e) =>
+                            (e.target.src = `https://image.tmdb.org/t/p/w500${member.profile_path}`)
+                          }
                         />
                         <p>
                           {member.name}
@@ -252,6 +261,9 @@ const MovieCard = ({
                               className="rounded-md h-9 w-6.5"
                               src={`https://image.tmdb.org/t/p/w500${member.profile_path}`}
                               alt=""
+                              onError={(e) =>
+                                (e.target.src = `https://image.tmdb.org/t/p/w500${member.profile_path}`)
+                              }
                             />
                             <p>{member.name}</p>
                           </div>
@@ -301,6 +313,9 @@ const MovieCard = ({
                     className="rounded-sm"
                     src={`https://image.tmdb.org/t/p/w500${img.file_path}`}
                     alt=""
+                    onError={(e) =>
+                      (e.target.src = `https://image.tmdb.org/t/p/w500${img.file_path}`)
+                    }
                   />
                 </SwiperSlide>
               ))}
@@ -315,6 +330,9 @@ const MovieCard = ({
           className="object-contain h-full shrink-0"
           src={`https://image.tmdb.org/t/p/w500${posterPath}`}
           alt=""
+          onError={(e) =>
+            (e.target.src = `https://image.tmdb.org/t/p/w500${posterPath}`)
+          }
           onLoad={() => setIsLoading(false)}
         />
       </button>
