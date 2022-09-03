@@ -32,6 +32,7 @@ module.exports = {
           secondary: withOpacity("--color-secondary"),
         },
       },
+      // fill: { skin: { primary: withOpacity("--color-primary") } },
       backgroundImage: {
         opendota: "url('./data/images/opendota/background.jpg')",
       },

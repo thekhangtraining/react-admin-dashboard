@@ -46,7 +46,7 @@ const Modal = forwardRef((props, ref) => {
         ref={modalOverlayRef}
         className="z-20 fixed inset-0 bg-black/50"
       ></div>
-      <div className="flex justify-center h-4/5 w-full px-4 py-6 overflow-y-auto fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-skin-fill bg-opacity-80 z-20 animate-fadeIn">
+      <div className="flex justify-center h-[80vh] w-full px-4 py-6 overflow-y-auto fixed top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2 bg-skin-fill bg-opacity-80 z-20 animate-fadeIn">
         <div className="w-full lg:max-w-4xl">{props.children}</div>
       </div>
     </div>,

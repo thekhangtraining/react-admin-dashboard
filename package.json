@@ -12,6 +12,7 @@
     "axios-retry": "^3.3.1",
     "classnames": "^2.3.1",
     "country-flag-icons": "^1.5.5",
+    "d3": "^7.6.1",
     "date-fns": "^2.29.2",
     "downshift": "^6.1.9",
     "postcss": "^8.4.16",

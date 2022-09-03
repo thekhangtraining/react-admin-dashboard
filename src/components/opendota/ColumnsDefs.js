@@ -13,7 +13,7 @@ import {
   Team,
   TeamLastMatch,
   TeamWinrate,
-  winMatch
+  winMatch,
 } from "../../components/opendota/ColumnsComponents";
 
 export const playersColumnsDef = [

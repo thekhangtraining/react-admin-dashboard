@@ -57,17 +57,6 @@ const Sidebar = () => {
               ],
             },
             {
-              title: "Dashboards",
-              baseAddress: "/dashboards",
-              links: [
-                {
-                  name: "Analytics",
-                  icon: <BsGraphUp />,
-                  address: "/analytics",
-                },
-              ],
-            },
-            {
               title: "Apps",
               baseAddress: "/apps",
               links: [
@@ -80,6 +69,11 @@ const Sidebar = () => {
                   name: "OpenDota",
                   icon: <IoLogoGameControllerB />,
                   address: "/OpenDota",
+                },
+                {
+                  name: "Stocks",
+                  icon: <BsGraphUp />,
+                  address: "/Stocks",
                 },
               ],
             },

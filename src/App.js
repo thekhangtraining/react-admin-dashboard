@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Navbar, SettingsSidebar, Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
-import { Construction, MoviesDB, OpenDota } from "./pages";
+import { Construction, MoviesDB, OpenDota, Stocks } from "./pages";
 
 let classnames = require("classnames");
 
@@ -41,24 +41,18 @@ const App = () => {
                 element={<Construction />}
               />
 
-              {/* Admin dashboards */}
-              <Route
-                path="/dashboards/analytics"
-                key="dash-analytics"
-                element={<Construction />}
-              />
-
               {/* Apps of many popular apps */}
-              <Route
-                path="/apps/OpenDota"
-                key="OpenDota"
-                element={<OpenDota />}
-              />
               <Route
                 path="/apps/MoviesDB"
                 key="MoviesDB"
                 element={<MoviesDB />}
               />
+              <Route
+                path="/apps/OpenDota"
+                key="OpenDota"
+                element={<OpenDota />}
+              />
+              <Route path="/apps/Stocks" key="Stocks" element={<Stocks />} />
             </Routes>
           </main>
         </div>

@@ -51,9 +51,6 @@ const MoviesDB = () => {
   return (
     <div className="p-4 flex justify-center text-sm">
       <div className="w-full lg:max-w-7xl">
-        {/* <h2 className="text-pink-400 truncate font-[Pacifico]">
-          Lu Xinh muốn xem phim gì ạ? 🥰
-        </h2> */}
         <div className="grid grid-cols-2 gap-x-6 mb-6">
           <div className="col-span-2 lg:col-span-1">
             <h2 className="truncate mt-4 font-bold">Weekly Trending Movies</h2>
@@ -66,7 +63,7 @@ const MoviesDB = () => {
             <MoviesSwiper moviesList={mostRatedMovies} effect="coverflow" />
           </div>
         </div>
-        <div className="h-[25vh]"></div>
+        <div className="h-screen"></div>
         <div className="flex flex-col space-y-1 w-full items-center">
           <strong className="text-xs md:text-sm">Powered by</strong>
           <a
