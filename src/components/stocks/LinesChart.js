@@ -1,14 +1,14 @@
 import { AxisBottom, AxisLeft } from "@visx/axis";
 import { localPoint } from "@visx/event";
+import { GlyphCircle } from "@visx/glyph";
 import { GridColumns, GridRows } from "@visx/grid";
 import { Group } from "@visx/group";
 import { scaleLinear, scaleTime } from "@visx/scale";
-import { Line, LinePath } from "@visx/shape";
-import { TooltipWithBounds, useTooltip, defaultStyles } from "@visx/tooltip";
-import { bisector, extent, flatGroup, timeFormat, timeParse, format } from "d3";
+import { Line, LinePath, Bar } from "@visx/shape";
+import { defaultStyles, TooltipWithBounds, useTooltip } from "@visx/tooltip";
+import { bisector, extent, flatGroup, format, timeFormat, timeParse } from "d3";
 import { schemeCategory10 } from "d3-scale-chromatic";
 import React, { useCallback, useMemo } from "react";
-import { GlyphCircle } from "@visx/glyph";
 
 const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
   const margin = { top: 20, right: 20, bottom: 20, left: 35 };
@@ -23,6 +23,8 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
   const data = rawData.filter(
     (d) => xValue(d) >= startDate && xValue(d) <= endDate
   );
+
+  const groupData = flatGroup(data, (d) => d.Company);
 
   const colors = {
     grid: "#e0e0e0",
@@ -53,8 +55,6 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
     [innerHeight, data]
   );
 
-  const groupData = useMemo(() => flatGroup(data, (d) => d.Company), [data]);
-
   const tickLabelProps = {
     fill: colors.tickLabel,
     fontFamily: "Poppins",
@@ -76,7 +76,7 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
         return result;
       };
 
-      const { x } = localPoint(event) || { x: 0 };
+      const { x, y } = localPoint(event) || { x: 0 };
       const x0 = xScale.invert(x);
       const index = bisectDate(data, x0, 1);
       const d0 = data[index - 1];
@@ -107,12 +107,14 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
             width={innerWidth}
             height={innerHeight}
             stroke={colors.grid}
+            pointerEvents="none"
           />
           <GridColumns
             scale={xScale}
             width={innerWidth}
             height={innerHeight}
             stroke={colors.grid}
+            pointerEvents="none"
           />
           <AxisLeft
             scale={yScale}
@@ -125,6 +127,7 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
             tickLength={4}
             stroke={colors.axis}
             tickStroke={colors.tickStroke}
+            pointerEvents="none"
           />
           <AxisBottom
             scale={xScale}
@@ -134,43 +137,53 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
             tickLength={4}
             stroke={colors.axis}
             tickStroke={colors.tickStroke}
+            pointerEvents="none"
+          />
+          <Bar
+            x={0}
+            y={0}
+            width={innerWidth}
+            height={innerHeight}
+            fill="transparent"
+            onTouchStart={handleTooltip}
+            onTouchMove={handleTooltip}
+            onMouseMove={handleTooltip}
+            onMouseLeave={() => hideTooltip()}
           />
           {groupData.map((data, index) => (
             <LinePath
-              key={index}
+              key={Math.random()}
               data={data[1]}
               stroke={schemeCategory10[index]}
               strokeWidth={1}
               x={(d) => xScale(xValue(d))}
               y={(d) => yScale(yValue(d))}
-              onTouchStart={handleTooltip}
-              onTouchMove={handleTooltip}
-              onMouseMove={handleTooltip}
-              onMouseLeave={() => hideTooltip()}
+              pointerEvents="none"
             />
           ))}
         </Group>
         {tooltipData && (
-          <Line
-            from={{ x: tooltipLeft, y: margin.top }}
-            to={{ x: tooltipLeft, y: innerHeight + margin.top }}
-            stroke={colors.tooltipStroke}
-            strokeWidth={1}
-            pointerEvents="none"
-            strokeDasharray="4,2"
-          />
-        )}
-        {tooltipData &&
-          tooltipData.map((d, i) => (
-            <GlyphCircle
-              key={Math.random()}
-              left={tooltipLeft - 0.5}
-              top={yScale(yValue(d))}
-              size={30}
-              fill={schemeCategory10[i]}
+          <Group pointerEvents="none">
+            <Line
+              from={{ x: tooltipLeft, y: margin.top }}
+              to={{ x: tooltipLeft, y: innerHeight + margin.top }}
+              stroke={colors.tooltipStroke}
               strokeWidth={1}
+              strokeDasharray="4,2"
             />
-          ))}
+            {tooltipData.map((d, i) => (
+              <GlyphCircle
+                key={Math.random()}
+                left={tooltipLeft - 0.5}
+                top={yScale(yValue(d)) + 20}
+                size={30}
+                fill={schemeCategory10[i]}
+                strokeWidth={1}
+                stroke={colors.tickLabel}
+              />
+            ))}
+          </Group>
+        )}
       </svg>
       {tooltipData && (
         <div>
