@@ -23,6 +23,7 @@ module.exports = {
           strong: withOpacity("--color-text-strong"),
           primary: withOpacity("--color-primary"),
         },
+        chart: { "fill-base": "var(--color-chart-fill-base)" },
       },
       backgroundColor: {
         skin: {
@@ -31,8 +32,22 @@ module.exports = {
           primary: withOpacity("--color-primary"),
           secondary: withOpacity("--color-secondary"),
         },
+        chart: {
+          "bg-fill": "var(--color-chart-bg-fill)",
+          "bg-fill-1": "var(--color-chart-bg-fill-1)",
+          "bg-fill-2": "var(--color-chart-bg-fill-2)",
+        },
       },
-      // fill: { skin: { primary: withOpacity("--color-primary") } },
+      fill: {
+        chart: {
+          "fill-base": "var(--color-chart-fill-base)",
+        },
+      },
+      stroke: {
+        chart: {
+          "stroke-base": "var(--color-chart-fill-base)",
+        },
+      },
       backgroundImage: {
         opendota: "url('./data/images/opendota/background.jpg')",
       },

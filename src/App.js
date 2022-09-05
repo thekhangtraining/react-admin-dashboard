@@ -31,7 +31,7 @@ const App = () => {
               <Route
                 path="/"
                 key="home"
-                element={<Navigate to="/apps/OpenDota" />}
+                element={<Navigate to="/apps/Stocks" />}
               />
 
               {/* Landing pages */}

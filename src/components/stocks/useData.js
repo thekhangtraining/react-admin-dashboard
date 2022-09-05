@@ -1,17 +1,13 @@
 import { csv } from "d3";
 import { useEffect, useState } from "react";
-import aaplStockPrices from "../../data/stocks/aapl.csv";
 
-const useData = () => {
-  const [data, setData] = useState(null);
+const useData = (dataPath) => {
+  const [data, setData] = useState();
   useEffect(() => {
-    const row = (d) => {
-      d.close = +d.close;
-      d.timestamp = new Date(d.timestamp);
-      return d;
-    };
-    csv(aaplStockPrices, row).then((data) => setData(data));
-  }, []);
+    csv(dataPath).then((data) => {
+      setData(data);
+    });
+  }, [dataPath]);
   return data;
 };
 

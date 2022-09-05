@@ -64,4 +64,11 @@ body {
     --color-primary: 242, 82, 115;
     --color-secondary: 166, 35, 83;
   }
+
+  .chart-theme-1 {
+    --color-chart-bg-fill: rgb(241, 245, 249);
+    --color-chart-bg-fill-1: rgb(226, 232, 240);
+    --color-chart-bg-fill-2: rgb(203, 213, 225);
+    --color-chart-fill-base: rgb(51, 65, 85);
+  }
 }
