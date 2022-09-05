@@ -1,6 +1,7 @@
 import { ParentSize } from "@visx/responsive";
+import { extent, timeParse } from "d3";
 import { enGB } from "date-fns/locale";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { AiOutlineCalendar } from "react-icons/ai";
 import { LinesChart, ScopeButtonsGroup, useData } from ".";
@@ -9,9 +10,16 @@ import "../../styles/datepicker.css";
 const LinesChartContainer = ({ width, height, dataPath }) => {
   const data = useData(dataPath);
   registerLocale("en-gb", enGB);
+  const [startDate, setStartDate] = useState(new Date("01/01/2017"));
+  const [endDate, setEndDate] = useState(new Date());
 
-  const [startDate, setStartDate] = useState(new Date("2022/09/02"));
-  const [endDate, setEndDate] = useState(new Date("2022/09/01"));
+  useEffect(() => {
+    if (data) {
+      setStartDate(extent(data, (d) => timeParse("%d-%m-%Y")(d.Date))[0]);
+      setEndDate(extent(data, (d) => timeParse("%d-%m-%Y")(d.Date))[1]);
+    }
+  }, [data]);
+
   if (!data) {
     return <pre>Loading...</pre>;
   }
@@ -54,7 +62,7 @@ const LinesChartContainer = ({ width, height, dataPath }) => {
         <ParentSize>
           {({ width, height }) => (
             <LinesChart
-              data={data}
+              rawData={data}
               width={width}
               height={height}
               startDate={startDate}

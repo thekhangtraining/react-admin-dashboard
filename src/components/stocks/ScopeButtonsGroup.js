@@ -18,7 +18,7 @@ const Button = ({ label, scope, setScope }) => {
   );
 };
 const ScopeButtonsGroup = () => {
-  const [scope, setScope] = useState("5D");
+  const [scope, setScope] = useState("ALL");
   return (
     <div className="flex items-center justify-center gap-1">
       Scope

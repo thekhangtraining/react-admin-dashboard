@@ -10,16 +10,19 @@ import { schemeCategory10 } from "d3-scale-chromatic";
 import React, { useCallback, useMemo } from "react";
 import { GlyphCircle } from "@visx/glyph";
 
-const LinesChart = ({ data, width, height, startDate, endDate }) => {
+const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
   const margin = { top: 20, right: 20, bottom: 20, left: 35 };
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.right - margin.left;
 
-  const xValue = (d) => new Date(timeParse("%d-%m-%Y")(d.Date));
+  const xValue = (d) => timeParse("%d-%m-%Y")(d.Date);
   const yValue = (d) => +d.AdjClose;
   const bisectDate = bisector((d) => new Date(d.Date)).left;
 
   const xAxisTicksFormat = timeFormat("%b, %y");
+  const data = rawData.filter(
+    (d) => xValue(d) >= startDate && xValue(d) <= endDate
+  );
 
   const colors = {
     grid: "#e0e0e0",

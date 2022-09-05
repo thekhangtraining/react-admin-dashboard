@@ -512,6 +512,10 @@
 .react-datepicker__quarter-text--today,
 .react-datepicker__year-text--today {
   font-weight: bold;
+  color: rgb(var(--color-secondary));
+  outline-color: rgb(var(--color-secondary));
+  outline-width: 1px;
+  outline-style: solid;
 }
 .react-datepicker__day--highlighted,
 .react-datepicker__month-text--highlighted,
