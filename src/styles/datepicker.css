@@ -94,12 +94,12 @@
 }
 
 .react-datepicker {
-  font-family: "Poppins", helvetica, arial, sans-serif;
+  font-family: "Poppins", helvetica, arial, sans-serif !important;
   font-size: 12px;
   background-color: #fff;
   color: #000;
   border: 1px solid #aeaeae;
-  border-radius: 0.1rem;
+  border-radius: 0.3rem;
   display: inline-block;
   position: relative;
 }
@@ -552,7 +552,7 @@
 .react-datepicker__year-text--in-selecting-range,
 .react-datepicker__year-text--in-range {
   border-radius: 0.1rem;
-  background-color: #216ba5;
+  background-color: rgb(var(--color-secondary));
   color: #fff;
 }
 .react-datepicker__day--selected:hover,
@@ -567,27 +567,27 @@
 .react-datepicker__year-text--selected:hover,
 .react-datepicker__year-text--in-selecting-range:hover,
 .react-datepicker__year-text--in-range:hover {
-  background-color: #1d5d90;
+  background-color: rgb(var(--color-secondary));
 }
 .react-datepicker__day--keyboard-selected,
 .react-datepicker__month-text--keyboard-selected,
 .react-datepicker__quarter-text--keyboard-selected,
 .react-datepicker__year-text--keyboard-selected {
   border-radius: 0.1rem;
-  background-color: #2579ba;
+  background-color: rgb(var(--color-secondary));
   color: #fff;
 }
 .react-datepicker__day--keyboard-selected:hover,
 .react-datepicker__month-text--keyboard-selected:hover,
 .react-datepicker__quarter-text--keyboard-selected:hover,
 .react-datepicker__year-text--keyboard-selected:hover {
-  background-color: #1d5d90;
+  background-color: rgb(var(--color-secondary));
 }
 .react-datepicker__day--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
 .react-datepicker__month-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
 .react-datepicker__quarter-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range),
 .react-datepicker__year-text--in-selecting-range:not(.react-datepicker__day--in-range, .react-datepicker__month-text--in-range, .react-datepicker__quarter-text--in-range, .react-datepicker__year-text--in-range) {
-  background-color: rgba(33, 107, 165, 0.5);
+  background-color: rgb(var(--color-secondary-1));
 }
 .react-datepicker__month--selecting-range
   .react-datepicker__day--in-range:not(.react-datepicker__day--in-selecting-range, .react-datepicker__month-text--in-selecting-range, .react-datepicker__quarter-text--in-selecting-range, .react-datepicker__year-text--in-selecting-range),

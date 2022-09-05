@@ -1,10 +1,10 @@
 import { ParentSize } from "@visx/responsive";
+import { enGB } from "date-fns/locale";
 import React, { useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
-import "../../styles/datepicker.css";
-import { LinesChart, ScopeButtonsGroup, useData } from ".";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { enGB } from "date-fns/locale";
+import { LinesChart, ScopeButtonsGroup, useData } from ".";
+import "../../styles/datepicker.css";
 
 const LinesChartContainer = ({ width, height, dataPath }) => {
   const data = useData(dataPath);
@@ -17,7 +17,7 @@ const LinesChartContainer = ({ width, height, dataPath }) => {
   }
 
   return (
-    <div className="text-chart-fill-base rounded-sm flex flex-col bg-chart-bg-fill items-center justify-center p-2 overflow-hidden text-xs chart-theme-1">
+    <div className="text-chart-fill-base rounded-sm flex flex-col bg-chart-bg-fill items-center justify-center p-2 overflow-hidden text-xs">
       <div className="flex justify-between items-center gap-6 w-full z-10">
         <ScopeButtonsGroup />
         <div className="flex items-center gap-6">
