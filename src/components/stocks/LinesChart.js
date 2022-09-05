@@ -10,7 +10,7 @@ import { schemeCategory10 } from "d3-scale-chromatic";
 import React, { useCallback, useMemo } from "react";
 import { GlyphCircle } from "@visx/glyph";
 
-const LinesChart = ({ data, width, height }) => {
+const LinesChart = ({ data, width, height, startDate, endDate }) => {
   const margin = { top: 20, right: 20, bottom: 20, left: 35 };
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.right - margin.left;
@@ -89,7 +89,7 @@ const LinesChart = ({ data, width, height }) => {
       showTooltip({
         tooltipData: getData(d.Date),
         tooltipLeft: x,
-        tooltipTop: yScale(yValue(d)),
+        tooltipTop: yScale(yValue(d)) - 150,
       });
     },
     [showTooltip, yScale, xScale, data, bisectDate]
@@ -173,7 +173,7 @@ const LinesChart = ({ data, width, height }) => {
         <div>
           <TooltipWithBounds
             key={Math.random()}
-            top={tooltipTop - 150}
+            top={tooltipTop}
             left={tooltipLeft}
             style={{
               ...defaultStyles,

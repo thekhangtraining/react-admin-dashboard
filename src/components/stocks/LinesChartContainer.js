@@ -1,12 +1,14 @@
 import { ParentSize } from "@visx/responsive";
 import React, { useState } from "react";
-import DatePicker from "react-datepicker";
+import DatePicker, { registerLocale } from "react-datepicker";
 import "../../styles/datepicker.css";
 import { LinesChart, ScopeButtonsGroup, useData } from ".";
 import { AiOutlineCalendar } from "react-icons/ai";
+import { enGB } from "date-fns/locale";
 
 const LinesChartContainer = ({ width, height, dataPath }) => {
   const data = useData(dataPath);
+  registerLocale("en-gb", enGB);
 
   const [startDate, setStartDate] = useState(new Date("2022/09/02"));
   const [endDate, setEndDate] = useState(new Date("2022/09/01"));
@@ -19,26 +21,30 @@ const LinesChartContainer = ({ width, height, dataPath }) => {
       <div className="flex justify-between items-center gap-6 w-full z-10">
         <ScopeButtonsGroup />
         <div className="flex items-center gap-6">
-          <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-slate-400 border-1 px-2 py-0.5">
+          <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-slate-300 border-1 px-2 py-0.5">
             <DatePicker
-              dateFormat="dd/MM/yyy"
+              dateFormat="P"
               selected={startDate}
               onChange={(date) => setStartDate(date)}
               selectsStart
               startDate={startDate}
               endDate={endDate}
+              showPopperArrow={false}
+              locale="en-gb"
             />
             <AiOutlineCalendar className="text-lg" />
           </div>
-          <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-slate-400 border-1 px-2 py-0.5">
+          <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-slate-300 border-1 px-2 py-0.5">
             <DatePicker
-              dateFormat="dd/MM/yyy"
+              dateFormat="dd/MM/yyyy"
               selected={endDate}
               onChange={(date) => setEndDate(date)}
               selectsEnd
               startDate={startDate}
               endDate={endDate}
               minDate={startDate}
+              showPopperArrow={false}
+              locale="en-gb"
             />
             <AiOutlineCalendar className="text-lg" />
           </div>
@@ -47,7 +53,13 @@ const LinesChartContainer = ({ width, height, dataPath }) => {
       <div style={{ width: width, height: height }}>
         <ParentSize>
           {({ width, height }) => (
-            <LinesChart data={data} width={width} height={height} />
+            <LinesChart
+              data={data}
+              width={width}
+              height={height}
+              startDate={startDate}
+              endDate={endDate}
+            />
           )}
         </ParentSize>
       </div>
