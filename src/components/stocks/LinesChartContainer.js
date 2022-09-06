@@ -8,11 +8,11 @@ import { LinesChart, ScopeButtonsGroup, useData } from ".";
 import "../../styles/datepicker.css";
 
 const LinesChartContainer = ({ dataPath, title }) => {
-  let data = useData(dataPath);
+  const data = useData(dataPath);
   registerLocale("en-gb", enGB);
-  const [startDate, setStartDate] = useState(new Date("01/01/1970"));
+  const [startDate, setStartDate] = useState(new Date("1994/09/10"));
   const [endDate, setEndDate] = useState(new Date());
-  const [startDateLimit, setStartDateLimit] = useState(new Date("01/01/1970"));
+  const [startDateLimit, setStartDateLimit] = useState(new Date("1994/09/10"));
   const [endDateLimit, setEndDateLimit] = useState(new Date());
 
   useEffect(() => {
@@ -38,9 +38,10 @@ const LinesChartContainer = ({ dataPath, title }) => {
     <div className="w-full">
       <h2 className="mb-2 text-skin-strong">{title}</h2>
       <div className="text-chart-fill-base rounded-sm flex flex-col bg-chart-bg-fill items-center justify-center p-2 overflow-hidden text-xs h-[400px]">
-        <div className="flex justify-between items-center gap-6 w-full z-10">
+        <div className="flex justify-between items-center gap-6 w-full z-10 text-2xs lg:text-xs">
           <ScopeButtonsGroup />
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-1">
+            From
             <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-slate-300 border-1 px-2 py-0.5">
               <DatePicker
                 dateFormat="P"
@@ -56,6 +57,7 @@ const LinesChartContainer = ({ dataPath, title }) => {
               />
               <AiOutlineCalendar className="text-lg" />
             </div>
+            To
             <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-slate-300 border-1 px-2 py-0.5">
               <DatePicker
                 dateFormat="dd/MM/yyyy"

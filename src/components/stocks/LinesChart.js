@@ -3,23 +3,29 @@ import { localPoint } from "@visx/event";
 import { GlyphCircle } from "@visx/glyph";
 import { GridColumns, GridRows } from "@visx/grid";
 import { Group } from "@visx/group";
-import { scaleLinear, scaleTime } from "@visx/scale";
-import { Line, LinePath, Bar } from "@visx/shape";
+import { scaleLinear, scalePoint } from "@visx/scale";
+import { Bar, Line, LinePath } from "@visx/shape";
 import { defaultStyles, TooltipWithBounds, useTooltip } from "@visx/tooltip";
-import { bisector, extent, flatGroup, format, timeFormat, timeParse } from "d3";
+import {
+  bisect,
+  extent,
+  flatGroup,
+  format,
+  range,
+  timeFormat,
+  timeParse,
+} from "d3";
 import { schemeCategory10 } from "d3-scale-chromatic";
-import React, { useCallback, useMemo } from "react";
+import React from "react";
 
 const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
-  const margin = { top: 20, right: 20, bottom: 20, left: 35 };
+  const margin = { top: 20, right: 10, bottom: 20, left: 35 };
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.right - margin.left;
 
   const xValue = (d) => timeParse("%d-%m-%Y")(d.Date);
   const yValue = (d) => +d.AdjClose;
-  const bisectDate = bisector((d) => new Date(d.Date)).left;
 
-  const xAxisTicksFormat = timeFormat("%b, %y");
   const data = rawData.filter(
     (d) => xValue(d) >= startDate && xValue(d) <= endDate
   );
@@ -36,30 +42,47 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
     tooltipStroke: "#94a3b8",
   };
 
-  const xScale = useMemo(
-    () =>
-      scaleTime({
-        range: [0, innerWidth],
-        domain: extent(data, xValue),
-      }),
-    [innerWidth, data]
-  );
+  const xScale = scalePoint({
+    range: [0, innerWidth],
+    domain: data.map((d) => d.Date),
+    nice: true,
+    padding: 0,
+  });
 
-  const yScale = useMemo(
-    () =>
-      scaleLinear({
-        range: [innerHeight, 0],
-        domain: extent(data, yValue),
-        nice: true,
-      }),
-    [innerHeight, data]
-  );
+  const xAxisTickFormat = (d) =>
+    timeFormat("%d/%m/%Y")(timeParse("%d-%m-%Y")(d));
+
+  const yScale = scaleLinear({
+    range: [innerHeight, 0],
+    domain: extent(data, yValue),
+    nice: true,
+  });
 
   const tickLabelProps = {
     fill: colors.tickLabel,
     fontFamily: "Poppins",
     fontSize: 10,
   };
+
+  // Build my own invert function for scaleBand to get date from x position
+  const invertPositionX = (posX) => {
+    const domain = xScale.domain();
+    const ranges = xScale.range();
+    const rangePoints = range(ranges[0], ranges[1], xScale.step());
+    let dateString = domain[bisect(rangePoints, posX) - 1];
+
+    return dateString;
+  };
+
+  const getAllValuesFromDateString = (dateString) =>
+    data.filter((d) => d.Date === dateString);
+
+  // Find the nearest stock price to the invert stock price from position y
+  const findNearestYValue = (invertedYValue) => (prev, curr) =>
+    Math.abs(curr.AdjClose - invertedYValue) >
+    Math.abs(prev.AdjClose - invertedYValue)
+      ? prev.AdjClose
+      : curr.AdjClose;
 
   const {
     tooltipData,
@@ -69,34 +92,26 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
     hideTooltip,
   } = useTooltip();
 
-  const handleTooltip = useCallback(
-    (event) => {
-      const getData = (date) => {
-        const result = data.filter((d) => d.Date === date);
-        return result;
-      };
+  const handleTooltip = (event) => {
+    const { x, y } = localPoint(event);
 
-      const { x, y } = localPoint(event) || { x: 0 };
-      const x0 = xScale.invert(x);
-      const index = bisectDate(data, x0, 1);
-      const d0 = data[index - 1];
-      const d1 = data[index];
-      let d = d0;
-      if (d1 && xValue(d1)) {
-        d =
-          x0.valueOf() - xValue(d0).valueOf() >
-          xValue(d1).valueOf() - x0.valueOf()
-            ? d1
-            : d0;
-      }
-      showTooltip({
-        tooltipData: getData(d.Date),
-        tooltipLeft: x,
-        tooltipTop: yScale(yValue(d)) - 150,
-      });
-    },
-    [showTooltip, yScale, xScale, data, bisectDate]
-  );
+    const invertedXValue = invertPositionX(x - margin.left);
+    const allValuesFromDateString = getAllValuesFromDateString(invertedXValue);
+    const invertedYValue = yScale.invert(y - margin.bottom);
+    const nearestYValue = allValuesFromDateString.reduce(
+      findNearestYValue(invertedYValue)
+    );
+
+    showTooltip({
+      tooltipData: {
+        Date: xAxisTickFormat(invertedXValue),
+        Values: allValuesFromDateString,
+        posX: x,
+      },
+      tooltipLeft: x,
+      tooltipTop: margin.top,
+    });
+  };
 
   return (
     <div className="relative">
@@ -131,13 +146,14 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
           />
           <AxisBottom
             scale={xScale}
-            tickFormat={xAxisTicksFormat}
+            tickFormat={xAxisTickFormat}
             top={innerHeight}
             tickLabelProps={() => ({ ...tickLabelProps, textAnchor: "middle" })}
             tickLength={4}
             stroke={colors.axis}
             tickStroke={colors.tickStroke}
             pointerEvents="none"
+            numTicks={8}
           />
           <Bar
             x={0}
@@ -150,13 +166,13 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
             onMouseMove={handleTooltip}
             onMouseLeave={() => hideTooltip()}
           />
-          {groupData.map((data, index) => (
+          {groupData.map((d, i) => (
             <LinePath
               key={Math.random()}
-              data={data[1]}
-              stroke={schemeCategory10[index]}
+              data={d[1]}
+              stroke={schemeCategory10[i]}
               strokeWidth={1}
-              x={(d) => xScale(xValue(d))}
+              x={(d) => xScale(timeFormat("%d-%m-%Y")(xValue(d)))}
               y={(d) => yScale(yValue(d))}
               pointerEvents="none"
             />
@@ -165,21 +181,21 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
         {tooltipData && (
           <Group pointerEvents="none">
             <Line
-              from={{ x: tooltipLeft, y: margin.top }}
-              to={{ x: tooltipLeft, y: innerHeight + margin.top }}
+              from={{ x: tooltipData.posX, y: margin.top }}
+              to={{ x: tooltipData.posX, y: innerHeight + margin.top }}
               stroke={colors.tooltipStroke}
               strokeWidth={1}
               strokeDasharray="4,2"
             />
-            {tooltipData.map((d, i) => (
+            {tooltipData.Values.map((d, i) => (
               <GlyphCircle
                 key={Math.random()}
-                left={tooltipLeft - 0.5}
-                top={yScale(yValue(d)) + 20}
-                size={30}
+                left={tooltipLeft}
+                top={yScale(yValue(d)) + margin.top}
+                size={50}
                 fill={schemeCategory10[i]}
                 strokeWidth={1}
-                stroke={colors.tickLabel}
+                stroke="white"
               />
             ))}
           </Group>
@@ -198,19 +214,17 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
               borderRadius: 0,
             }}
           >
-            {groupData.map((d, i) => (
+            {tooltipData.Values.map((d, i) => (
               <p
                 className="font-bold py-0.5"
                 key={Math.random()}
                 style={{ color: schemeCategory10[i] }}
               >
-                <span className="font-normal">{d[0]}</span>
-                {" " + format(".2f")(yValue(tooltipData[i]))}
+                <span className="font-normal">{d.Company}</span>
+                {" " + format(".2f")(d.AdjClose)}
               </p>
             ))}
-            <p className="pt-0.5">
-              {timeFormat("%d %B %Y")(xValue(tooltipData[0]))}
-            </p>
+            <p className="pt-0.5">{tooltipData.Date}</p>
           </TooltipWithBounds>
         </div>
       )}

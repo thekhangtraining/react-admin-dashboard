@@ -41,7 +41,7 @@
   .react-datepicker__triangle::before,
 .react-datepicker-popper[data-placement^="bottom"]
   .react-datepicker__triangle::before {
-  border-bottom-color: #cbd5e1;
+  border-bottom-color: rgb(var(--color-text-base));
 }
 
 .react-datepicker-popper[data-placement^="bottom"] .react-datepicker__triangle {
@@ -53,7 +53,7 @@
 .react-datepicker-popper[data-placement^="bottom"]
   .react-datepicker__triangle::after {
   border-top: none;
-  border-bottom-color: #cbd5e1;
+  border-bottom-color: rgb(var(--color-text-base));
 }
 .react-datepicker-popper[data-placement^="bottom"]
   .react-datepicker__triangle::after {
@@ -62,7 +62,7 @@
 .react-datepicker-popper[data-placement^="bottom"]
   .react-datepicker__triangle::before {
   top: -1px;
-  border-bottom-color: #cbd5e1;
+  border-bottom-color: rgb(var(--color-text-base));
 }
 
 .react-datepicker-popper[data-placement^="top"] .react-datepicker__triangle {
@@ -74,7 +74,7 @@
 .react-datepicker-popper[data-placement^="top"]
   .react-datepicker__triangle::after {
   border-bottom: none;
-  border-top-color: #cbd5e1;
+  border-top-color: rgb(var(--color-text-base));
 }
 .react-datepicker-popper[data-placement^="top"]
   .react-datepicker__triangle::after {
@@ -83,7 +83,7 @@
 .react-datepicker-popper[data-placement^="top"]
   .react-datepicker__triangle::before {
   bottom: -1px;
-  border-top-color: #cbd5e1;
+  border-top-color: rgb(var(--color-text-base));
 }
 
 .react-datepicker-wrapper {
@@ -95,11 +95,11 @@
 
 .react-datepicker {
   font-family: "Poppins", helvetica, arial, sans-serif !important;
-  font-size: 12px;
+  font-size: 11px;
   background-color: #fff;
   color: #000;
   border: 1px solid #aeaeae;
-  border-radius: 0.3rem;
+  border-radius: 0.1rem;
   display: inline-block;
   position: relative;
 }
@@ -153,9 +153,10 @@
 
 .react-datepicker__header {
   text-align: center;
-  background-color: #f0f0f0;
-  border-bottom: 1px solid #aeaeae;
-  border-top-left-radius: 0.3rem;
+  color: rgb(var(--color-text-strong));
+  background-color: rgb(var(--color-secondary));
+  border-bottom: 1px solid;
+  border-bottom-color: rgb(var(--color-text-base));
   padding: 8px 0;
   position: relative;
 }
@@ -166,9 +167,6 @@
 }
 .react-datepicker__header--time:not(.react-datepicker__header--time--only) {
   border-top-left-radius: 0;
-}
-.react-datepicker__header:not(.react-datepicker__header--has-time-select) {
-  border-top-right-radius: 0.3rem;
 }
 
 .react-datepicker__year-dropdown-container--select,
@@ -185,9 +183,8 @@
 .react-datepicker-time__header,
 .react-datepicker-year-header {
   margin-top: 0;
-  color: #000;
   font-weight: bold;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .react-datepicker-time__header {
@@ -452,6 +449,10 @@
 
 .react-datepicker__day-names {
   margin-bottom: -8px;
+  font-weight: bold;
+}
+.react-datepicker__day-name {
+  color: rgb(var(--color-text-strong)) !important;
 }
 
 .react-datepicker__day-name,
@@ -667,7 +668,7 @@
   .react-datepicker__year-read-view--down-arrow,
 .react-datepicker__month-year-read-view:hover
   .react-datepicker__month-read-view--down-arrow {
-  border-top-color: #b3b3b3;
+  border-top-color: rgb(var(--color-text-base));
 }
 .react-datepicker__year-read-view--down-arrow,
 .react-datepicker__month-read-view--down-arrow,
@@ -738,7 +739,7 @@
   .react-datepicker__navigation--years-upcoming,
 .react-datepicker__month-year-option:hover
   .react-datepicker__navigation--years-upcoming {
-  border-bottom-color: #b3b3b3;
+  border-bottom-color: rgb(var(--color-text-base));
 }
 .react-datepicker__year-option:hover
   .react-datepicker__navigation--years-previous,
@@ -746,7 +747,7 @@
   .react-datepicker__navigation--years-previous,
 .react-datepicker__month-year-option:hover
   .react-datepicker__navigation--years-previous {
-  border-top-color: #b3b3b3;
+  border-top-color: rgb(var(--color-text-base));
 }
 .react-datepicker__year-option--selected,
 .react-datepicker__month-option--selected,
@@ -776,7 +777,7 @@
   height: 16px;
   width: 16px;
   padding: 2px;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1;
   text-align: center;
   display: table-cell;
