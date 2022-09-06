@@ -1,6 +1,5 @@
 import React from "react";
 import { BsBoxArrowInLeft, BsGraphUp } from "react-icons/bs";
-import { GiMeal } from "react-icons/gi";
 import { IoLogoGameControllerB } from "react-icons/io";
 import { MdLocalMovies } from "react-icons/md";
 import { NavLink } from "react-router-dom";
