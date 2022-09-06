@@ -46,17 +46,6 @@ const Sidebar = () => {
         <div className="grow flex flex-col gap-2">
           {[
             {
-              title: "Landing Pages",
-              baseAddress: "/landing",
-              links: [
-                {
-                  name: "Restaurant",
-                  icon: <GiMeal />,
-                  address: "/restaurant",
-                },
-              ],
-            },
-            {
               title: "Apps",
               baseAddress: "/apps",
               links: [

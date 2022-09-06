@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
 import { Navbar, SettingsSidebar, Sidebar } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
-import { Construction, MoviesDB, OpenDota, Stocks } from "./pages";
+import { MoviesDB, OpenDota, Stocks } from "./pages";
 
 let classnames = require("classnames");
 
@@ -27,18 +27,10 @@ const App = () => {
           </div>
           <main className="w-full">
             <Routes>
-              {/* My CV */}
               <Route
                 path="/"
                 key="home"
                 element={<Navigate to="/apps/Stocks" />}
-              />
-
-              {/* Landing pages */}
-              <Route
-                path="/landing/restaurant"
-                key="landing-restaurant"
-                element={<Construction />}
               />
 
               {/* Apps of many popular apps */}

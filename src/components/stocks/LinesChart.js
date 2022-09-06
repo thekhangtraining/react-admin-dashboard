@@ -19,7 +19,7 @@ import { schemeCategory10 } from "d3-scale-chromatic";
 import React from "react";
 
 const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
-  const margin = { top: 20, right: 10, bottom: 20, left: 35 };
+  const margin = { top: 20, right: 25, bottom: 20, left: 35 };
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.right - margin.left;
 
@@ -49,8 +49,7 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
     padding: 0,
   });
 
-  const xAxisTickFormat = (d) =>
-    timeFormat("%d/%m/%Y")(timeParse("%d-%m-%Y")(d));
+  const xAxisTickFormat = (d) => timeFormat("%b, %Y")(timeParse("%d-%m-%Y")(d));
 
   const yScale = scaleLinear({
     range: [innerHeight, 0],
@@ -104,7 +103,7 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
 
     showTooltip({
       tooltipData: {
-        Date: xAxisTickFormat(invertedXValue),
+        Date: timeFormat("%d %B, %Y")(timeParse("%d-%m-%Y")(invertedXValue)),
         Values: allValuesFromDateString,
         posX: x,
       },
@@ -130,6 +129,7 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
             height={innerHeight}
             stroke={colors.grid}
             pointerEvents="none"
+            numTicks={8}
           />
           <AxisLeft
             scale={yScale}
@@ -148,7 +148,11 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
             scale={xScale}
             tickFormat={xAxisTickFormat}
             top={innerHeight}
-            tickLabelProps={() => ({ ...tickLabelProps, textAnchor: "middle" })}
+            tickLabelProps={(value, index) => ({
+              ...tickLabelProps,
+              textAnchor: "middle",
+              // transform: `rotate(30 ${xScale(value) - 20} 50)`,
+            })}
             tickLength={4}
             stroke={colors.axis}
             tickStroke={colors.tickStroke}
