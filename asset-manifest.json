@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/static/css/main.17e55d99.css",
+    "main.js": "/static/js/main.78c090e6.js",
+    "static/media/stocks10.csv": "/static/media/stocks10.a2114f19277ab75e444c.csv",
+    "static/media/background.jpg": "/static/media/background.0374225518e90cc5f655.jpg",
+    "static/media/opendota.jpg": "/static/media/opendota.2daed3dec85f10a0dea2.jpg",
+    "static/media/themoviesdb.svg": "/static/media/themoviesdb.de1a664e8d0777ca4ddb2a5a298bcfb6.svg",
+    "index.html": "/index.html",
+    "main.17e55d99.css.map": "/static/css/main.17e55d99.css.map",
+    "main.78c090e6.js.map": "/static/js/main.78c090e6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.17e55d99.css",
+    "static/js/main.78c090e6.js"
+  ]
+}
