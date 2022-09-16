@@ -35,7 +35,7 @@ const MultiSeriesChartContainer = ({ dataPath, title }) => {
   }
 
   return (
-    <div className="w-full bg-skin-fill p-2 drop-shadow-lg">
+    <div className="w-full bg-skin-fill p-2 shadow-lg">
       <h2 className="font-bold text-sm">{title}</h2>
       <div className="text-chart-fill-base rounded-sm flex flex-col items-center justify-center overflow-hidden text-xs h-[400px]">
         <div className="flex justify-between items-center gap-6 w-full z-10 text-2xs lg:text-xs">

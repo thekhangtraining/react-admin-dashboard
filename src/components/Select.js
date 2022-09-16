@@ -51,8 +51,8 @@ const Select = ({ setState, options }) => {
                     highlightedIndex === index &&
                       "bg-skin-primary text-skin-muted",
                     // Compare value instead of "selectedItem === item" as in the documentation
-                    selectedItem.value === item.value && "text-skin-primary",
-                    "shadow-sm flex items-center w-full"
+                    selectedItem.value === item.value && "text-skin-primary hover:text-skin-muted",
+                    "flex items-center w-full"
                   )}
                   {...getItemProps({ item, index })}
                 >

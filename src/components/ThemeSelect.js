@@ -59,7 +59,7 @@ const ThemeSelect = () => {
                     highlightedIndex === index &&
                       "bg-skin-primary text-skin-muted",
                     // Compare value instead of "selectedItem === item" as in the documentation
-                    theme === item.value && "text-skin-primary",
+                    theme === item.value && "text-skin-primary hover:text-skin-muted",
                     "py-1.5 px-3 shadow-sm flex items-center w-full"
                   )}
                   {...getItemProps({ item, index })}

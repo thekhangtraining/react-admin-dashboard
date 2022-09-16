@@ -56,7 +56,7 @@ const DotaTable = ({
   );
 
   return (
-    <div className="w-full relative h-fit text-xs rounded-sm overflow-auto flex flex-col gap-1 bg-skin-fill drop-shadow-lg p-2">
+    <div className="w-full h-fit text-xs rounded-sm overflow-x-auto flex flex-col gap-1 shadow-lg bg-skin-fill p-2">
       <div className="flex items-end justify-between">
         <h2 className="font-bold text-sm">
           {tableTitle}
