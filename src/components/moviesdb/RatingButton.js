@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const RatingButton = ({ movieId, movieTitle, voteAvg }) => {
   const RatingNoti = () => (
-    <div className="text-skin-strong">
+    <div className="text-skin-muted">
       Thanks for rating the movie{" "}
       <span className="text-[rgb(4,120,87)]">{movieTitle}</span>
     </div>

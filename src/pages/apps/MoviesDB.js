@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { MoviesSwiper } from "../../components/moviesdb";
 import configs from "../../configs.json";
-import TheMovieDBLogo from "../../data/images/moviesdb/themoviesdb.svg";
+import TheMovieDBLogo from "../../media/images/moviesdb/themoviesdb.svg";
 import "../../styles/swiper.css";
 
 const MoviesDB = () => {

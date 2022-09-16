@@ -7,12 +7,14 @@ import { Tooltip } from "../";
 const classnames = require("classnames");
 const placeholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
 
+const logoClassname = "rounded-sm h-6 w-7 md:h-7 md:w-8 bg-slate-600"
+
 export const PlayerWinrate = ({ winRate, wins, losses }) => (
   <div className="flex flex-col float-left">
     <p>{winRate}%</p>
     <div className="flex space-x-1">
-      <span className="text-green-400">{wins}W</span>
-      <span className="text-red-400">{losses}L</span>
+      <span className="text-green-500">{wins}W</span>
+      <span className="text-red-500">{losses}L</span>
     </div>
   </div>
 );
@@ -32,7 +34,7 @@ export const PlayerHeroes = ({ heroes, id }) => (
   <div className="flex space-x-1 w-52">
     {heroes.slice(0, 5).map((h) => (
       <Tooltip key={`${id}-${h}`} label={h}>
-        <img className="h-5 w-9 rounded-xs" alt="" src={getHeroImgSrc(h)} />
+        <img className={"h-6 w-10 rounded-xs"} alt="" src={getHeroImgSrc(h)} />
       </Tooltip>
     ))}
   </div>
@@ -44,7 +46,7 @@ export const PlayerTeam = ({ teamLogo, teamName }) => (
     <img
       src={teamLogo}
       alt=""
-      className="rounded-full h-5 w-5 md:h-6 md:w-6"
+      className={logoClassname}
       // Placeholder image
       onError={(e) => {
         e.target.onerror = null;
@@ -63,7 +65,7 @@ export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
         <img
           src={avatar}
           alt=""
-          className="rounded-full h-5 w-5 md:h-6 md:w-6"
+          className={logoClassname}
           // Placeholder image
           onError={(e) => {
             e.target.onerror = null;
@@ -79,7 +81,7 @@ export const Player = ({ teamTag, name, avatar, countryCode, id }) => {
               ) : (
                 ""
               )}
-              <p className="text-skin-primary mx-1">{name}</p>
+              <p className="text-skin-primary mx-0.5">{name}</p>
               {countryCode !== "" ? <Flag className="w-3 h-2" /> : null}
             </div>
             <p>{id}</p>
@@ -102,7 +104,7 @@ export const Team = ({ name, teamTag, logo, id }) => {
       <img
         src={logo}
         alt=""
-        className="rounded-full h-5 w-6 md:h-6 md:w-7"
+        className={logoClassname}
         onError={(e) => {
           e.target.onerror = null;
           e.target.src = placeholderPath;
@@ -140,8 +142,8 @@ export const TeamLastMatch = ({
       <span>
         <span
           className={classnames(
-            winMatch(isRadiant, radiantWin) && "text-green-400",
-            !winMatch(isRadiant, radiantWin) && "text-red-400"
+            winMatch(isRadiant, radiantWin) && "text-green-500",
+            !winMatch(isRadiant, radiantWin) && "text-red-500"
           )}
         >
           {winMatch(isRadiant, radiantWin) ? " Win " : " Loss "}
@@ -157,8 +159,8 @@ export const TeamWinrate = ({ winRate, wins, losses }) => (
   <div className="flex flex-col float-left">
     <p>{winRate}%</p>
     <div className="flex space-x-1">
-      <span className="text-green-400">{wins}W</span>
-      <span className="text-red-400">{losses}L</span>
+      <span className="text-green-500">{wins}W</span>
+      <span className="text-red-500">{losses}L</span>
     </div>
   </div>
 );
@@ -188,7 +190,7 @@ export const MatchDuration = ({ matchDuration }) => (
 export const MatchResult = ({ isRadiant, radiantWin }) => (
   <p
     className={classnames(
-      (winMatch(isRadiant, radiantWin) && "text-green-400") || "text-red-400"
+      (winMatch(isRadiant, radiantWin) && "text-green-500") || "text-red-500"
     )}
   >
     {winMatch(isRadiant, radiantWin) ? "Win" : "Loss"}
@@ -204,7 +206,7 @@ export const OpposingTeam = ({
     <img
       src={opposingTeamLogo}
       alt=""
-      className="rounded-full h-5 w-5 md:h-6 md:w-6"
+      className={logoClassname}
       // Placeholder image
       onError={(e) => {
         e.target.onerror = null;

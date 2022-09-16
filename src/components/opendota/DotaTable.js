@@ -56,7 +56,7 @@ const DotaTable = ({
   );
 
   return (
-    <div className="w-full text-xs rounded-sm overflow-auto flex flex-col space-y-2 py-2 my-2">
+    <div className="w-full relative h-fit text-xs rounded-sm overflow-auto flex flex-col gap-1 bg-skin-fill drop-shadow-lg p-2">
       <div className="flex items-end justify-between">
         <h2 className="font-bold text-sm">
           {tableTitle}
@@ -65,11 +65,11 @@ const DotaTable = ({
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
         )}
       </div>
-      <table className="w-full border border-border-base" {...getTableProps()}>
+      <table className="w-full border-border-base" {...getTableProps()}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr
-              className="text-skin-strong border-b border-border-base bg-skin-secondary"
+              className="text-skin-muted border-b bg-skin-primary"
               {...headerGroup.getHeaderGroupProps()}
             >
               {headerGroup.headers.map((column) => (
@@ -103,7 +103,7 @@ const DotaTable = ({
             prepareRow(row);
             return (
               <tr
-                className="border-b border-border-base"
+                className="border-b"
                 {...row.getRowProps()}
               >
                 {row.cells.map((cell) => {

@@ -7,7 +7,7 @@ const Button = ({ label, scope, setScope }) => {
     <button
       className={classnames(
         "rounded-sm hover:underline py-1 px-2",
-        scope === label && "bg-skin-secondary text-skin-strong"
+        scope === label && "bg-skin-primary text-skin-muted"
       )}
       onClick={() => {
         setScope(label);

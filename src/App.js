@@ -1,18 +1,24 @@
+import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import React from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
-import { Navbar, SettingsSidebar, Sidebar } from "./components";
+import { Navbar, SettingsSidebar, Sidebar, Tooltip } from "./components";
 import { useStateContext } from "./contexts/ContextProvider";
 import { MoviesDB, OpenDota, Stocks } from "./pages";
 
 let classnames = require("classnames");
 
 const App = () => {
-  const { theme } = useStateContext();
+  const {
+    theme,
+    settingsSidebarTrigger,
+    setSettingsSidebarOpen,
+    settingsSidebarOpen,
+  } = useStateContext();
   return (
     <div
       className={classnames(
-        "flex text-xs bg-skin-fill text-skin-base",
+        "flex text-xs text-skin-base",
         theme === "Nord" && "theme-nord",
         theme === "Emerald" && "theme-emerald",
         theme === "Maroon" && "theme-maroon"
@@ -49,6 +55,19 @@ const App = () => {
           </main>
         </div>
       </BrowserRouter>
+      <Tooltip label="Settings" placement="left">
+        <button
+          className="p-2 fixed right-0 bottom-20 bg-skin-primary text-skin-muted rounded-l-md"
+          ref={settingsSidebarTrigger}
+          aria-controls="sidebar"
+          aria-expanded={settingsSidebarOpen}
+          onClick={() => {
+            setSettingsSidebarOpen(!settingsSidebarOpen);
+          }}
+        >
+          <Cog6ToothIcon className="h-7 w-7" />
+        </button>
+      </Tooltip>
       <ToastContainer
         position="bottom-right"
         newestOnTop

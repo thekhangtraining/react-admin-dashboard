@@ -25,31 +25,31 @@ const PaginationButtons = ({
     { value: 40, label: "Show 40" },
   ];
   return (
-    <div className="flex flex-col space-y-1 my-3 text-xs sm:flex-row sm:items-center sm:justify-between">
+    <div className="flex flex-col space-y-1 text-xs sm:flex-row sm:items-center sm:justify-between">
       <div className="flex space-x-0.5 md:space-x-1 items-center">
         <button
-          className="rounded-md enabled:hover:bg-skin-secondary disabled:cursor-not-allowed"
+          className="rounded-sm enabled:hover:bg-skin-primary enabled:hover:text-skin-muted disabled:cursor-not-allowed"
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
         >
           <BiChevronsLeft className="h-5 w-5" />
         </button>
         <button
-          className="rounded-md enabled:hover:bg-skin-secondary disabled:cursor-not-allowed"
+          className="rounded-sm enabled:hover:bg-skin-primary enabled:hover:text-skin-muted disabled:cursor-not-allowed"
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
         >
           <BiChevronLeft className="h-5 w-5" />
         </button>
         <button
-          className="rounded-md enabled:hover:bg-skin-secondary disabled:cursor-not-allowed"
+          className="rounded-sm enabled:hover:bg-skin-primary enabled:hover:text-skin-muted disabled:cursor-not-allowed"
           onClick={() => nextPage()}
           disabled={!canNextPage}
         >
           <BiChevronRight className="h-5 w-5" />
         </button>
         <button
-          className="rounded-md enabled:hover:bg-skin-secondary disabled:cursor-not-allowed"
+          className="rounded-sm enabled:hover:bg-skin-primary enabled:hover:text-skin-muted disabled:cursor-not-allowed"
           onClick={() => gotoPage(pageCount - 1)}
           disabled={!canNextPage}
         >

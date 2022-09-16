@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 const LoveButton = ({ movieId, movieTitle, popularity }) => {
   const LoveNoti = () => (
-    <div className="text-skin-strong">
+    <div className="text-skin-muted">
       I'm glad that you enjoyed the movie{" "}
       <span className="text-[rgb(4,120,87)]">{movieTitle}</span>
     </div>

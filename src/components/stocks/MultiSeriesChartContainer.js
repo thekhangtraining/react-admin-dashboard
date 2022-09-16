@@ -4,10 +4,10 @@ import { enGB } from "date-fns/locale";
 import React, { useEffect, useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { LinesChart, ScopeButtonsGroup, useData } from ".";
+import { MultiSeriesChart, ScopeButtonsGroup, useData } from ".";
 import "../../styles/datepicker.css";
 
-const LinesChartContainer = ({ dataPath, title }) => {
+const MultiSeriesChartContainer = ({ dataPath, title }) => {
   const data = useData(dataPath);
   registerLocale("en-gb", enGB);
   const [startDate, setStartDate] = useState(new Date("1994/09/10"));
@@ -35,14 +35,14 @@ const LinesChartContainer = ({ dataPath, title }) => {
   }
 
   return (
-    <div className="w-full">
-      <h2 className="mb-2 text-skin-strong">{title}</h2>
-      <div className="text-chart-fill-base rounded-sm flex flex-col bg-chart-bg-fill items-center justify-center p-2 overflow-hidden text-xs h-[400px]">
+    <div className="w-full bg-skin-fill p-2 drop-shadow-lg">
+      <h2 className="font-bold text-sm">{title}</h2>
+      <div className="text-chart-fill-base rounded-sm flex flex-col items-center justify-center overflow-hidden text-xs h-[400px]">
         <div className="flex justify-between items-center gap-6 w-full z-10 text-2xs lg:text-xs">
           <ScopeButtonsGroup />
           <div className="flex items-center gap-1">
             From
-            <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-slate-300 border-1 px-2 py-0.5">
+            <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-border-base px-2 py-0.5">
               <DatePicker
                 dateFormat="P"
                 selected={startDate}
@@ -54,11 +54,12 @@ const LinesChartContainer = ({ dataPath, title }) => {
                 locale="en-gb"
                 minDate={startDateLimit}
                 maxDate={endDateLimit}
+                showMonthYearDropdown
               />
               <AiOutlineCalendar className="text-lg" />
             </div>
             To
-            <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-slate-300 border-1 px-2 py-0.5">
+            <div className="flex items-center justify-between w-28 bg-white rounded-sm border border-border-base px-2 py-0.5">
               <DatePicker
                 dateFormat="dd/MM/yyyy"
                 selected={endDate}
@@ -70,6 +71,7 @@ const LinesChartContainer = ({ dataPath, title }) => {
                 locale="en-gb"
                 minDate={startDateLimit}
                 maxDate={endDateLimit}
+                showMonthYearDropdown
               />
               <AiOutlineCalendar className="text-lg" />
             </div>
@@ -78,7 +80,7 @@ const LinesChartContainer = ({ dataPath, title }) => {
         <div className="h-full w-full">
           <ParentSize>
             {({ width, height }) => (
-              <LinesChart
+              <MultiSeriesChart
                 rawData={data}
                 width={width}
                 height={height}
@@ -93,4 +95,4 @@ const LinesChartContainer = ({ dataPath, title }) => {
   );
 };
 
-export default LinesChartContainer;
+export default MultiSeriesChartContainer;

@@ -7,9 +7,9 @@ import {
   bestTeamColumnsDef,
   bestTeamPlayersColumnsDef,
   playersColumnsDef,
-  teamsColumnsDef
+  teamsColumnsDef,
 } from "../../components/opendota/ColumnsDefs";
-import openDotaLogo from "../../data/images/opendota/opendota.jpg";
+import openDotaLogo from "../../media/images/opendota/opendota.jpg";
 import bestTeamMatches from "../../data/opendota/best_team_matches.json";
 import bestTeamPlayers from "../../data/opendota/best_team_players.json";
 import dotaPlayers from "../../data/opendota/players.json";
@@ -20,33 +20,6 @@ const OpenDota = () => {
 
   return (
     <div className="text-sm flex flex-col items-center">
-      <div className="w-full h-48 sm:h-60 md:h-72 flex justify-center lg:h-80 xl:h-96 animate-slideAndFadeIn bg-opendota bg-no-repeat bg-cover">
-        <div className="h-full lg:max-w-7xl flex flex-col justify-center items-center space-y-1 md:space-y-2">
-          <h2
-            style={textShadow}
-            className="text-xl md:text-2xl lg:text-3xl xl:text-4xl text-skin-strong font-bold rounded"
-          >
-            OpenDota
-          </h2>
-          <div className="flex space-x-1 sm:space-x-2 lg:space-x-4">
-            <HeroCard
-              title="Community"
-              icon={<BsPeopleFill className="h-4 w-4 md:h-6 md:w-6" />}
-              description="The largest DotA community with up-to-the-minute news"
-            />
-            <HeroCard
-              title="Exchange Ideas"
-              icon={<IoMdChatbubbles className="h-4 w-4 md:h-6 md:w-6" />}
-              description="Share your experience, hear other pro players' stories"
-            />
-            <HeroCard
-              title="Analytics"
-              icon={<GoGraph className="h-4 w-4 md:h-6 md:w-6" />}
-              description="Track your favorite players with comprehensive analytics"
-            />
-          </div>
-        </div>
-      </div>
       <div className="p-2 w-full flex flex-col space-y-4 items-center lg:max-w-7xl">
         <DotaTable
           data={dotaPlayers}

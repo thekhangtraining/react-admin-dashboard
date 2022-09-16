@@ -45,7 +45,7 @@ const Tooltip = ({ children, label, placement = "top" }) => {
           {...getFloatingProps({
             ref: floating,
             className:
-              "bg-skin-fill-1 px-2 py-1 rounded-sm text-skin-strong text-xs",
+              "bg-white border border-border-base px-2 py-1 rounded-sm text-xs",
             style: {
               position: strategy,
               top: y ?? 0,

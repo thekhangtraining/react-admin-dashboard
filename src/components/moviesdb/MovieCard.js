@@ -105,7 +105,7 @@ const MovieCard = ({
           {/* Close modal button */}
           <div className="flex justify-end">
             <button onClick={() => setModalOpen(!modalOpen)}>
-              <IoCloseSharp className="h-5 w-5" />
+              <IoCloseSharp className="h-5 w-5 hover:text-skin-primary" />
             </button>
           </div>
           <div className="flex flex-col space-y-2">

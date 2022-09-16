@@ -18,7 +18,7 @@ import {
 import { schemeCategory10 } from "d3-scale-chromatic";
 import React from "react";
 
-const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
+const MultiSeriesChart = ({ rawData, width, height, startDate, endDate }) => {
   const margin = { top: 20, right: 25, bottom: 20, left: 35 };
   const innerHeight = height - margin.top - margin.bottom;
   const innerWidth = width - margin.right - margin.left;
@@ -236,4 +236,4 @@ const LinesChart = ({ rawData, width, height, startDate, endDate }) => {
   );
 };
 
-export default LinesChart;
+export default MultiSeriesChart;

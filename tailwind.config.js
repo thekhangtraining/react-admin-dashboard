@@ -20,36 +20,29 @@ module.exports = {
       textColor: {
         skin: {
           base: withOpacity("--color-text-base"),
-          strong: withOpacity("--color-text-strong"),
+          muted: withOpacity("--color-text-muted"),
           primary: withOpacity("--color-primary"),
         },
-        chart: { "fill-base": "var(--color-chart-fill-base)" },
       },
       backgroundColor: {
         skin: {
           fill: withOpacity("--color-fill"),
           "fill-1": withOpacity("--color-fill-1"),
           primary: withOpacity("--color-primary"),
-          secondary: withOpacity("--color-secondary"),
-        },
-        chart: {
-          "bg-fill": "var(--color-chart-bg-fill)",
-          "bg-fill-1": "var(--color-chart-bg-fill-1)",
-          "bg-fill-2": "var(--color-chart-bg-fill-2)",
         },
       },
       fill: {
-        chart: {
-          "fill-base": "var(--color-chart-fill-base)",
+        skin: {
+          base: withOpacity("--color-fill"),
         },
       },
       stroke: {
-        chart: {
-          "stroke-base": "var(--color-chart-fill-base)",
+        skin: {
+          base: withOpacity("--color-fill"),
         },
       },
       backgroundImage: {
-        opendota: "url('./data/images/opendota/background.jpg')",
+        opendota: "url('./media/images/opendota/background.jpg')",
       },
       fontFamily: {
         firaCond: ["Fira Sans Condensed", "sans-serif"],

@@ -27,7 +27,7 @@ const Select = ({ setState, options }) => {
         </label>
         <button
           aria-label="Select"
-          className="py-0.5 px-2 h-5 w-full flex justify-between items-center"
+          className="py-3 px-2 h-5 w-full flex justify-between items-center"
           type="button"
           {...getToggleButtonProps()}
         >
@@ -47,10 +47,12 @@ const Select = ({ setState, options }) => {
               <button className="w-full" key={`${item.value}${index}`}>
                 <li
                   className={classnames(
-                    highlightedIndex === index && "bg-skin-secondary",
+                    "py-1.5 px-2",
+                    highlightedIndex === index &&
+                      "bg-skin-primary text-skin-muted",
                     // Compare value instead of "selectedItem === item" as in the documentation
                     selectedItem.value === item.value && "text-skin-primary",
-                    "py-1.5 px-3 shadow-sm flex items-center w-full"
+                    "shadow-sm flex items-center w-full"
                   )}
                   {...getItemProps({ item, index })}
                 >
