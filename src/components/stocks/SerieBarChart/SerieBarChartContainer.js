@@ -4,10 +4,10 @@ import { enGB } from "date-fns/locale";
 import React, { useEffect, useState } from "react";
 import DatePicker, { registerLocale } from "react-datepicker";
 import { AiOutlineCalendar } from "react-icons/ai";
-import { MultiSeriesChart, ScopeButtonsGroup, useData } from ".";
-import "../../styles/datepicker.css";
+import { ScopeButtonsGroup, SerieBarChart, useData } from "..";
+import "../../../styles/datepicker.css";
 
-const MultiSeriesChartContainer = ({ dataPath, title }) => {
+const SerieBarChartContainer = ({ dataPath, title }) => {
   const data = useData(dataPath);
   registerLocale("en-gb", enGB);
   const [startDate, setStartDate] = useState(new Date("1994/09/10"));
@@ -35,7 +35,7 @@ const MultiSeriesChartContainer = ({ dataPath, title }) => {
   }
 
   return (
-    <div className="w-full bg-skin-fill p-2 shadow-lg">
+    <div className="w-full bg-skin-fill p-2 shadow-base">
       <h2 className="font-bold text-sm">{title}</h2>
       <div className="text-chart-fill-base rounded-sm flex flex-col items-center justify-center overflow-hidden text-xs h-[400px]">
         <div className="flex justify-between items-center gap-6 w-full z-10 text-2xs lg:text-xs">
@@ -80,7 +80,7 @@ const MultiSeriesChartContainer = ({ dataPath, title }) => {
         <div className="h-full w-full">
           <ParentSize>
             {({ width, height }) => (
-              <MultiSeriesChart
+              <SerieBarChart
                 rawData={data}
                 width={width}
                 height={height}
@@ -95,4 +95,4 @@ const MultiSeriesChartContainer = ({ dataPath, title }) => {
   );
 };
 
-export default MultiSeriesChartContainer;
+export default SerieBarChartContainer;

@@ -57,9 +57,10 @@ const ThemeSelect = () => {
                   className={classnames(
                     "py-1 px-2",
                     highlightedIndex === index &&
-                      "bg-skin-primary text-skin-muted",
+                      "hover:bg-skin-primary hover:text-skin-muted",
                     // Compare value instead of "selectedItem === item" as in the documentation
-                    theme === item.value && "text-skin-primary hover:text-skin-muted",
+                    theme === item.value &&
+                      "text-skin-primary hover:text-skin-muted",
                     "py-1.5 px-3 shadow-sm flex items-center w-full"
                   )}
                   {...getItemProps({ item, index })}

@@ -31,6 +31,9 @@ module.exports = {
           primary: withOpacity("--color-primary"),
         },
       },
+      boxShadow: {
+        base: `2px 2px 10px gray`,
+      },
       fill: {
         skin: {
           base: withOpacity("--color-fill"),

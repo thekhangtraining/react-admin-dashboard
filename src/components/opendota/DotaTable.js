@@ -56,11 +56,9 @@ const DotaTable = ({
   );
 
   return (
-    <div className="w-full h-fit text-xs rounded-sm overflow-x-auto flex flex-col gap-1 shadow-lg bg-skin-fill p-2">
+    <div className="w-full h-fit text-xs rounded-sm overflow-x-auto flex flex-col gap-1 bg-skin-fill p-2 shadow-base">
       <div className="flex items-end justify-between">
-        <h2 className="font-bold text-sm">
-          {tableTitle}
-        </h2>
+        <h2 className="font-bold text-sm">{tableTitle}</h2>
         {disableGlobalFilter ? null : (
           <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
         )}
@@ -102,10 +100,7 @@ const DotaTable = ({
           {page.map((row) => {
             prepareRow(row);
             return (
-              <tr
-                className="border-b"
-                {...row.getRowProps()}
-              >
+              <tr className="border-b" {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
                     <td

@@ -7,7 +7,7 @@ import { Tooltip } from "../";
 const classnames = require("classnames");
 const placeholderPath = "https://img.icons8.com/cotton/344/user-male--v1.png";
 
-const logoClassname = "rounded-sm h-6 w-7 md:h-7 md:w-8 bg-slate-600"
+const logoClassname = "rounded-sm h-6 w-7 md:h-7 md:w-8 bg-slate-800"
 
 export const PlayerWinrate = ({ winRate, wins, losses }) => (
   <div className="flex flex-col float-left">
@@ -34,7 +34,7 @@ export const PlayerHeroes = ({ heroes, id }) => (
   <div className="flex space-x-1 w-52">
     {heroes.slice(0, 5).map((h) => (
       <Tooltip key={`${id}-${h}`} label={h}>
-        <img className={"h-6 w-10 rounded-xs"} alt="" src={getHeroImgSrc(h)} />
+        <img className={"h-5.5 w-10 rounded-sm"} alt="" src={getHeroImgSrc(h)} />
       </Tooltip>
     ))}
   </div>
